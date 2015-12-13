@@ -53,5 +53,12 @@ public class BezierCollider2D : MonoBehaviour
 		{
 			Gizmos.DrawLine(new Vector3(points[i].x+_t.x, points[i].y+_t.y), new Vector3(points[i+1].x+_t.x, points[i+1].y+_t.y));
 		}
+		Gizmos.color = Color.red;
+		//Vector3 a = new Vector3 (firstPoint,0);
+		Gizmos.DrawLine (new Vector3 (firstPoint.x+_t.x,firstPoint.y+_t.y,0),new Vector3 (handlerFirstPoint.x+_t.x,handlerFirstPoint.y+_t.y,0));
+
+		Gizmos.color = Color.green;
+
+		Gizmos.DrawLine (new Vector3 (secondPoint.x+_t.x,secondPoint.y+_t.y,0),new Vector3 (handlerSecondPoint.x+_t.x,handlerSecondPoint.y+_t.y,0));
 	}
 }
