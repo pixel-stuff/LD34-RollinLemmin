@@ -16,48 +16,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &128072
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 425452}
-  m_Layer: 0
-  m_Name: rightBorder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &177722
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 486714}
-  m_Layer: 0
-  m_Name: leftBorder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &425452
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 128072}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.36999989, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 460610}
-  m_RootOrder: 1
 --- !u!4 &460610
 Transform:
   m_ObjectHideFlags: 1
@@ -67,22 +25,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 486714}
-  - {fileID: 425452}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
---- !u!4 &486714
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177722}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.05999994, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 460610}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &11444922
 MonoBehaviour:
@@ -101,40 +45,45 @@ MonoBehaviour:
     generatorScript: {fileID: 11466246, guid: 89c95db2d48a0c3468c4f28acac39fdb, type: 2}
     lowSpaceBetweenAsset: 0
     hightSpaceBetweenAsset: 0
+    relativeSpeed: 0
   - prefabParralaxPlan: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     distance: -40
     generatorScript: {fileID: 11424062, guid: 365fc72a99eb21f4394afb9d9110ecb5, type: 2}
     lowSpaceBetweenAsset: 0
     hightSpaceBetweenAsset: 0
+    relativeSpeed: 0
   - prefabParralaxPlan: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     distance: -70
     generatorScript: {fileID: 11484730, guid: edccf59182a39b840a58632418e932c8, type: 2}
     lowSpaceBetweenAsset: 0
     hightSpaceBetweenAsset: 0
+    relativeSpeed: 0
   - prefabParralaxPlan: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     distance: -100
     generatorScript: {fileID: 11483544, guid: 414c878346a0bde48a9301381eab978b, type: 2}
     lowSpaceBetweenAsset: 0
     hightSpaceBetweenAsset: 0
+    relativeSpeed: 0
   - prefabParralaxPlan: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     distance: -1000
     generatorScript: {fileID: 11454274, guid: 94a4610d3cc7e94498bd93c01a0e56fc, type: 2}
     lowSpaceBetweenAsset: 0
     hightSpaceBetweenAsset: 0
+    relativeSpeed: 0
   - prefabParralaxPlan: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     distance: 2
     generatorScript: {fileID: 11434114, guid: 45e6e951137d6694784f951757886c5a, type: 2}
     lowSpaceBetweenAsset: 0
     hightSpaceBetweenAsset: 0
+    relativeSpeed: 0
   - prefabParralaxPlan: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     distance: 0
     generatorScript: {fileID: 11418782, guid: bdaec8e682001714d8f7fdd9d6dd1dfd, type: 2}
     lowSpaceBetweenAsset: 0
     hightSpaceBetweenAsset: 0
-  rightBorder: {fileID: 128072}
-  leftBorder: {fileID: 177722}
-  parralaxPlans: []
-  speed: .100000001
+    relativeSpeed: 0
+  cameraToFollow: {fileID: 0}
+  speed: 0.1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

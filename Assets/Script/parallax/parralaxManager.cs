@@ -86,7 +86,7 @@ public class parralaxManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         //reset the Pop and depop position 
         bool refreshZoom = false;
 		float cameraOrthographiqueSize = cameraToFollow.orthographicSize*2;
@@ -107,7 +107,7 @@ public class parralaxManager : MonoBehaviour {
 		float cameraSpeedX=0;
 		if (cameraToFollow != null){
 			cameraSpeedX = (cameraToFollow.transform.position.x - this.transform.position.x)*10;
-			this.transform.position = new Vector3(cameraToFollow.transform.position.x, this.transform.position.y, this.transform.position.z);
+			this.transform.position = new Vector3(cameraToFollow.transform.position.x, cameraToFollow.transform.position.y, this.transform.position.z);
 		}
 		
 		foreach (GameObject plan in parralaxPlans) {
