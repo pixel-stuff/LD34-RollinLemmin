@@ -25,6 +25,7 @@ public class BezierCollider2DEditor : Editor
 			bezierCollider.pointsQuantity = EditorGUILayout.IntField ("curve points",bezierCollider.pointsQuantity, GUILayout.MinWidth(100));
 			bezierCollider.firstPoint = EditorGUILayout.Vector2Field ("first point",bezierCollider.firstPoint, GUILayout.MinWidth(100));
 			bezierCollider.handlerFirstPoint = EditorGUILayout.Vector2Field ("handler first Point",bezierCollider.handlerFirstPoint, GUILayout.MinWidth(100));
+			EditorGUILayout.LabelField ("-----------------------------------------------------");
 			bezierCollider.secondPoint = EditorGUILayout.Vector2Field ("second point",bezierCollider.secondPoint, GUILayout.MinWidth(100));
 			bezierCollider.handlerSecondPoint = EditorGUILayout.Vector2Field ("handler secondPoint",bezierCollider.handlerSecondPoint, GUILayout.MinWidth(100));
 
