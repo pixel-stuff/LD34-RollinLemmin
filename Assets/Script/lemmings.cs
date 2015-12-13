@@ -12,6 +12,8 @@ public class lemmings : MonoBehaviour {
 
 	public float speedTresholdForAddSnow;
 
+	public Vector3 ForceUpInFall;
+
 	public float initialeSize = 0.32f;
 	public float maxSize = 1.1f;
 
@@ -36,6 +38,8 @@ public class lemmings : MonoBehaviour {
 
 	private bool canJump =false;
 
+	private bool isDown = false;
+
 
 	public BallEffect particuleEffect;
 
@@ -49,8 +53,10 @@ public class lemmings : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		isDown = ((this.transform.position.y - oldPosition.y) < 0) ? false : true;
 		speed = (this.transform.position - oldPosition).magnitude;
 		float oldSnowValue = snowValue;
+		oldPosition = this.transform.position;
 		snowValue -= lostSnow;
 		if(snowValue < 0){
 			snowValue = 0;
@@ -89,7 +95,6 @@ public class lemmings : MonoBehaviour {
 
 
 	void OnCollisionEnter2D(Collision2D other){
-		Debug.Log ("here");
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
 			Debug.Log ("COLLIDE");
 			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
@@ -110,6 +115,9 @@ public class lemmings : MonoBehaviour {
 			canJump = true;
 			if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
 				addSnow = true;
+				if (isDown) {
+					m_rigideBody.AddForce (ForceUpInFall);
+				}
 			}
 
 		}
@@ -137,8 +145,12 @@ public class lemmings : MonoBehaviour {
 			canJump = true;
 			if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
 				addSnow = true;
+				if (isDown) {
+					m_rigideBody.AddForce (ForceUpInFall);
+				}
 			}
 		}
+
 	}
 
 

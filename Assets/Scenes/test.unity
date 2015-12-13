@@ -153,7 +153,7 @@ GameObject:
   - 4: {fileID: 181956332}
   - 68: {fileID: 181956334}
   - 114: {fileID: 181956333}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   - 4: {fileID: 228939852}
   - 68: {fileID: 228939854}
   - 114: {fileID: 228939853}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2210,7 +2210,7 @@ GameObject:
   - 4: {fileID: 647041667}
   - 68: {fileID: 647041669}
   - 114: {fileID: 647041668}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3996,7 +3996,7 @@ GameObject:
   - 4: {fileID: 846606425}
   - 68: {fileID: 846606427}
   - 114: {fileID: 846606426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4146,7 +4146,7 @@ GameObject:
   - 4: {fileID: 1013931601}
   - 68: {fileID: 1013931603}
   - 114: {fileID: 1013931602}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5926,7 +5926,7 @@ ConstantForce2D:
   m_GameObject: {fileID: 1170220163}
   m_Enabled: 1
   m_Force: {x: 0, y: 0}
-  m_RelativeForce: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: -5000}
   m_Torque: 0
 --- !u!4 &1170220165
 Transform:
@@ -5987,11 +5987,12 @@ MonoBehaviour:
   lostSnow: 1
   snowValue: 0
   maxSnow: 1000
-  speedTresholdForAddSnow: 8
+  speedTresholdForAddSnow: 0.2
+  ForceUpInFall: {x: 20000, y: -1000, z: 0}
   initialeSize: 0.32
   maxSize: 1.1
-  initialeWeight: 1
-  maxWeight: 0
+  initialeWeight: 3000
+  maxWeight: 6000
   initialeZoom: 5
   maxZoom: 6
   ball: {fileID: 565001959}
@@ -6049,7 +6050,7 @@ GameObject:
   - 4: {fileID: 1236248649}
   - 68: {fileID: 1236248651}
   - 114: {fileID: 1236248650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6138,7 +6139,7 @@ GameObject:
   - 4: {fileID: 1397574119}
   - 68: {fileID: 1397574121}
   - 114: {fileID: 1397574120}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6227,7 +6228,7 @@ GameObject:
   - 4: {fileID: 1415611143}
   - 68: {fileID: 1415611145}
   - 114: {fileID: 1415611144}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6316,7 +6317,7 @@ GameObject:
   - 4: {fileID: 1566003250}
   - 68: {fileID: 1566003252}
   - 114: {fileID: 1566003251}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8024,7 +8025,7 @@ GameObject:
   - 4: {fileID: 1743672819}
   - 68: {fileID: 1743672821}
   - 114: {fileID: 1743672820}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8265,7 +8266,7 @@ GameObject:
   - 4: {fileID: 1925012326}
   - 68: {fileID: 1925012328}
   - 114: {fileID: 1925012327}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9923,7 +9924,7 @@ GameObject:
   - 4: {fileID: 2057246300}
   - 68: {fileID: 2057246302}
   - 114: {fileID: 2057246301}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10072,7 +10073,7 @@ GameObject:
   - 4: {fileID: 2089561249}
   - 68: {fileID: 2089561251}
   - 114: {fileID: 2089561250}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: curveCollider (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
