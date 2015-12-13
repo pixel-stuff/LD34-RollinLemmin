@@ -12,6 +12,8 @@ public class BezierCollider2D : MonoBehaviour
 	public Vector2 handlerSecondPoint;
 
 	public int pointsQuantity;
+	private Vector3 _t;
+	List<Vector2> points;
 
 	Vector3 CalculateBezierPoint(float t,Vector3 p0,Vector3 handlerP0,Vector3 handlerP1,Vector3 p1)
 	{
@@ -31,7 +33,8 @@ public class BezierCollider2D : MonoBehaviour
 
 	public Vector2[] calculate2DPoints()
 	{
-		List<Vector2> points = new List<Vector2>();
+		_t = this.transform.position;
+		points = new List<Vector2>();
 
 		points.Add(firstPoint);
 		for(int i=1;i<pointsQuantity;i++)
@@ -41,5 +44,14 @@ public class BezierCollider2D : MonoBehaviour
 		points.Add(secondPoint);
 
 		return points.ToArray();
+	}
+
+	void OnDrawGizmos(){
+		_t = this.transform.position;
+		Gizmos.color = Color.blue;
+		for(int i = 0; i <pointsQuantity; i++)
+		{
+			Gizmos.DrawLine(new Vector3(points[i].x+_t.x, points[i].y+_t.y), new Vector3(points[i+1].x+_t.x, points[i+1].y+_t.y));
+		}
 	}
 }
