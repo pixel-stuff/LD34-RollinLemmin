@@ -47,11 +47,17 @@ public class BallEffect : MonoBehaviour {
 	}
 
 	public void setSpeedSnowEffect(float speed, float factor,float speedSign){
-		int nbPart = (int)((initialeSpeedNbParticule + factor * maxSpeedNbParticule));
-		if (speedSign > 0) {
-			SpeedSnowLeft.Emit (nbPart);
+		Debug.Log ("TOTO " + speed);
+		/*if (speed == 0) {
+			SpeedSnowLeft.Stop();
+			return;
 		} else {
-			SpeedSnowRight.Emit (nbPart);
+			SpeedSnowLeft.Play ();
+		}*/
+		if (speedSign > 0) {
+		//	SpeedSnowLeft.forceOverLifetime.x.constantMax =(SpeedSnowLeft.forceOverLifetime.x.constantMax >0) ? SpeedSnowLeft.forceOverLifetime.x.constantMax : -SpeedSnowLeft.forceOverLifetime.x.constantMax;
+		} else {
+		//	SpeedSnowLeft.forceOverLifetime.x.constantMax =(SpeedSnowLeft.forceOverLifetime.x.constantMax >0) ? -SpeedSnowLeft.forceOverLifetime.x.constantMax : SpeedSnowLeft.forceOverLifetime.x.constantMax;
 		}
 	}
 
