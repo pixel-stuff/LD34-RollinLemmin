@@ -81,8 +81,10 @@ public class lemmings : MonoBehaviour {
 
 		particuleEffect.setSpeedEffect (speed);
 		if (addSnow) {
+			Debug.Log ("ADDSNOWEFFECT");
 			particuleEffect.setSpeedSnowEffect (speed, (snowValue / maxSnow),speedSign);
 		} else {
+			Debug.Log ("ADDSNOWEFFECT");
 			particuleEffect.setSpeedSnowEffect (0,0,0);
 		}
 		float lostSnowValue = snowValue - oldSnowValue;

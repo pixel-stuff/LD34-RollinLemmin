@@ -15,10 +15,11 @@ public class BallEffect : MonoBehaviour {
 	public float spaceBetweenEffectAndBall=1.0f;
 	public float minimumSpeedForEffect=5;
 
-	public ParticleSystem SpeedSnowLeft;
-	public ParticleSystem SpeedSnowRight;
-	public float initialeSpeedNbParticule = 50;
-	public float maxSpeedNbParticule = 100;
+	public GameObject SpeedSnowLeft;
+	public GameObject SpeedSnowRight;
+	public float nbChangeState =10;
+	public float actualChangeState = 0;
+	public GameObject target = null;
 
 	public ParticleSystem snowDegradation;
 	public int nbPartForOneDesagration = 1;
@@ -47,17 +48,30 @@ public class BallEffect : MonoBehaviour {
 	}
 
 	public void setSpeedSnowEffect(float speed, float factor,float speedSign){
-		/*if (speed == 0) {
-			SpeedSnowLeft.Stop();
-			return;
-		} else {
-			SpeedSnowLeft.Play ();
-		}*/
-		if (speedSign > 0) {
-		//	SpeedSnowLeft.forceOverLifetime.x.constantMax =(SpeedSnowLeft.forceOverLifetime.x.constantMax >0) ? SpeedSnowLeft.forceOverLifetime.x.constantMax : -SpeedSnowLeft.forceOverLifetime.x.constantMax;
-		} else {
-		//	SpeedSnowLeft.forceOverLifetime.x.constantMax =(SpeedSnowLeft.forceOverLifetime.x.constantMax >0) ? -SpeedSnowLeft.forceOverLifetime.x.constantMax : SpeedSnowLeft.forceOverLifetime.x.constantMax;
+
+			if (speedSign > 0) {
+				target = SpeedSnowLeft;
+			SpeedSnowRight.SetActive (false);
+			//actualChangeState = 0;
+		} 
+		if (speedSign < 0) {
+				target = SpeedSnowRight;
+			SpeedSnowLeft.SetActive (false);
+			//actualChangeState = 0;
+			}
+		if (target != null) {
+			if (speed == 0) {
+				actualChangeState++;
+				if (actualChangeState > nbChangeState) {
+					actualChangeState = 0;
+					target.SetActive (false);// = false;
+					return;
+				}
+			} else {
+				target.SetActive (true);// = true;
+			}
 		}
+
 	}
 
 	public void DropSnow (float factor){
