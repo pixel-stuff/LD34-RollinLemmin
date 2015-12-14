@@ -5577,7 +5577,7 @@ Prefab:
       objectReference: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[3].distance
-      value: -10000
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[3].generatorScript

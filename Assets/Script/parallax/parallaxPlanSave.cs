@@ -30,6 +30,7 @@ public class parallaxPlanSave : parallaxPlan {
 		setTheDistanceMultiplicator ();
 		generator.clear ();
 		hightId=-1;
+		lowId = 0;
 		generateNewSpaceBetweenAssetValue();
 		while (!m_isInit) {
 			moveAsset (m_initSpeed);
@@ -134,15 +135,15 @@ public class parallaxPlanSave : parallaxPlan {
 				}
 				}
 			} else { 
-				if (lowId == 0) {
+				if (lowId ==0) {
 				//Debug.Log("get low with space : "+ spaceBetweenLastAndPopLimitation() + " and space value "+ spaceBetweenAsset);
 				if(spaceBetweenLastAndPopLimitation() > spaceBetweenAsset) {
 					generateNewAsset();
 				//	Debug.Log("generate low");
 				}
 				} else {
-				///Debug.Log("get old low with space : "+ spaceBetweenLastAndPopLimitation() + " and stock value "+ m_stockAsset[lowId].dist);
-				if(spaceBetweenLastAndPopLimitation() > m_stockAsset[lowId].dist) {
+				//Debug.Log("get old low with space : "+ spaceBetweenLastAndPopLimitation() + " and lowID value "+lowId);
+				if(lowId >0 && lowId < m_stockAsset.Count && spaceBetweenLastAndPopLimitation() > m_stockAsset[lowId].dist) {
 					generateOldAsset(m_stockAsset[lowId].code,m_stockAsset[lowId].dist);
 				//	Debug.Log("get old low");
 				}
