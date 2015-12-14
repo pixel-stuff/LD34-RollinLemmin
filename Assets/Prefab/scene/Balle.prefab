@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22eb35cf7e0497a40a572575e79938e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollingSnowAdd: 5
-  lostSnow: 1
+  rollingSnowAdd: 6
+  lostSnow: 1.5
   snowValue: 0
   maxSnow: 1000
   speedTresholdForAddSnow: 0.2
@@ -119,9 +119,9 @@ MonoBehaviour:
   SpeedZoomPercent: 8
   actualSpeedZoom: 0
   SpeedZoomMax: 9
-  ball: {fileID: 195234}
+  ball: {fileID: 0}
   camera: {fileID: 0}
-  jumpForce: {x: 10000, y: 10000, z: 0}
+  jumpForce: {x: 10000, y: 1500000, z: 0}
   speed: 0
   particuleEffect: {fileID: 0}
 --- !u!212 &21238404
