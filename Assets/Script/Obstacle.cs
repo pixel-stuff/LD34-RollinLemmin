@@ -19,7 +19,7 @@ public class Obstacle : MonoBehaviour {
 	public Vector3 surviveAndAddForce(){
 		this.GetComponent<EdgeCollider2D> ().enabled = false;
 		//animation de shake
-		return destructForce;
+		return surviceForce;
 	}
 
 	public float getDestrucFactor(){
