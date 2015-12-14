@@ -64,6 +64,7 @@ public class lemmings : MonoBehaviour {
 	void Update () {
 		isDown = ((this.transform.position.y - oldPosition.y) < 0) ? false : true;
 		speed = (this.transform.position - oldPosition).magnitude;
+		float speedSign = this.transform.position.x - oldPosition.x;
 		float oldSnowValue = snowValue;
 		oldPosition = this.transform.position;
 		snowValue -= lostSnow;
@@ -80,9 +81,9 @@ public class lemmings : MonoBehaviour {
 
 		particuleEffect.setSpeedEffect (speed);
 		if (addSnow) {
-			particuleEffect.setSpeedSnowEffect (speed, (snowValue / maxSnow));
+			particuleEffect.setSpeedSnowEffect (speed, (snowValue / maxSnow),speedSign);
 		} else {
-			particuleEffect.setSpeedSnowEffect (0,0);
+			//particuleEffect.setSpeedSnowEffect (0,0,0);
 		}
 		float lostSnowValue = snowValue - oldSnowValue;
 		if (lostSnowValue < 0) {

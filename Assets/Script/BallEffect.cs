@@ -15,7 +15,8 @@ public class BallEffect : MonoBehaviour {
 	public float spaceBetweenEffectAndBall=1.0f;
 	public float minimumSpeedForEffect=5;
 
-	public ParticleSystem SpeedSnow;
+	public ParticleSystem SpeedSnowLeft;
+	public ParticleSystem SpeedSnowRight;
 	public float initialeSpeedNbParticule = 50;
 	public float maxSpeedNbParticule = 100;
 
@@ -35,18 +36,23 @@ public class BallEffect : MonoBehaviour {
 		JumpParticule.transform.position = position + new Vector3 (0, -radius, 0);
 		SpeedRightWindParticule.transform.position = position + new Vector3 (radius + spaceBetweenEffectAndBall, 0, 0);
 		SpeedLeftWindParticule.transform.position = position + new Vector3 (-radius - spaceBetweenEffectAndBall, 0, 0);
-		SpeedSnow.transform.position = position + new Vector3 (0, -radius, 0);
+		SpeedSnowLeft.transform.position = position + new Vector3 (0, -radius, 0);
+		SpeedSnowRight.transform.position = position + new Vector3 (0, -radius, 0);
 	}
 
 	public void setSpeedEffect(float speed){
 		if (speed > minimumSpeedForEffect) {
-		//	SpeedRightWindParticule.Emit (10);
+			//SpeedRightWindParticule.Emit (10);
 		}
 	}
 
-	public void setSpeedSnowEffect(float speed, float factor){
-		int nbPart = (int)((initialeSpeedNbParticule + factor * maxSpeedNbParticule) * speed);
-		SpeedSnow.Emit (nbPart/100);
+	public void setSpeedSnowEffect(float speed, float factor,float speedSign){
+		int nbPart = (int)((initialeSpeedNbParticule + factor * maxSpeedNbParticule));
+		if (speedSign > 0) {
+			SpeedSnowLeft.Emit (nbPart);
+		} else {
+			SpeedSnowRight.Emit (nbPart);
+		}
 	}
 
 	public void DropSnow (float factor){
