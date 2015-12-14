@@ -491,7 +491,7 @@ MonoBehaviour:
   redProgrression: {fileID: 141302}
   Ball: {fileID: 0}
   popFoxDist: 20
-  speedFox: 0.005
+  speedFox: 0
   sizeOfBar: 16.8
   sizeOfRedBar: 1.1
 --- !u!124 &12423654
