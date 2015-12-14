@@ -23,6 +23,13 @@ public class lemmings : MonoBehaviour {
 	public float initialeZoom = 5;
 	public float maxZoom = 10;
 
+
+	public float BumpZoomPercent =10;
+	public float BumpZoomStep =0.5f;
+	private float actualBumpZoom =0.0f;
+	/*public float SpeedZoomPercent = 5;
+	public float actualSpeedZoom =0.0f;
+	public float SpeedZoomMax = 2.0f;*/
 	public GameObject ball;
 
 	public Camera camera;
@@ -39,6 +46,8 @@ public class lemmings : MonoBehaviour {
 	private bool canJump =false;
 
 	private bool isDown = false;
+
+	private bool isBump =true;
 
 
 	public BallEffect particuleEffect;
@@ -64,6 +73,8 @@ public class lemmings : MonoBehaviour {
 		if (addSnow && snowValue < maxSnow && speed >= speedTresholdForAddSnow) {
 			snowValue += rollingSnowAdd;
 		}
+
+
 		updateSize ();
 		particuleEffect.UpdatePositionAndRadius (this.transform.position, m_collider.radius);
 
@@ -90,11 +101,31 @@ public class lemmings : MonoBehaviour {
 		m_collider.radius = initialeSize + (maxSize * (snowValue / maxSnow));
 		ball.transform.localScale = new Vector3(initialeSize + (maxSize * (snowValue / maxSnow)),initialeSize + (maxSize * (snowValue / maxSnow)),1) ;
 		m_rigideBody.mass = initialeWeight + (maxWeight * (snowValue / maxSnow));
-		camera.orthographicSize =  initialeZoom + (maxZoom * (snowValue / maxSnow));
+		updateZoomOnCamera ();
+	}
+
+	void updateZoomOnCamera(){
+		//actualSpeedZoom = (speed / SpeedZoomMax) * SpeedZoomPercent;
+		if (isBump) {
+			actualBumpZoom += BumpZoomStep;
+		} else {
+			actualBumpZoom -= BumpZoomStep;
+		}
+		if (actualBumpZoom < 0 ) {
+			actualBumpZoom = 0;
+		}
+		if (actualBumpZoom > BumpZoomPercent) {
+			actualBumpZoom = BumpZoomPercent;
+		}
+		float initialCameraZoom = initialeZoom + (maxZoom * (snowValue / maxSnow));
+		float cameraZoom = initialCameraZoom *(1 + (actualBumpZoom/100));
+		//cameraZoom += initialCameraZoom *(1 + (actualSpeedZoom/100));
+		camera.orthographicSize = cameraZoom;
 	}
 
 
 	void OnCollisionEnter2D(Collision2D other){
+		isBump = false;
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
 			Debug.Log ("COLLIDE");
 			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
@@ -125,6 +156,7 @@ public class lemmings : MonoBehaviour {
 
 
 	void OnCollisionStay2D(Collision2D other){
+		isBump = false;
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
 			Debug.Log ("COLLIDE");
 			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
@@ -155,8 +187,9 @@ public class lemmings : MonoBehaviour {
 
 
 	void OnCollisionExit2D(Collision2D other){
-		
+		m_rigideBody.AddRelativeForce (new Vector3(0,-10000,0));
 		addSnow=false;
+		isBump = true;
 	}
 
 	void Jump(){
@@ -169,7 +202,6 @@ public class lemmings : MonoBehaviour {
 	}
 
 	void DropSnow(){
-		//this.GetComponent<ParticleSystem> ().Emit((int)Math.Floor(initialeNbParticule + (maxNbParticule * (snowValue / maxSnow))));
 		particuleEffect.DropSnow(snowValue / maxSnow);
 		snowValue = 0;
 	}
