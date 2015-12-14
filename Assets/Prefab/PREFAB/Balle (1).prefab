@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.818, y: 23.305, z: 0}
+  m_LocalPosition: {x: -12.25, y: 20.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422658}
@@ -150,10 +150,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rollingSnowAdd: 6
-  lostSnow: 1.5
+  lostSnow: 0.2
   snowValue: 0
   maxSnow: 1000
-  lemmingInSnow: 50
+  lemmingInSnow: 30
   speedTresholdForAddSnow: 0.2
   ForceUpInFall: {x: 20000, y: -1000, z: 0}
   initialeSize: 0.32
