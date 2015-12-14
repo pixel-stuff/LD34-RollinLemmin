@@ -35,17 +35,19 @@ public class parralaxManager : MonoBehaviour {
 	private GameObject leftBorder;
 	private List<GameObject> parralaxPlans;
 
-
+	public float yOffset;
 
     private float CameraWidthSize = 0;
 	
 	// Use this for initialization
 	void Start () {
 		rightBorder = Instantiate (new GameObject ());
-		rightBorder.transform.parent = this.transform;
+		rightBorder.transform.parent = this.transform.parent;
 		leftBorder = Instantiate (new GameObject ());
-		leftBorder.transform.parent = this.transform;
-		parralaxPlans = new List<GameObject> ();
+		leftBorder.transform.parent = this.transform.parent;
+		/*leftBorder.transform.position = new Vector3 (leftBorder.transform.position.x,cameraToFollow.gameObject.transform.position.y,leftBorder.transform.position.z);
+		rightBorder.transform.position = new Vector3 (leftBorder.transform.position.x,cameraToFollow.gameObject.transform.position.y,leftBorder.transform.position.z);
+		*/parralaxPlans = new List<GameObject> ();
 		foreach (ParralaxPlanConfiguration config in configurationParralax) {
 			GameObject tempParralaxPlan = Instantiate(config.prefabParralaxPlan);
 			tempParralaxPlan.transform.parent = this.transform;
@@ -100,8 +102,8 @@ public class parralaxManager : MonoBehaviour {
             CameraWidthSize = cameraOrthographiqueSize * CameraW;
             refreshZoom = true;
         }
-        rightBorder.transform .position = new Vector3 (cameraToFollow.transform.position.x + CameraW * cameraOrthographiqueSize, rightBorder.transform .position.y,rightBorder.transform .position.z);
-		leftBorder.transform .position = new Vector3 (cameraToFollow.transform.position.x - CameraW * cameraOrthographiqueSize, leftBorder.transform .position.y,leftBorder.transform .position.z);
+		rightBorder.transform .position = new Vector3 (cameraToFollow.transform.position.x + CameraW * cameraOrthographiqueSize,cameraToFollow.transform.position.y +yOffset,rightBorder.transform .position.z);
+		leftBorder.transform .position = new Vector3 (cameraToFollow.transform.position.x - CameraW * cameraOrthographiqueSize, cameraToFollow.transform.position.y + yOffset,leftBorder.transform .position.z);
 
 
 		float cameraSpeedX=0;

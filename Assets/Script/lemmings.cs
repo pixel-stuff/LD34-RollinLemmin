@@ -27,9 +27,9 @@ public class lemmings : MonoBehaviour {
 	public float BumpZoomPercent =10;
 	public float BumpZoomStep =0.5f;
 	private float actualBumpZoom =0.0f;
-	/*public float SpeedZoomPercent = 5;
+	public float SpeedZoomPercent = 5;
 	public float actualSpeedZoom =0.0f;
-	public float SpeedZoomMax = 2.0f;*/
+	public float SpeedZoomMax = 2.0f;
 	public GameObject ball;
 
 	public Camera camera;

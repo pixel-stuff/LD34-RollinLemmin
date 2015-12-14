@@ -59,7 +59,7 @@ public class parallaxPlanBasic : parallaxPlan {
 				isInit =true;
 			} else {
 				positionAsset.x -= speed;
-				parrallaxAsset.transform.position = positionAsset;
+				parrallaxAsset.transform.position = new Vector3(positionAsset.x,popLimitation.transform.position.y,positionAsset.z) ;
 			}
 		}
 	}
@@ -71,7 +71,7 @@ public class parallaxPlanBasic : parallaxPlan {
 			GenerateAssetStruct assetStruct = generator.generateGameObjectAtPosition();
 			GameObject asset = assetStruct.generateAsset;
 			asset.transform.parent = this.transform;
-			asset.transform.position = new Vector3((popLimitation.transform.position.x + (speedSign * asset.GetComponent<SpriteRenderer> ().sprite.bounds.max.x)) + (space-spaceBetweenAsset),popLimitation.transform.position.y,this.transform.position.z);
+			asset.transform.position = new Vector3((popLimitation.transform.position.x + (speedSign * asset.GetComponent<SpriteRenderer> ().sprite.bounds.max.x)) + (space-spaceBetweenAsset),popLimitation.transform.position.y+ asset.transform.position.y,this.transform.position.z);
 			visibleGameObjectTab.Add(asset);
 			generateNewSpaceBetweenAssetValue();
 		}

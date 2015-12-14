@@ -59,7 +59,7 @@ public class BezierCollider2D : MonoBehaviour
 	}
 	void Start(){
 		calculate2DPoints ();
-		for (int i = 0; i < points.Count+1 ; i++) {
+		for (int i = 0; i < points.Count ; i++) {
 			Vector3 guiPositionPoint2;
 			Vector3 guiPositionPoint =points[i];
 			if(i+1 <points.Count){
@@ -71,9 +71,9 @@ public class BezierCollider2D : MonoBehaviour
 
 
 			GameObject toto = Instantiate (prefab);
-			toto.transform.position = new Vector3 (_t.x+guiPositionPoint.x, _t.y+guiPositionPoint.y-5.40f +(guiPositionPoint.y - guiPositionPoint2.y)/2, 0);
+			toto.transform.position = new Vector3 (_t.x+guiPositionPoint.x, _t.y+guiPositionPoint.y-(5.40f*toto.transform.localScale.y) +(guiPositionPoint.y - guiPositionPoint2.y)/2, 0);
 			toto.transform.parent = this.transform;
-			toto.transform.localScale = new Vector3(securityScale + ((guiPositionPoint2.x - guiPositionPoint.x)/xSize),1,1);
+			toto.transform.localScale = new Vector3(securityScale + ((guiPositionPoint2.x - guiPositionPoint.x)/xSize),toto.transform.localScale.y,1);
 		}
 		//}
 	}
