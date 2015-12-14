@@ -11,13 +11,13 @@ public class Obstacle : MonoBehaviour {
 
 
 	public Vector3 destructAndAddForce(){
-		this.GetComponent<BoxCollider2D> ().enabled = false;
+		this.GetComponent<EdgeCollider2D> ().enabled = false;
 		//todo animation de destruction
 		return destructForce;
 	}
 
 	public Vector3 surviveAndAddForce(){
-		this.GetComponent<BoxCollider2D> ().enabled = false;
+		this.GetComponent<EdgeCollider2D> ().enabled = false;
 		//animation de shake
 		return destructForce;
 	}
