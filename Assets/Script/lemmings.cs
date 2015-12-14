@@ -143,16 +143,20 @@ public class lemmings : MonoBehaviour {
 				//death
 				Debug.Log("DEATH");
 			}
-		} else {
-			canJump = true;
-			if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
+		} else if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
+				canJump = true;
 				addSnow = true;
 				if (isDown) {
 					m_rigideBody.AddForce (ForceUpInFall);
 				}
-			}
-
+		} else if (other.gameObject.layer == LayerMask.NameToLayer ("Death")){
+			GameStateManager.setGameState (GameState.GameOver);
+			Application.LoadLevelAsync ("GameOverScene");
+		} else if (other.gameObject.layer == LayerMask.NameToLayer ("End")){
+			GameStateManager.setGameState (GameState.GameOver);
+			Application.LoadLevelAsync ("GameOverScene");
 		}
+	}
 	}
 
 
