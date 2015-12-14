@@ -99,7 +99,6 @@ public class parallaxPlanSave : parallaxPlan {
 
 
 	void generateOldAsset(int code,float dist){
-		Debug.Log("get old Hight");
 		GenerateAssetStruct assetStruct = generator.generateGameObjectWithCode(code);
 		GameObject asset = assetStruct.generateAsset;
 		asset.transform.parent = this.transform;

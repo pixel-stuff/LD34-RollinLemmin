@@ -65,7 +65,6 @@ public class BezierCollider2D : MonoBehaviour
 			if(i+1 <points.Count){
 				guiPositionPoint2=points[i+1];
 			}else{
-				Debug.Log ("ici");
 				guiPositionPoint2 = secondPoint;
 			}
 
