@@ -127,9 +127,7 @@ public class lemmings : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other){
 		isBump = false;
-		Debug.Log ("END  "+other.gameObject.layer +" alorq que  " +LayerMask.NameToLayer ("End"));
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
-			Debug.Log ("COLLIDE");
 			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
 			if ((snowValue / maxSnow) >= otherObstacleScript.getDestrucFactor ()) {
 				//destruc
@@ -155,7 +153,6 @@ public class lemmings : MonoBehaviour {
 			GameStateManager.setGameState (GameState.GameOver);
 			Application.LoadLevelAsync ("GameOverScene");
 		} else if (other.gameObject.layer == LayerMask.NameToLayer ("End")){
-			Debug.Log ("END");
 			GameStateManager.setGameState (GameState.GameOver);
 			Application.LoadLevelAsync ("SuccessGameOver");
 		}
@@ -166,10 +163,7 @@ public class lemmings : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D other){
 		isBump = false;
-		Debug.Log ("COLLIDE");
-		Debug.Log ("END  "+other.gameObject.layer +" alorq que  " +LayerMask.NameToLayer ("End"));
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
-			Debug.Log ("COLLIDE");
 			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
 			if ((snowValue / maxSnow) >= otherObstacleScript.getDestrucFactor ()) {
 				//destruc
@@ -215,7 +209,6 @@ public class lemmings : MonoBehaviour {
 	void Jump(){
 		if (canJump) {
 			canJump = false;
-			Debug.Log ("JUMP");
 			m_rigideBody.AddForce (jumpForce);
 			particuleEffect.Jump (snowValue / maxSnow);
 		}

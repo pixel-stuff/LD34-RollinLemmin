@@ -47,7 +47,6 @@ public class BallEffect : MonoBehaviour {
 	}
 
 	public void setSpeedSnowEffect(float speed, float factor,float speedSign){
-		Debug.Log ("TOTO " + speed);
 		/*if (speed == 0) {
 			SpeedSnowLeft.Stop();
 			return;
