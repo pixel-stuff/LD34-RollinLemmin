@@ -23,6 +23,8 @@ public class BallEffect : MonoBehaviour {
 
 	public ParticleSystem snowDegradation;
 	public int nbPartForOneDesagration = 1;
+
+	public float decalageRadius = 0;
 	// Use this for initialization
 	void Start () {
 	}
@@ -34,11 +36,11 @@ public class BallEffect : MonoBehaviour {
 
 	public void UpdatePositionAndRadius (Vector3 position, float radius){
 		this.transform.position = position;
-		JumpParticule.transform.position = position + new Vector3 (0, -radius, 0);
-		SpeedRightWindParticule.transform.position = position + new Vector3 (radius + spaceBetweenEffectAndBall, 0, 0);
-		SpeedLeftWindParticule.transform.position = position + new Vector3 (-radius - spaceBetweenEffectAndBall, 0, 0);
-		SpeedSnowLeft.transform.position = position + new Vector3 (0, -radius, 0);
-		SpeedSnowRight.transform.position = position + new Vector3 (0, -radius, 0);
+		JumpParticule.transform.position = position + new Vector3 (0, -radius+decalageRadius, 0);
+		SpeedRightWindParticule.transform.position = position + new Vector3 (radius+decalageRadius + spaceBetweenEffectAndBall, 0, 0);
+		SpeedLeftWindParticule.transform.position = position + new Vector3 (-radius+decalageRadius - spaceBetweenEffectAndBall, 0, 0);
+		SpeedSnowLeft.transform.position = position + new Vector3 (0, -radius+decalageRadius, 0);
+		SpeedSnowRight.transform.position = position + new Vector3 (0, -radius+decalageRadius, 0);
 	}
 
 	public void setSpeedEffect(float speed){
