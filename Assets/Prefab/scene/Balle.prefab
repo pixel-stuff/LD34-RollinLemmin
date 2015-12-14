@@ -112,7 +112,7 @@ MonoBehaviour:
   maxSize: 1.1
   initialeWeight: 3000
   maxWeight: 6000
-  initialeZoom: 5
+  initialeZoom: 8
   maxZoom: 2
   BumpZoomPercent: 10
   BumpZoomStep: 0.5
