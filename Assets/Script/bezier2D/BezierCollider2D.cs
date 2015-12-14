@@ -12,6 +12,8 @@ public class BezierCollider2D : MonoBehaviour
 	public Vector2 handlerSecondPoint;
 
 	public int pointsQuantity;
+
+	public int pointsMultiplicator =1;
 	private Vector3 _t;
 	List<Vector2> points;
 
@@ -58,6 +60,7 @@ public class BezierCollider2D : MonoBehaviour
 		return points.ToArray();
 	}
 	void Start(){
+		pointsQuantity = pointsQuantity * pointsMultiplicator;
 		calculate2DPoints ();
 		for (int i = 0; i < points.Count ; i++) {
 			Vector3 guiPositionPoint2;
