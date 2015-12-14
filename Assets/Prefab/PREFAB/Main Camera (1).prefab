@@ -445,29 +445,29 @@ MonoBehaviour:
   - prefabParralaxPlan: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     distance: -100
     generatorScript: {fileID: 11476256, guid: 113c09232b3cf70458144840880a1014, type: 2}
-    lowSpaceBetweenAsset: 0
-    hightSpaceBetweenAsset: 0
+    lowSpaceBetweenAsset: -0.1
+    hightSpaceBetweenAsset: -0.2
     relativeSpeed: 0
     yOffset: 0
   - prefabParralaxPlan: {fileID: 127212, guid: 549e15a83fa65439aa493ab51046c433, type: 2}
     distance: -11
     generatorScript: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
-    lowSpaceBetweenAsset: 3
-    hightSpaceBetweenAsset: 6
+    lowSpaceBetweenAsset: 12
+    hightSpaceBetweenAsset: 18
     relativeSpeed: 0.2
     yOffset: 5
   - prefabParralaxPlan: {fileID: 127212, guid: 549e15a83fa65439aa493ab51046c433, type: 2}
     distance: -12
     generatorScript: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
-    lowSpaceBetweenAsset: 3
-    hightSpaceBetweenAsset: 6
+    lowSpaceBetweenAsset: 12
+    hightSpaceBetweenAsset: 18
     relativeSpeed: 0.2
     yOffset: 6
   - prefabParralaxPlan: {fileID: 127212, guid: 549e15a83fa65439aa493ab51046c433, type: 2}
     distance: -13
     generatorScript: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
-    lowSpaceBetweenAsset: 3
-    hightSpaceBetweenAsset: 6
+    lowSpaceBetweenAsset: 12
+    hightSpaceBetweenAsset: 18
     relativeSpeed: 0.2
     yOffset: 7
   cameraToFollow: {fileID: 2089654}
