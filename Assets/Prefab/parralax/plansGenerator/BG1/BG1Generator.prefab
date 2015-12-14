@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &140442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 440206}
+  - 114: {fileID: 11419744}
+  m_Layer: 0
+  m_Name: BG1Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &440206
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11419744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1bffe23a4862b499d310993ef63b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssetConfiguation:
+  - prefabAsset: {fileID: 104862, guid: fec3d906fc33aef4e8f59cc6e2704aaf, type: 2}
+    probabilityOfApparition: 1
+  - prefabAsset: {fileID: 134096, guid: ef5e665f991583942b9f280ecaf8c0e2, type: 2}
+    probabilityOfApparition: 1
+  - prefabAsset: {fileID: 161764, guid: 7216b77ec8d8e324da58f69c428ab946, type: 2}
+    probabilityOfApparition: 1
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[0].prefabAsset
+      value: 
+      objectReference: {fileID: 104862, guid: fec3d906fc33aef4e8f59cc6e2704aaf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[1].prefabAsset
+      value: 
+      objectReference: {fileID: 134096, guid: ef5e665f991583942b9f280ecaf8c0e2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[2].prefabAsset
+      value: 
+      objectReference: {fileID: 161764, guid: 7216b77ec8d8e324da58f69c428ab946, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 140442}
+  m_IsPrefabParent: 1
