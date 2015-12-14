@@ -127,6 +127,7 @@ public class lemmings : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other){
 		isBump = false;
+		Debug.Log ("END  "+other.gameObject.layer +" alorq que  " +LayerMask.NameToLayer ("End"));
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
 			Debug.Log ("COLLIDE");
 			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
@@ -134,34 +135,39 @@ public class lemmings : MonoBehaviour {
 				//destruc
 				m_rigideBody.AddForce (otherObstacleScript.destructAndAddForce ());
 				Debug.Log ("DESTRUC");
-			} else if ((snowValue / maxSnow) >= otherObstacleScript.getSurviveFactor()) {
+			} else if ((snowValue / maxSnow) >= otherObstacleScript.getSurviveFactor ()) {
 				//survive
-				DropSnow();
+				DropSnow ();
 				m_rigideBody.AddForce (otherObstacleScript.surviveAndAddForce ());
-				Debug.Log("Survive");
+				Debug.Log ("Survive");
 			} else {
 				//death
-				Debug.Log("DEATH");
+				Debug.Log ("DEATH");
 			}
 		} else if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
-				canJump = true;
-				addSnow = true;
-				if (isDown) {
-					m_rigideBody.AddForce (ForceUpInFall);
-				}
-		} else if (other.gameObject.layer == LayerMask.NameToLayer ("Death")){
+			canJump = true;
+			addSnow = true;
+			if (isDown) {
+				m_rigideBody.AddForce (ForceUpInFall);
+			}
+		}
+		 else if (other.gameObject.layer == LayerMask.NameToLayer ("Death")){
 			GameStateManager.setGameState (GameState.GameOver);
 			Application.LoadLevelAsync ("GameOverScene");
 		} else if (other.gameObject.layer == LayerMask.NameToLayer ("End")){
+			Debug.Log ("END");
 			GameStateManager.setGameState (GameState.GameOver);
-			Application.LoadLevelAsync ("GameOverScene");
+			Application.LoadLevelAsync ("SuccessGameOver");
 		}
+
 	}
-	}
+
 
 
 	void OnCollisionStay2D(Collision2D other){
 		isBump = false;
+		Debug.Log ("COLLIDE");
+		Debug.Log ("END  "+other.gameObject.layer +" alorq que  " +LayerMask.NameToLayer ("End"));
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
 			Debug.Log ("COLLIDE");
 			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
@@ -186,6 +192,15 @@ public class lemmings : MonoBehaviour {
 					m_rigideBody.AddForce (ForceUpInFall);
 				}
 			}
+		}
+
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Death")){
+			GameStateManager.setGameState (GameState.GameOver);
+			Application.LoadLevelAsync ("GameOverScene");
+		} else if (other.gameObject.layer == LayerMask.NameToLayer ("End")){
+			Debug.Log ("END");
+			GameStateManager.setGameState (GameState.GameOver);
+			Application.LoadLevelAsync ("SuccessGameOver");
 		}
 
 	}
