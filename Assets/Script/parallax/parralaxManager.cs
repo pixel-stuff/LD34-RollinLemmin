@@ -14,6 +14,8 @@ public class ParralaxPlanConfiguration : System.Object
 	public float lowSpaceBetweenAsset;
 	public float hightSpaceBetweenAsset;
     public float relativeSpeed;
+
+	public float yOffset;
 }
 
 public class parralaxManager : MonoBehaviour {
@@ -60,6 +62,7 @@ public class parralaxManager : MonoBehaviour {
 			tempScript.lowSpaceBetweenAsset = config.lowSpaceBetweenAsset;
 			tempScript.hightSpaceBetweenAsset = config.hightSpaceBetweenAsset;
             tempScript.relativeSpeed = config.relativeSpeed;
+			tempScript.yOffset = config.yOffset;
 
 			parralaxPlans.Add(tempParralaxPlan);
 		}

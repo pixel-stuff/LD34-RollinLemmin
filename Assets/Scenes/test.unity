@@ -6025,7 +6025,7 @@ MonoBehaviour:
   maxZoom: 2
   BumpZoomPercent: 10
   BumpZoomStep: 0.5
-  SpeedZoomPercent: 5
+  SpeedZoomPercent: 8
   actualSpeedZoom: 0
   SpeedZoomMax: 9
   ball: {fileID: 565001959}
@@ -6512,7 +6512,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.size
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 460610, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: m_LocalPosition.x
@@ -6578,47 +6578,47 @@ Prefab:
       objectReference: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[3].distance
-      value: -100
+      value: -10000
       objectReference: {fileID: 0}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[3].generatorScript
       value: 
-      objectReference: {fileID: 11483544, guid: 414c878346a0bde48a9301381eab978b,
+      objectReference: {fileID: 11476256, guid: 113c09232b3cf70458144840880a1014,
         type: 2}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[4].prefabParralaxPlan
       value: 
-      objectReference: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
+      objectReference: {fileID: 127212, guid: 549e15a83fa65439aa493ab51046c433, type: 2}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[4].distance
-      value: -1000
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[4].generatorScript
       value: 
-      objectReference: {fileID: 11454274, guid: 94a4610d3cc7e94498bd93c01a0e56fc,
+      objectReference: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212,
         type: 2}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[5].prefabParralaxPlan
       value: 
-      objectReference: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
+      objectReference: {fileID: 127212, guid: 549e15a83fa65439aa493ab51046c433, type: 2}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[5].distance
-      value: 2
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[5].generatorScript
       value: 
-      objectReference: {fileID: 11434114, guid: 45e6e951137d6694784f951757886c5a,
+      objectReference: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212,
         type: 2}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[6].prefabParralaxPlan
       value: 
-      objectReference: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
+      objectReference: {fileID: 127212, guid: 549e15a83fa65439aa493ab51046c433, type: 2}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[6].generatorScript
       value: 
-      objectReference: {fileID: 11418782, guid: bdaec8e682001714d8f7fdd9d6dd1dfd,
+      objectReference: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212,
         type: 2}
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[0].prefabParralaxPlan
@@ -6664,6 +6664,78 @@ Prefab:
     - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
       propertyPath: configurationParralax.Array.data[2].hightSpaceBetweenAsset
       value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[3].lowSpaceBetweenAsset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[3].hightSpaceBetweenAsset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[4].relativeSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[4].yOffset
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[0].yOffset
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[2].yOffset
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[1].yOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[4].lowSpaceBetweenAsset
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[4].hightSpaceBetweenAsset
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[5].lowSpaceBetweenAsset
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[5].hightSpaceBetweenAsset
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[5].relativeSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[5].yOffset
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[6].distance
+      value: -13
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[6].lowSpaceBetweenAsset
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[6].hightSpaceBetweenAsset
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[6].relativeSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444922, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}
+      propertyPath: configurationParralax.Array.data[6].yOffset
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc9b16beee2f09f4aa3a40ed4bc23bbf, type: 2}

@@ -17,6 +17,7 @@ public class parallaxPlanBasic : parallaxPlan {
 	private float speedMultiplicator;
 	
 	private int speedSign = 1;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -59,7 +60,7 @@ public class parallaxPlanBasic : parallaxPlan {
 				isInit =true;
 			} else {
 				positionAsset.x -= speed;
-				parrallaxAsset.transform.position = new Vector3(positionAsset.x,popLimitation.transform.position.y,positionAsset.z) ;
+				parrallaxAsset.transform.position = new Vector3(positionAsset.x,popLimitation.transform.position.y +yOffset,positionAsset.z) ;
 			}
 		}
 	}

@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &168832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 405396}
+  - 114: {fileID: 11496848}
+  m_Layer: 0
+  m_Name: nuagesGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &405396
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168832}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11496848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1bffe23a4862b499d310993ef63b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssetConfiguation:
+  - prefabAsset: {fileID: 139716, guid: c4e9c45000f7cf140917681e29505d8d, type: 2}
+    probabilityOfApparition: 1
+  - prefabAsset: {fileID: 199928, guid: 40e10042c0aaeb045820c43c92e81904, type: 2}
+    probabilityOfApparition: 1
+  - prefabAsset: {fileID: 142658, guid: 8f208579af3b44349898a45c13af9bee, type: 2}
+    probabilityOfApparition: 1
+  - prefabAsset: {fileID: 173494, guid: 96a109ccac964754b860e1217f3e2514, type: 2}
+    probabilityOfApparition: 1
+  - prefabAsset: {fileID: 181406, guid: 93e54c2e52dc06546b822522fd994601, type: 2}
+    probabilityOfApparition: 1
+  - prefabAsset: {fileID: 166792, guid: c1327313a3497d541a940b868d5ab8ed, type: 2}
+    probabilityOfApparition: 1
+  - prefabAsset: {fileID: 102702, guid: 737f94a5482f47140b26f4b9571ca9a2, type: 2}
+    probabilityOfApparition: 1
+  - prefabAsset: {fileID: 148508, guid: c6efe77938b62f44eb24c895d9e1c194, type: 2}
+    probabilityOfApparition: 1
+  - prefabAsset: {fileID: 163816, guid: d9c64e5a260fdba40813d09369027dbf, type: 2}
+    probabilityOfApparition: 1
+  - prefabAsset: {fileID: 193742, guid: 867185e3ad961854ab306686472b279c, type: 2}
+    probabilityOfApparition: 1
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[0].prefabAsset
+      value: 
+      objectReference: {fileID: 139716, guid: c4e9c45000f7cf140917681e29505d8d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[1].prefabAsset
+      value: 
+      objectReference: {fileID: 199928, guid: 40e10042c0aaeb045820c43c92e81904, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[2].prefabAsset
+      value: 
+      objectReference: {fileID: 142658, guid: 8f208579af3b44349898a45c13af9bee, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[3].prefabAsset
+      value: 
+      objectReference: {fileID: 173494, guid: 96a109ccac964754b860e1217f3e2514, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[4].prefabAsset
+      value: 
+      objectReference: {fileID: 181406, guid: 93e54c2e52dc06546b822522fd994601, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[5].prefabAsset
+      value: 
+      objectReference: {fileID: 166792, guid: c1327313a3497d541a940b868d5ab8ed, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[6].prefabAsset
+      value: 
+      objectReference: {fileID: 102702, guid: 737f94a5482f47140b26f4b9571ca9a2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[7].prefabAsset
+      value: 
+      objectReference: {fileID: 148508, guid: c6efe77938b62f44eb24c895d9e1c194, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[8].prefabAsset
+      value: 
+      objectReference: {fileID: 163816, guid: d9c64e5a260fdba40813d09369027dbf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AssetConfiguation.Array.data[9].prefabAsset
+      value: 
+      objectReference: {fileID: 193742, guid: 867185e3ad961854ab306686472b279c, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 168832}
+  m_IsPrefabParent: 1

@@ -73,7 +73,7 @@ public class parallaxPlanSave : parallaxPlan {
 				m_isInit =true;
 			} else {
 				positionAsset.x -= speed;
-				parrallaxAsset.transform.position = positionAsset;
+				parrallaxAsset.transform.position = new Vector3(positionAsset.x,popLimitation.transform.position.y +yOffset,positionAsset.z) ;
 			}
 		}
 	}
@@ -83,9 +83,9 @@ public class parallaxPlanSave : parallaxPlan {
 		GameObject asset = assetStruct.generateAsset;
 		asset.transform.parent = this.transform;
 		if (speedSign > 0) {
-			asset.transform.position = new Vector3 (popLimitation.transform.position.x + (asset.GetComponent<SpriteRenderer> ().sprite.bounds.max.x) - (space - spaceBetweenAsset), popLimitation.transform.position.y, this.transform.position.z);
+			asset.transform.position = new Vector3 (popLimitation.transform.position.x + (asset.GetComponent<SpriteRenderer> ().sprite.bounds.max.x) - (space - spaceBetweenAsset), popLimitation.transform.position.y+ asset.transform.position.y, this.transform.position.z);
 		} else {
-			asset.transform.position = new Vector3 (popLimitation.transform.position.x + (asset.GetComponent<SpriteRenderer> ().sprite.bounds.min.x) + (space - spaceBetweenAsset), popLimitation.transform.position.y, this.transform.position.z);
+			asset.transform.position = new Vector3 (popLimitation.transform.position.x + (asset.GetComponent<SpriteRenderer> ().sprite.bounds.min.x) + (space - spaceBetweenAsset), popLimitation.transform.position.y+ asset.transform.position.y, this.transform.position.z);
 		}
 		visibleGameObjectTab.Add(asset);
 		StockAssetStruct stockAssetStruct = new StockAssetStruct();
@@ -103,9 +103,9 @@ public class parallaxPlanSave : parallaxPlan {
 		GameObject asset = assetStruct.generateAsset;
 		asset.transform.parent = this.transform;
 		if (speedSign > 0) {
-			asset.transform.position = new Vector3(popLimitation.transform.position.x + (asset.GetComponent<SpriteRenderer> ().sprite.bounds.max.x) - (space-dist),popLimitation.transform.position.y,this.transform.position.z);
+			asset.transform.position = new Vector3(popLimitation.transform.position.x + (asset.GetComponent<SpriteRenderer> ().sprite.bounds.max.x) - (space-dist),popLimitation.transform.position.y+ asset.transform.position.y,this.transform.position.z);
 		} else {
-			asset.transform.position = new Vector3(popLimitation.transform.position.x + (asset.GetComponent<SpriteRenderer> ().sprite.bounds.min.x) + (space-dist),popLimitation.transform.position.y,this.transform.position.z);
+			asset.transform.position = new Vector3(popLimitation.transform.position.x + (asset.GetComponent<SpriteRenderer> ().sprite.bounds.min.x) + (space-dist),popLimitation.transform.position.y+ asset.transform.position.y,this.transform.position.z);
 		}
 
 		visibleGameObjectTab.Add(asset);

@@ -23,6 +23,7 @@ abstract public class parallaxPlan : MonoBehaviour {
 	abstract public void setSpeedOfPlan(float newSpeed);
 
     abstract public void refreshOnZoom();
+	public float yOffset;
 
 
 }
