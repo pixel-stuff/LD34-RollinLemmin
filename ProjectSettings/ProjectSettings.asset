@@ -15,8 +15,8 @@ PlayerSettings:
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
   m_VirtualRealitySplashScreen: {fileID: 0}
-  defaultScreenWidth: 1920
-  defaultScreenHeight: 1080
+  defaultScreenWidth: 1280
+  defaultScreenHeight: 720
   defaultScreenWidthWeb: 1360
   defaultScreenHeightWeb: 768
   m_RenderingPath: 1
@@ -37,7 +37,7 @@ PlayerSettings:
   useOSAutorotation: 1
   use32BitDisplayBuffer: 1
   disableDepthAndStencilBuffers: 0
-  defaultIsFullScreen: 1
+  defaultIsFullScreen: 0
   defaultIsNativeResolution: 0
   runInBackground: 0
   captureSingleScreen: 0
@@ -172,9 +172,39 @@ PlayerSettings:
       m_Icon: {fileID: 0}
       m_Width: 128
       m_Height: 128
+  - m_BuildTarget: Standalone
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 68de85697c3286d4c949e8d596461bae, type: 3}
+      m_Width: 1024
+      m_Height: 1024
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 2a574127397c5fe4d8373148c07365f9, type: 3}
+      m_Width: 512
+      m_Height: 512
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 2a574127397c5fe4d8373148c07365f9, type: 3}
+      m_Width: 256
+      m_Height: 256
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: c3b90a59727365e4f9393a9b001db78b, type: 3}
+      m_Width: 128
+      m_Height: 128
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 27144e2adc0a8484ba08f1dafde0202c, type: 3}
+      m_Width: 48
+      m_Height: 48
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 0a5379258b5b52f43b56f6a5ce410b22, type: 3}
+      m_Width: 32
+      m_Height: 32
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 6bac1d01fe531734fb8f64bc7e42a168, type: 3}
+      m_Width: 16
+      m_Height: 16
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
-  webPlayerTemplate: APPLICATION:Default
+  webPlayerTemplate: APPLICATION:No Context Menu
   m_TemplateCustomTags: {}
   wiiUTitleID: 0005000011000000
   wiiUGroupID: 00010000
