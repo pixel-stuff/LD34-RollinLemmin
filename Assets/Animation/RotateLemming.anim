@@ -18,18 +18,18 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: {x: 0, y: 0, z: 0}
-        inSlope: {x: 0, y: 0, z: 348.38712}
-        outSlope: {x: 0, y: 0, z: 348.38712}
+        inSlope: {x: 0, y: 0, z: -348.38712}
+        outSlope: {x: 0, y: 0, z: -348.38712}
         tangentMode: 0
       - time: 1
-        value: {x: 0, y: 0, z: 348.38715}
-        inSlope: {x: 0, y: 0, z: 348.38712}
-        outSlope: {x: 0, y: 0, z: 348.38712}
+        value: {x: 0, y: 0, z: -348.38715}
+        inSlope: {x: 0, y: 0, z: -348.38712}
+        outSlope: {x: 0, y: 0, z: -348.38712}
         tangentMode: 0
       - time: 1.0333333
-        value: {x: 0, y: 0, z: 360}
-        inSlope: {x: 0, y: 0, z: 348.38712}
-        outSlope: {x: 0, y: 0, z: 348.38712}
+        value: {x: 0, y: 0, z: -360}
+        inSlope: {x: 0, y: 0, z: -348.38712}
+        outSlope: {x: 0, y: 0, z: -348.38712}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -109,13 +109,13 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 0
-        inSlope: 348.38712
-        outSlope: 348.38712
+        inSlope: -348.38712
+        outSlope: -348.38712
         tangentMode: 10
       - time: 1.0333333
-        value: 360
-        inSlope: 348.38712
-        outSlope: 348.38712
+        value: -360
+        inSlope: -348.38712
+        outSlope: -348.38712
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
