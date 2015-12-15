@@ -284,18 +284,6 @@ Prefab:
       propertyPath: particuleEffect
       value: 
       objectReference: {fileID: 118884914}
-    - target: {fileID: 11498816, guid: 1609d2e66e946eb4c870e8759ab1e655, type: 2}
-      propertyPath: rollingSnowAdd
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 11498816, guid: 1609d2e66e946eb4c870e8759ab1e655, type: 2}
-      propertyPath: lemmingInSnow
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 11498816, guid: 1609d2e66e946eb4c870e8759ab1e655, type: 2}
-      propertyPath: lostSnow
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1609d2e66e946eb4c870e8759ab1e655, type: 2}
   m_IsPrefabParent: 0
@@ -2953,6 +2941,18 @@ Prefab:
     - target: {fileID: 139482, guid: 10b2680ddaa3a6642a1752e7c1f1e0ba, type: 2}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181422, guid: 10b2680ddaa3a6642a1752e7c1f1e0ba, type: 2}
+      propertyPath: m_Offset.x
+      value: 1.3909302
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181422, guid: 10b2680ddaa3a6642a1752e7c1f1e0ba, type: 2}
+      propertyPath: m_Offset.y
+      value: 54.005127
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181422, guid: 10b2680ddaa3a6642a1752e7c1f1e0ba, type: 2}
+      propertyPath: m_Size.y
+      value: 125.51663
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10b2680ddaa3a6642a1752e7c1f1e0ba, type: 2}
