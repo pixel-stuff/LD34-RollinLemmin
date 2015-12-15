@@ -10,6 +10,8 @@ public class lemmings : MonoBehaviour {
 	public float maxSnow;
 	private bool addSnow;
 
+	public float lemmingInSnow;
+
 	public float speedTresholdForAddSnow;
 
 	public Vector3 ForceUpInFall;
@@ -58,10 +60,17 @@ public class lemmings : MonoBehaviour {
 		m_collider = this.GetComponent<CircleCollider2D> ();
 		m_rigideBody = this.GetComponent<Rigidbody2D> ();
 		oldPosition = new Vector3 (0,0,0);
+		m_rigideBody.angularVelocity = 5;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (snowValue > lemmingInSnow) {
+			ball.SetActive (true);
+		} else {
+			ball.SetActive (false);
+		}
+
 		isDown = ((this.transform.position.y - oldPosition.y) < 0) ? false : true;
 		speed = (this.transform.position - oldPosition).magnitude;
 		float speedSign = this.transform.position.x - oldPosition.x;
