@@ -78,7 +78,7 @@ public class BezierCollider2D : MonoBehaviour
 			toto.transform.localScale = new Vector3(securityScale + ((guiPositionPoint2.x - guiPositionPoint.x)/xSize),toto.transform.localScale.y,1);
 		}
 		//}
-	}
+	}/*
 	void OnDrawGizmos(){
 		_t = this.transform.position;
 		Gizmos.color = Color.blue;
@@ -90,7 +90,7 @@ public class BezierCollider2D : MonoBehaviour
 		//Vector3 a = new Vector3 (firstPoint,0);
 		Gizmos.DrawLine (new Vector3 (firstPoint.x+_t.x,firstPoint.y+_t.y,0),new Vector3 (handlerFirstPoint.x+_t.x,handlerFirstPoint.y+_t.y,0));
 		Gizmos.DrawLine (new Vector3 (secondPoint.x+_t.x,secondPoint.y+_t.y,0),new Vector3 (handlerSecondPoint.x+_t.x,handlerSecondPoint.y+_t.y,0));
-	}
+	}*/
 
 	void OnGUI ()
 	{        
