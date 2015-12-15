@@ -484,14 +484,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21e8fc31158ad840a3d98b1db97e054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeOfWorld: 1000
+  sizeOfWorld: 520
   fox: {fileID: 107478}
   lemming: {fileID: 164394}
   anchor: {fileID: 115268}
   redProgrression: {fileID: 157948}
   Ball: {fileID: 0}
-  popFoxDist: 20
-  speedFox: 0
+  popFoxDist: 50
+  speedFox: 0.0035
   sizeOfBar: 16.8
   sizeOfRedBar: 1.1
 --- !u!124 &12406422

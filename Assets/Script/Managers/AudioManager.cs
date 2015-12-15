@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_transform = this.transform;
-		Play (m_backgroundAudioSource);
+		//Play (m_backgroundAudioSource);
 	}
 
 	public static void Play(string clipname){
