@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21e8fc31158ad840a3d98b1db97e054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeOfWorld: 520
+  sizeOfWorld: 550
   fox: {fileID: 107478}
   lemming: {fileID: 164394}
   anchor: {fileID: 115268}

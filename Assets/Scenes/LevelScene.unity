@@ -3132,18 +3132,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 11407324, guid: b05ac6ed40f58e946a7936f1ef3e75fc, type: 2}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 116956624}
     - target: {fileID: 11418038, guid: b05ac6ed40f58e946a7936f1ef3e75fc, type: 2}
       propertyPath: Ball
       value: 
       objectReference: {fileID: 116956623}
-    - target: {fileID: 11418038, guid: b05ac6ed40f58e946a7936f1ef3e75fc, type: 2}
-      propertyPath: speedFox
-      value: 0.0035
-      objectReference: {fileID: 0}
+    - target: {fileID: 11407324, guid: b05ac6ed40f58e946a7936f1ef3e75fc, type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 116956624}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b05ac6ed40f58e946a7936f1ef3e75fc, type: 2}
   m_IsPrefabParent: 0
