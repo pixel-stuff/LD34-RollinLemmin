@@ -100,11 +100,11 @@ public class lemmings : MonoBehaviour {
 		if (lostSnowValue < 0) {
 			particuleEffect.degradationEffect (-lostSnowValue);
 		}
-		if(Input.GetKeyDown("a") || Input.GetKeyDown("a")){
+		if(Input.GetKeyDown(KeyCode.Space)){
 			Jump ();
 		}
 
-		if(Input.GetKeyDown("z") || Input.GetKeyDown("z")){
+		if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)){
 			DropSnow ();
 		}
 	}
@@ -217,7 +217,7 @@ public class lemmings : MonoBehaviour {
 		isBump = true;
 	}
 
-	void Jump(){
+	public void Jump(){
 		if (canJump) {
 			canJump = false;
 			m_rigideBody.AddForce (jumpForce);
@@ -225,7 +225,7 @@ public class lemmings : MonoBehaviour {
 		}
 	}
 
-	void DropSnow(){
+	public void DropSnow(){
 		particuleEffect.DropSnow(snowValue / maxSnow);
 		snowValue = 0;
 	}

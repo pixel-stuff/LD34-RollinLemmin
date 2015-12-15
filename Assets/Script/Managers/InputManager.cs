@@ -69,6 +69,13 @@ public class InputManager : MonoBehaviour {
 		if(Input.GetKeyDown("d")){
 			PlayerManager.RIGHT();
 		}
+
+		if(Input.GetKeyDown(KeyCode.Space)){
+			PlayerManager.JUMP();
+		}
+		if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)){
+			PlayerManager.SNOW();
+		}
 	}
 
 	void UpdatePauseState(){

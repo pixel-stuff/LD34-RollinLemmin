@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 	#endregion Singleton
 
+
 	// Use this for initialization
 	void Start () {
 		GameStateManager.onChangeStateEvent += handleChangeGameState;
@@ -48,6 +49,15 @@ public class PlayerManager : MonoBehaviour {
 	public static void RIGHT(){
 		Debug.Log("RIGHT ! ");
 	}
+
+	public static void JUMP(){
+		Debug.Log("JUMP ! ");
+	}
+	public static void SNOW(){
+		Debug.Log("SNOW ! ");
+	}
+		
+
 	#endregion Intéraction
 
 	void OnDestroy(){
