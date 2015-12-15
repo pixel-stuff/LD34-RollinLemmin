@@ -107,6 +107,10 @@ public class lemmings : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)){
 			DropSnow ();
 		}
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			GameStateManager.setGameState (GameState.Playing);
+			Application.LoadLevel ("MenuScene");
+		}
 	}
 
 	void updateSize(){
