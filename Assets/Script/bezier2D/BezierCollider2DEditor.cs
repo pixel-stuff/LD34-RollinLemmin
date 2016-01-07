@@ -1,4 +1,4 @@
-﻿/*using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
@@ -31,7 +31,7 @@ public class BezierCollider2DEditor : Editor
 
 			EditorUtility.SetDirty(bezierCollider);
 
-			if (bezierCollider.pointsQuantity > 0  && !bezierCollider.firstPoint.Equals(bezierCollider.secondPoint) &&
+			/*if (bezierCollider.pointsQuantity > 0  && !bezierCollider.firstPoint.Equals(bezierCollider.secondPoint) &&
 				(
 					lastPointsQuantity != bezierCollider.pointsQuantity ||
 					lastFirstPoint != bezierCollider.firstPoint ||
@@ -39,10 +39,10 @@ public class BezierCollider2DEditor : Editor
 					lastSecondPoint != bezierCollider.secondPoint ||
 					lastHandlerSecondPoint != bezierCollider.handlerSecondPoint
 				))
-			{
+			{*/
 				edgeCollider.points = bezierCollider.calculate2DPoints();
-			}
+			//}
 
 		}
 	}
-}*/
+}

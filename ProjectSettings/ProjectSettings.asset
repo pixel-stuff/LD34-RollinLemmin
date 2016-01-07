@@ -15,10 +15,10 @@ PlayerSettings:
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
   m_VirtualRealitySplashScreen: {fileID: 0}
-  defaultScreenWidth: 1280
-  defaultScreenHeight: 720
-  defaultScreenWidthWeb: 1360
-  defaultScreenHeightWeb: 768
+  defaultScreenWidth: 1028
+  defaultScreenHeight: 578
+  defaultScreenWidthWeb: 1028
+  defaultScreenHeightWeb: 578
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   m_ActiveColorSpace: 0
@@ -169,7 +169,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 68de85697c3286d4c949e8d596461bae, type: 3}
       m_Width: 128
       m_Height: 128
   - m_BuildTarget: Standalone

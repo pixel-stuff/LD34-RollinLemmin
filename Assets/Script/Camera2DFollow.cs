@@ -14,6 +14,9 @@ namespace UnityStandardAssets._2D
 		public float bottomThresholdPercent =0.0f;
 		public float rightThresholdPercent =0.0f;
 
+
+		public Boolean shakeFullPower;
+		public float maxDeltaShake;
         private float m_OffsetZ;
         private Vector3 m_LastTargetPosition;
         private Vector3 m_CurrentVelocity;
@@ -31,6 +34,9 @@ namespace UnityStandardAssets._2D
         // Update is called once per frame
         private void Update()
         {
+			if (shakeFullPower) {
+				shake (1.0f);
+			}
 			//float bottomThresholdWithCameraSize = bottomThreshold + this.GetComponent<Camera> ().orthographicSize;
             // only update lookahead pos if accelerating or changed direction
             float xMoveDelta = (target.position - m_LastTargetPosition).x;
@@ -58,5 +64,9 @@ namespace UnityStandardAssets._2D
 
 			m_LastTargetPosition = target.position;
         }
+
+		public void shake(float strenght){
+
+		}
     }
 }
