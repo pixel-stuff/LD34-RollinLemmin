@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+﻿/*#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
@@ -15,14 +15,23 @@ public class BezierCollider2DEditor : Editor
 	Vector2 lastSecondPoint = Vector2.zero;
 	Vector2 lastHandlerSecondPoint = Vector2.zero;
 
+	
 	public override void OnInspectorGUI() 
 	{
+
+		SceneView.RepaintAll();
 		bezierCollider = (BezierCollider2D) target;
 
 		edgeCollider = bezierCollider.GetComponent<EdgeCollider2D>();
 
 		if (edgeCollider != null)
 		{
+
+			if(bezierCollider.firstPointGO && bezierCollider.firstPointGO.transform.hasChanged){
+				bezierCollider.firstPointGO.transform.hasChanged = false;
+				bezierCollider.firstPoint = bezierCollider.firstPointGO.transform.position;//new Vector2( firstPoint.transform.position,firstPoint.transform.y);
+			}
+
 			bezierCollider.pointsQuantity = EditorGUILayout.IntField ("curve points",bezierCollider.pointsQuantity, GUILayout.MinWidth(100));
 			bezierCollider.firstPoint = EditorGUILayout.Vector2Field ("first point",bezierCollider.firstPoint, GUILayout.MinWidth(100));
 			bezierCollider.handlerFirstPoint = EditorGUILayout.Vector2Field ("handler first Point",bezierCollider.handlerFirstPoint, GUILayout.MinWidth(100));
@@ -30,9 +39,10 @@ public class BezierCollider2DEditor : Editor
 			bezierCollider.secondPoint = EditorGUILayout.Vector2Field ("second point",bezierCollider.secondPoint, GUILayout.MinWidth(100));
 			bezierCollider.handlerSecondPoint = EditorGUILayout.Vector2Field ("handler secondPoint",bezierCollider.handlerSecondPoint, GUILayout.MinWidth(100));
 
+
 			EditorUtility.SetDirty(bezierCollider);
 
-			/*if (bezierCollider.pointsQuantity > 0  && !bezierCollider.firstPoint.Equals(bezierCollider.secondPoint) &&
+			if (bezierCollider.pointsQuantity > 0  && !bezierCollider.firstPoint.Equals(bezierCollider.secondPoint) &&
 				(
 					lastPointsQuantity != bezierCollider.pointsQuantity ||
 					lastFirstPoint != bezierCollider.firstPoint ||
@@ -40,11 +50,22 @@ public class BezierCollider2DEditor : Editor
 					lastSecondPoint != bezierCollider.secondPoint ||
 					lastHandlerSecondPoint != bezierCollider.handlerSecondPoint
 				))
-			{*/
-				edgeCollider.points = bezierCollider.calculate2DPoints();
+			{
+				//edgeCollider.points = bezierCollider.calculate2DPoints();
 			//}
 
 		}
 	}
 }
-#endif
+
+
+public class SimpleRecorder : EditorWindow {
+
+	void Update () {
+		Debug.Log("coucou");
+		//SceneView.RepaintAll();
+	}
+
+}
+
+#endif*/

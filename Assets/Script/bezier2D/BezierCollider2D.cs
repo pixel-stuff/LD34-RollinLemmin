@@ -29,6 +29,12 @@ public class BezierCollider2D : MonoBehaviour
 	public GameObject prefab;
 	public float xSize;
 	public float securityScale =0.08f;
+
+
+	public GameObject firstPointGO;//= this.GetComponentsInChildren<Transform>()[1];
+	public GameObject HandlerFirstPointGO;
+
+
 	Vector3 CalculateBezierPoint(float t,Vector3 p0,Vector3 handlerP0,Vector3 handlerP1,Vector3 p1)
 	{
 		float u = 1.0f - t;
@@ -45,7 +51,7 @@ public class BezierCollider2D : MonoBehaviour
 		return p;
 	}
 
-	public Vector2[] calculate2DPoints()
+	public List<Vector2> calculate2DPoints()
 	{
 		_t = this.transform.position;
 		points = new List<Vector2>();
@@ -57,8 +63,10 @@ public class BezierCollider2D : MonoBehaviour
 		}
 		points.Add(secondPoint);
 		this.GetComponent<EdgeCollider2D> ().points = points.ToArray ();
-		return points.ToArray();
+		return points;
 	}
+
+
 	void Start(){
 		pointsQuantity = pointsQuantity * pointsMultiplicator;
 		calculate2DPoints ();
@@ -81,21 +89,41 @@ public class BezierCollider2D : MonoBehaviour
 	}
 
 	void OnDrawGizmos(){
-		if (points != null) {
-			_t = this.transform.position;
-			Gizmos.color = Color.blue;
-			for (int i = 0; i < points.Count - 2; i++) {
-				Gizmos.DrawLine (new Vector3 (points [i].x + _t.x, points [i].y + _t.y), new Vector3 (points [i + 1].x + _t.x, points [i + 1].y + _t.y));
-			}
+		if (points == null) {
+			points = calculate2DPoints ();
 		}
-		Gizmos.color = Color.green;
+		if (changeDetected ()) {
+			points = calculate2DPoints ();
+
+		}
+			if (points != null) {
+				_t = this.transform.position;
+				Gizmos.color = Color.blue;
+				for (int i = 0; i < points.Count - 2; i++) {
+					Gizmos.DrawLine (new Vector3 (points [i].x + _t.x, points [i].y + _t.y), new Vector3 (points [i + 1].x + _t.x, points [i + 1].y + _t.y));
+				}
+			}
+			Gizmos.color = Color.green;
 		//Vector3 a = new Vector3 (firstPoint,0);
-		Gizmos.DrawLine (new Vector3 (firstPoint.x+_t.x,firstPoint.y+_t.y,0),new Vector3 (handlerFirstPoint.x+_t.x,handlerFirstPoint.y+_t.y,0));
-		Gizmos.DrawLine (new Vector3 (secondPoint.x+_t.x,secondPoint.y+_t.y,0),new Vector3 (handlerSecondPoint.x+_t.x,handlerSecondPoint.y+_t.y,0));
+			Gizmos.DrawLine (new Vector3 (firstPoint.x+_t.x,firstPoint.y+_t.y,0),new Vector3 (handlerFirstPoint.x+_t.x,handlerFirstPoint.y+_t.y,0));
+			Gizmos.DrawLine (new Vector3 (secondPoint.x+_t.x,secondPoint.y+_t.y,0),new Vector3 (handlerSecondPoint.x+_t.x,handlerSecondPoint.y+_t.y,0));
+
 	}
+
+
+	bool changeDetected(){
+		if(firstPointGO && firstPointGO.transform.hasChanged){
+			firstPointGO.transform.hasChanged = false;
+			firstPoint = firstPointGO.transform.position;//new Vector2( firstPoint.transform.position,firstPoint.transform.y);
+			return true;
+		}
+		return false;
+	}
+
 
 	void OnGUI ()
 	{        
+
 		/*_t = this.transform.position;
 		if (points == null) {
 			calculate2DPoints ();
