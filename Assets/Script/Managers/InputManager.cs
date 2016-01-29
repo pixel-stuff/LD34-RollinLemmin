@@ -70,10 +70,10 @@ public class InputManager : MonoBehaviour {
 			PlayerManager.RIGHT();
 		}
 
-		if(Input.GetKeyDown(KeyCode.Space)){
+		if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)){
 			PlayerManager.JUMP();
 		}
-		if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)){
+		if(Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.DownArrow)){
 			PlayerManager.SNOW();
 		}
 	}

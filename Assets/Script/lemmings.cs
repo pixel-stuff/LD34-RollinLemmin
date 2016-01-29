@@ -100,11 +100,11 @@ public class lemmings : MonoBehaviour {
 		if (lostSnowValue < 0) {
 			particuleEffect.degradationEffect (-lostSnowValue);
 		}
-		if(Input.GetKeyDown(KeyCode.Space)){
+		if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)){
 			Jump ();
 		}
 
-		if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)){
+		if(Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.DownArrow)){
 			DropSnow ();
 		}
 		if (Input.GetKeyDown (KeyCode.Escape)) {
