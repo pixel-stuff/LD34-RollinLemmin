@@ -17,26 +17,20 @@ public class BezierCollider2D : MonoBehaviour
 	private Vector3 _t;
 	List<Vector2> points;
 
-	public Material material;
-
-	public Rect position = new Rect (16, 16, 128, 24);
-	public Color color = Color.red;
-	bool isDraw=false;
-
-	private static Texture2D _staticRectTexture;
-	private static GUIStyle _staticRectStyle;
 
 	public GameObject prefab;
 	public float xSize;
 	public float securityScale =0.08f;
 
 
-	public GameObject firstPointGO;//= this.GetComponentsInChildren<Transform>()[1];
+	public GameObject firstPointGO;
 	public GameObject HandlerFirstPointGO;
 
+	public GameObject secondPointGO;
+	public GameObject HandlerSecondPointGO;
 
-	Vector3 CalculateBezierPoint(float t,Vector3 p0,Vector3 handlerP0,Vector3 handlerP1,Vector3 p1)
-	{
+
+	Vector3 CalculateBezierPoint(float t,Vector3 p0,Vector3 handlerP0,Vector3 handlerP1,Vector3 p1) {
 		float u = 1.0f - t;
 		float tt = t * t;
 		float uu = u * u;
@@ -51,8 +45,8 @@ public class BezierCollider2D : MonoBehaviour
 		return p;
 	}
 
-	public List<Vector2> calculate2DPoints()
-	{
+
+	public List<Vector2> calculate2DPoints() {
 		_t = this.transform.position;
 		points = new List<Vector2>();
 
@@ -67,7 +61,7 @@ public class BezierCollider2D : MonoBehaviour
 	}
 
 
-	void Start(){
+	void Start() {
 		pointsQuantity = pointsQuantity * pointsMultiplicator;
 		calculate2DPoints ();
 		for (int i = 0; i < points.Count ; i++) {
@@ -85,93 +79,53 @@ public class BezierCollider2D : MonoBehaviour
 			toto.transform.parent = this.transform;
 			toto.transform.localScale = new Vector3(securityScale + ((guiPositionPoint2.x - guiPositionPoint.x)/xSize),toto.transform.localScale.y,1);
 		}
-		//}
 	}
 
-	void OnDrawGizmos(){
+	void OnDrawGizmos() {
+
 		if (points == null) {
 			points = calculate2DPoints ();
 		}
 		if (changeDetected ()) {
 			points = calculate2DPoints ();
-
 		}
-			if (points != null) {
-				_t = this.transform.position;
-				Gizmos.color = Color.blue;
-				for (int i = 0; i < points.Count - 2; i++) {
-					Gizmos.DrawLine (new Vector3 (points [i].x + _t.x, points [i].y + _t.y), new Vector3 (points [i + 1].x + _t.x, points [i + 1].y + _t.y));
-				}
+		if (points != null) {
+			_t = this.transform.position;
+			Gizmos.color = Color.blue;
+			for (int i = 0; i < points.Count - 2; i++) {
+				Gizmos.DrawLine (new Vector3 (points [i].x + _t.x, points [i].y + _t.y), new Vector3 (points [i + 1].x + _t.x, points [i + 1].y + _t.y));
 			}
-			Gizmos.color = Color.green;
-		//Vector3 a = new Vector3 (firstPoint,0);
-			Gizmos.DrawLine (new Vector3 (firstPoint.x+_t.x,firstPoint.y+_t.y,0),new Vector3 (handlerFirstPoint.x+_t.x,handlerFirstPoint.y+_t.y,0));
-			Gizmos.DrawLine (new Vector3 (secondPoint.x+_t.x,secondPoint.y+_t.y,0),new Vector3 (handlerSecondPoint.x+_t.x,handlerSecondPoint.y+_t.y,0));
-
+		}
+		Gizmos.color = Color.green;
+		Gizmos.DrawLine (new Vector3 (firstPoint.x+_t.x,firstPoint.y+_t.y,0),new Vector3 (handlerFirstPoint.x+_t.x,handlerFirstPoint.y+_t.y,0));
+		Gizmos.DrawLine (new Vector3 (secondPoint.x+_t.x,secondPoint.y+_t.y,0),new Vector3 (handlerSecondPoint.x+_t.x,handlerSecondPoint.y+_t.y,0));
 	}
 
 
-	bool changeDetected(){
+	bool changeDetected() {
+		bool returnValue = false;
 		if(firstPointGO && firstPointGO.transform.hasChanged){
 			firstPointGO.transform.hasChanged = false;
-			firstPoint = firstPointGO.transform.position;//new Vector2( firstPoint.transform.position,firstPoint.transform.y);
-			return true;
+			firstPoint = firstPointGO.transform.localPosition;
+			returnValue = true;
 		}
-		return false;
+		if(HandlerFirstPointGO && HandlerFirstPointGO.transform.hasChanged){
+			HandlerFirstPointGO.transform.hasChanged = false;
+			handlerFirstPoint = HandlerFirstPointGO.transform.localPosition;
+			returnValue = true;
+		}
+		if(secondPointGO && secondPointGO.transform.hasChanged){
+			secondPointGO.transform.hasChanged = false;
+			secondPoint = secondPointGO.transform.localPosition;
+			returnValue = true;
+		}
+		if(HandlerSecondPointGO && HandlerSecondPointGO.transform.hasChanged){
+			HandlerSecondPointGO.transform.hasChanged = false;
+			handlerSecondPoint = HandlerSecondPointGO.transform.localPosition;
+			returnValue = true;
+		}
+
+		return returnValue;
 	}
 
-
-	void OnGUI ()
-	{        
-
-		/*_t = this.transform.position;
-		if (points == null) {
-			calculate2DPoints ();
-		}
-		DrawRectangle (position, color);
-		isDraw =true;*/
-	}
-	/*
-	void DrawRectangle (Rect position, Color color)
-	{   
-		//if (!isDraw) {
-		if( _staticRectTexture == null )
-		{
-			_staticRectTexture = new Texture2D( 1, 1 );
-		}
-		if( _staticRectStyle == null )
-		{
-			_staticRectStyle = new GUIStyle();
-		}
-		Vector3 guiPositionTransform = WorldToGuiPoint (_t);
-		float distx = guiPositionTransform.x;
-		float disty = guiPositionTransform.y;
-			
-		for (int i = 0; i < pointsQuantity-1; i++) {
-				Debug.Log ("Draw");
-
-				_staticRectTexture.SetPixel (0, 0, color);
-				_staticRectTexture.Apply ();
-				_staticRectStyle.normal.background = _staticRectTexture;
-		Vector3 guiPositionPoint = WorldToGuiPoint (points[i]);
-			Vector3 guiPositionPoint2 = WorldToGuiPoint (points[i+1]);
-
-		position = new Rect (distx,disty, (int)(-(guiPositionPoint.x-guiPositionPoint2.x)), 24);
-		Debug.Log (guiPositionPoint.x+ " "+guiPositionPoint.y+ " "+ (guiPositionPoint.x-guiPositionPoint2.x));
-		Debug.Log (guiPositionTransform.x+ " "+guiPositionTransform.y);
-		GUI.Box (position, GUIContent.none,_staticRectStyle);
-		distx += -(guiPositionPoint.x - guiPositionPoint2.x);
-		disty+= -(guiPositionPoint.y - guiPositionPoint2.y);
-			}
-		//}
-	}
-
-	public Vector3 WorldToGuiPoint(Vector3 position)
-	{
-		var guiPosition =Camera.main.WorldToScreenPoint(position);//Camera.main.WorldToScreenPoint(position);
-		guiPosition.y = Screen.height - guiPosition.y;
-		//guiPosition.x = Screen.width - guiPosition.x;
-
-		return guiPosition;
-	}*/
 }
