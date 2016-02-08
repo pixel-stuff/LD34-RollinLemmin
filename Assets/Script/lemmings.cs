@@ -111,6 +111,13 @@ public class lemmings : MonoBehaviour {
 			GameStateManager.setGameState (GameState.Playing);
 			Application.LoadLevel ("MenuScene");
 		}
+		if (Input.touchCount == 1) {    
+			// touch on screen
+			if (Input.GetTouch (0).phase == TouchPhase.Began) {
+				Jump ();
+			}
+		}
+
 	}
 
 	void updateSize(){
