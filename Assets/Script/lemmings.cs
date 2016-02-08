@@ -118,6 +118,12 @@ public class lemmings : MonoBehaviour {
 			}
 		}
 
+		if(Mathf.Abs(Input.acceleration.y) > 1.5f){
+
+			Debug.Log("Y =  "  + Input.acceleration.y);
+			DropSnow ();
+		}
+
 	}
 
 	void updateSize(){
