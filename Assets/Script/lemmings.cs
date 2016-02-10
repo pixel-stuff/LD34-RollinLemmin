@@ -191,6 +191,20 @@ public class lemmings : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D other){
 		isBump = false;
+		if (other.gameObject.layer == LayerMask.NameToLayer ("ObstacleDestroy")) {
+
+			Debug.Log ("DESTRUC REACH");
+			destructionCollider otherObstacleDestroyScript = other.gameObject.GetComponent<destructionCollider> ();
+			Obstacle otherObstacleScript = other.gameObject.GetComponentInParent<Obstacle>();
+			if ((snowValue / maxSnow) >= otherObstacleScript.getDestrucFactor ()) {
+				//destruc
+				m_rigideBody.AddForce (otherObstacleScript.destructAndAddForce ());
+				otherObstacleDestroyScript.targetCollider.isTrigger = true;
+				Debug.Log ("DESTRUC");
+			}
+		}
+
+
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
 			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
 			if ((snowValue / maxSnow) >= otherObstacleScript.getDestrucFactor ()) {

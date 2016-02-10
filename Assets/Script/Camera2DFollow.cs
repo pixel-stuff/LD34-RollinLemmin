@@ -17,6 +17,12 @@ namespace UnityStandardAssets._2D
 
 		public Boolean shakeFullPower;
 		public float maxDeltaShake;
+		private long sinusTime =0;
+
+		public float shakeAmount;
+		public float speedShakeMultiplicator;
+
+
         private float m_OffsetZ;
         private Vector3 m_LastTargetPosition;
         private Vector3 m_CurrentVelocity;
@@ -35,7 +41,13 @@ namespace UnityStandardAssets._2D
         private void Update()
         {
 			if (shakeFullPower) {
-				shake (1.0f);
+					//lemmingFear
+					transform.Rotate(new Vector3(0,0,Mathf.Sin(sinusTime++*speedShakeMultiplicator) * shakeAmount)); //new Vector3(0,0,Random.insideUnitSphere * shakeAmount);
+				} else {
+					//new Vector3(0,0,Mathf.Sin(sinusTime++*speedShakeMultiplicator) * shakeAmount)
+					//lemming.transform.localRotation.z = 0;
+					transform.Rotate(new Vector3(0,0,-Mathf.Sin(sinusTime*speedShakeMultiplicator) * shakeAmount));
+					sinusTime = 0;
 			}
 			//float bottomThresholdWithCameraSize = bottomThreshold + this.GetComponent<Camera> ().orthographicSize;
             // only update lookahead pos if accelerating or changed direction

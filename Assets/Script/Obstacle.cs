@@ -12,6 +12,7 @@ public class Obstacle : MonoBehaviour {
 
 	public Vector3 destructAndAddForce(){
 		this.GetComponent<EdgeCollider2D> ().enabled = false;
+		this.enabled = false;
 		//todo animation de destruction
 		return destructForce;
 	}
