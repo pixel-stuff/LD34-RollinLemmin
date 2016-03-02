@@ -8,7 +8,7 @@ public class parallaxPlanSave : parallaxPlan {
 	
 	public float space;
 	
-	private float m_initSpeed = 0.1f;
+	private float m_initSpeed = 0.005f;
 	private bool m_isInit = false;
 	
 	private float actualSpeed = 0.0f;
