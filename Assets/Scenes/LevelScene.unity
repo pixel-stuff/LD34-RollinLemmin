@@ -1052,6 +1052,10 @@ Prefab:
       propertyPath: destructForce.y
       value: 100000
       objectReference: {fileID: 0}
+    - target: {fileID: 113174, guid: 9e27b674399b4344f90a94812bd658e3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e27b674399b4344f90a94812bd658e3, type: 2}
   m_IsPrefabParent: 0
