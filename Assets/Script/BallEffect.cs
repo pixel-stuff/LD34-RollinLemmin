@@ -77,8 +77,10 @@ public class BallEffect : MonoBehaviour {
 	}
 
 	public void DropSnow (float factor){
-		Debug.Log ("TOTO   " + (int)(initialeDropNbParticule + factor * maxDropNbParticule));
-		DropSnowParticule.Emit ((int)(initialeDropNbParticule + factor *maxDropNbParticule));
+		int nbParticule = (int)(initialeDropNbParticule + factor * maxDropNbParticule);
+		nbParticule = (nbParticule > maxDropNbParticule) ? (int)maxDropNbParticule : nbParticule;
+		Debug.Log ("TOTO   " + nbParticule);
+		DropSnowParticule.Emit (nbParticule);
 	}
 
 	public void Jump(float factor){

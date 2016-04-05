@@ -65,7 +65,7 @@ public class assetRandomGenerator : parralaxAssetGenerator {
 
 
 	public override GenerateAssetStruct generateGameObjectWithCode(int code) {
-		Debug.Log ("generate for code : " + code);
+//		Debug.Log ("generate for code : " + code);
 		initTabOfTypeIfNeeded ();
 		return generateAssetStructForId(code);
 	}
