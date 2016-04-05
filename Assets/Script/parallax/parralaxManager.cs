@@ -88,6 +88,7 @@ public class parralaxManager : MonoBehaviour {
 				temp.transform.localPosition = new Vector3(temp.transform.localPosition.x,temp.transform.localPosition.y,temp.transform.localPosition.z+ zsupp--);
 			}
 		}
+		FixedUpdate ();
 	}
 	
 	// Update is called once per frame

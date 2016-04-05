@@ -257,7 +257,7 @@ public class lemmings : MonoBehaviour {
 	}
 
 	public void DropSnow(){
-		particuleEffect.DropSnow(snowValue / maxSnow);
+		particuleEffect.DropSnow(snowValue);
 		snowValue = 0;
 	}
 }

@@ -22,7 +22,7 @@ public class BallEffect : MonoBehaviour {
 	private GameObject target = null;
 
 	public ParticleSystem snowDegradation;
-	public int nbPartForOneDesagration = 1;
+	public float nbPartForOneDesagration = 0.1f;
 
 	public float decalageRadius = 0;
 	// Use this for initialization
