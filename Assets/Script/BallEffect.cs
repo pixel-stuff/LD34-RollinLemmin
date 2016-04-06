@@ -41,6 +41,10 @@ public class BallEffect : MonoBehaviour {
 		SpeedLeftWindParticule.transform.position = position + new Vector3 (-radius+decalageRadius - spaceBetweenEffectAndBall, 0, 0);
 		SpeedSnowLeft.transform.position = position + new Vector3 (0, -radius+decalageRadius, 0);
 		SpeedSnowRight.transform.position = position + new Vector3 (0, -radius+decalageRadius, 0);
+		var dropSnow = DropSnowParticule.shape;
+		dropSnow.radius = radius;
+		dropSnow = snowDegradation.shape;
+		dropSnow.radius = radius;
 	}
 
 	public void setSpeedEffect(float speed){
@@ -50,7 +54,7 @@ public class BallEffect : MonoBehaviour {
 	}
 
 	public void setSpeedSnowEffect(float speed, float factor,float speedSign){
-
+		/*
 			if (speedSign > 0) {
 				target = SpeedSnowLeft;
 			SpeedSnowRight.SetActive (false);
@@ -73,14 +77,14 @@ public class BallEffect : MonoBehaviour {
 				target.SetActive (true);// = true;
 			}
 		}
-
+*/
 	}
 
 	public void DropSnow (float factor){
 		int nbParticule = (int)(initialeDropNbParticule + factor * maxDropNbParticule);
 		nbParticule = (nbParticule > maxDropNbParticule) ? (int)maxDropNbParticule : nbParticule;
-		Debug.Log ("TOTO   " + nbParticule);
 		DropSnowParticule.Emit (nbParticule);
+
 	}
 
 	public void Jump(float factor){
@@ -88,6 +92,8 @@ public class BallEffect : MonoBehaviour {
 	}
 
 	public void degradationEffect(float snowDegra){
-		snowDegradation.Emit ((int)(snowDegra * nbPartForOneDesagration));
+		int emitParticule = (int)(snowDegra * nbPartForOneDesagration);
+		Debug.Log ("snowDegrad = "+ snowDegra + "  emit = "+emitParticule);
+		snowDegradation.Emit (emitParticule);
 	}
 }
