@@ -15,8 +15,10 @@ public class BallEffect : MonoBehaviour {
 	public float spaceBetweenEffectAndBall=1.0f;
 	public float minimumSpeedForEffect=5;
 
-	public GameObject SpeedSnowLeft;
-	public GameObject SpeedSnowRight;
+	public ParticleSystem SpeedSnowLeft;
+	public ParticleSystem SpeedSnowRight;
+	public float speedTreshold;
+	public int nbSpeedEmitParticule;
 	public float nbChangeState =10;
 	public float actualChangeState = 0;
 	private GameObject target = null;
@@ -53,31 +55,17 @@ public class BallEffect : MonoBehaviour {
 		}
 	}
 
-	public void setSpeedSnowEffect(float speed, float factor,float speedSign){
-		/*
-			if (speedSign > 0) {
-				target = SpeedSnowLeft;
-			SpeedSnowRight.SetActive (false);
-			//actualChangeState = 0;
-		} 
-		if (speedSign < 0) {
-				target = SpeedSnowRight;
-			SpeedSnowLeft.SetActive (false);
-			//actualChangeState = 0;
-			}
-		if (target != null) {
-			if (speed == 0) {
-				actualChangeState++;
-				if (actualChangeState > nbChangeState) {
-					actualChangeState = 0;
-					target.SetActive (false);// = false;
-					return;
-				}
-			} else {
-				target.SetActive (true);// = true;
-			}
+	public void setSpeedSnowEffect(float speedSign, float speedValue){
+		ParticleSystem emettor;
+		if (speedSign > 0) {
+			emettor = SpeedSnowRight;
+		} else {
+			emettor = SpeedSnowLeft;
 		}
-*/
+
+		if (speedValue > speedTreshold) {
+			emettor.Emit (nbSpeedEmitParticule);
+		}
 	}
 
 	public void DropSnow (float factor){

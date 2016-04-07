@@ -94,10 +94,10 @@ public class renard : MonoBehaviour {
 		particuleEffect.setSpeedEffect (speed);
 		if (addSnow) {
 			Debug.Log ("ADDSNOWEFFECT");
-			particuleEffect.setSpeedSnowEffect (speed, (snowValue / maxSnow),speedSign);
+		//	particuleEffect.setSpeedSnowEffect (speed, (snowValue / maxSnow),speedSign);
 		} else {
 			Debug.Log ("ADDSNOWEFFECT");
-			particuleEffect.setSpeedSnowEffect (0,0,0);
+		//	particuleEffect.setSpeedSnowEffect (0,0,0);
 		}
 		float lostSnowValue = snowValue - oldSnowValue;
 		if (lostSnowValue < 0) {
