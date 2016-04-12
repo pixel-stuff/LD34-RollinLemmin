@@ -41,20 +41,29 @@ public class BallEffect : MonoBehaviour {
 	}
 
 
-	public void UpdatePositionAndRadius (Vector3 position, float radius){
+	public void UpdatePositionAndRadius (Vector3 position, float radius, Vector3 collisionPosition){
 		this.transform.position = position;
-		JumpParticule.transform.position = position + new Vector3 (0, -radius+decalageRadius, 0);
+
+		//Collision point particule 
+		if (collisionPosition != Vector3.zero) {
+			JumpParticule.transform.position = collisionPosition;
+			SpeedSnowLeft.transform.position = collisionPosition;
+			SpeedSnowRight.transform.position = collisionPosition;
+		} else {
+			JumpParticule.transform.position = position + new Vector3 (0, -radius + decalageRadius, 0);
+			SpeedSnowLeft.transform.position = position + new Vector3 (0, -radius + decalageRadius, 0);
+			SpeedSnowRight.transform.position = position + new Vector3 (0, -radius + decalageRadius, 0);
+		}
+
+		//wind
 		SpeedRightWindParticule.transform.position = position + new Vector3 (radius+decalageRadius + spaceBetweenEffectAndBall, 0, 0);
 		SpeedLeftWindParticule.transform.position = position + new Vector3 (-radius+decalageRadius - spaceBetweenEffectAndBall, 0, 0);
-		SpeedSnowLeft.transform.position = position + new Vector3 (0, -radius+decalageRadius, 0);
-		SpeedSnowRight.transform.position = position + new Vector3 (0, -radius+decalageRadius, 0);
+
+		//radius
 		var dropSnow = DropSnowParticule.shape;
 		dropSnow.radius = radius;
 
 		dropSnow = snowDegradation.shape;
-		dropSnow.radius = radius;
-
-		dropSnow = JumpParticule.shape;
 		dropSnow.radius = radius;
 	}
 

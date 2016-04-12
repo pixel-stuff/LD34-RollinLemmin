@@ -89,7 +89,7 @@ public class renard : MonoBehaviour {
 			Jump ();
 		}
 		updateSize ();
-		particuleEffect.UpdatePositionAndRadius (this.transform.position, m_collider.radius);
+	//	particuleEffect.UpdatePositionAndRadius (this.transform.position, m_collider.radius);
 
 		particuleEffect.setSpeedEffect (speed);
 		if (addSnow) {

@@ -54,7 +54,7 @@ public class lemmings : MonoBehaviour {
 
 	public BallEffect particuleEffect;
 
-	public Vector2 snowContactPoint;
+	private Vector3 m_snowContactPoint;
 
 	// Use this for initialization
 	void Start () {
@@ -87,7 +87,7 @@ public class lemmings : MonoBehaviour {
 
 
 		updateSize ();
-		particuleEffect.UpdatePositionAndRadius (this.transform.position, m_collider.radius);
+		particuleEffect.UpdatePositionAndRadius (this.transform.position, m_collider.radius, addSnow ? m_snowContactPoint : Vector3.zero);
 
 		particuleEffect.setSpeedEffect (speed);
 		if (addSnow) {
@@ -170,7 +170,7 @@ public class lemmings : MonoBehaviour {
 			}
 		} else if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
 			ContactPoint2D contactPoint = other.contacts [0];
-			snowContactPoint = contactPoint.point;
+			m_snowContactPoint = new Vector3( contactPoint.point.x,contactPoint.point.y,this.gameObject.transform.position.z);
 			/*Debug.Log ("NEIGE");
 			other.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
 			//other.gameObject.GetComponent<SetDirty> ().setDirty();
@@ -231,6 +231,8 @@ public class lemmings : MonoBehaviour {
 		} else {
 			canJump = true;
 			if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
+				ContactPoint2D contactPoint = other.contacts [0];
+				m_snowContactPoint = new Vector3( contactPoint.point.x,contactPoint.point.y,this.gameObject.transform.position.z);
 				addSnow = true;
 				if (isDown) {
 					m_rigideBody.AddForce (ForceUpInFall);
