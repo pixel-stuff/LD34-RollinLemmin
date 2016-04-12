@@ -27,6 +27,11 @@ public class BallEffect : MonoBehaviour {
 	public float nbPartForOneDesagration = 0.1f;
 
 	public float decalageRadius = 0;
+
+	private float degradationParticuleSom = 0;
+
+	private Vector3 snowContactPoint;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -45,7 +50,11 @@ public class BallEffect : MonoBehaviour {
 		SpeedSnowRight.transform.position = position + new Vector3 (0, -radius+decalageRadius, 0);
 		var dropSnow = DropSnowParticule.shape;
 		dropSnow.radius = radius;
+
 		dropSnow = snowDegradation.shape;
+		dropSnow.radius = radius;
+
+		dropSnow = JumpParticule.shape;
 		dropSnow.radius = radius;
 	}
 
@@ -72,7 +81,6 @@ public class BallEffect : MonoBehaviour {
 		int nbParticule = (int)(initialeDropNbParticule + factor * maxDropNbParticule);
 		nbParticule = (nbParticule > maxDropNbParticule) ? (int)maxDropNbParticule : nbParticule;
 		DropSnowParticule.Emit (nbParticule);
-
 	}
 
 	public void Jump(float factor){
@@ -80,8 +88,10 @@ public class BallEffect : MonoBehaviour {
 	}
 
 	public void degradationEffect(float snowDegra){
-		int emitParticule = (int)(snowDegra * nbPartForOneDesagration);
-		Debug.Log ("snowDegrad = "+ snowDegra + "  emit = "+emitParticule);
+		degradationParticuleSom += (snowDegra * nbPartForOneDesagration);
+		int emitParticule = (int)degradationParticuleSom;
+	//	Debug.Log ("snowDegrad = "+ snowDegra + "  emit = "+emitParticule);
 		snowDegradation.Emit (emitParticule);
+		degradationParticuleSom -= emitParticule;
 	}
 }

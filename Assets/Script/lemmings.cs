@@ -54,6 +54,7 @@ public class lemmings : MonoBehaviour {
 
 	public BallEffect particuleEffect;
 
+	public Vector2 snowContactPoint;
 
 	// Use this for initialization
 	void Start () {
@@ -151,6 +152,7 @@ public class lemmings : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other){
 		isBump = false;
+
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
 			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
 			if ((snowValue / maxSnow) >= otherObstacleScript.getDestrucFactor ()) {
@@ -167,6 +169,16 @@ public class lemmings : MonoBehaviour {
 				Debug.Log ("DEATH");
 			}
 		} else if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
+			ContactPoint2D contactPoint = other.contacts [0];
+			snowContactPoint = contactPoint.point;
+			/*Debug.Log ("NEIGE");
+			other.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+			//other.gameObject.GetComponent<SetDirty> ().setDirty();
+			dirty dirtyGO = other.gameObject.GetComponent<dirty> ();
+			if(dirtyGO) {
+				Debug.Log ("DIRTY");
+				//dirtyGO.setDirtyAsset ();
+			}*/
 			canJump = true;
 			addSnow = true;
 			if (isDown) {

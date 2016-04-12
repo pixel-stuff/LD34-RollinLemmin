@@ -57,7 +57,7 @@ public class progressBar : MonoBehaviour {
 		} else {
 			//new Vector3(0,0,Mathf.Sin(sinusTime++*speedShakeMultiplicator) * shakeAmount)
 			//lemming.transform.localRotation.z = 0;
-			lemming.transform.Rotate(new Vector3(0,0,-Mathf.Sin(sinusTime*speedShakeMultiplicator) * shakeAmount));
+			lemming.transform.localEulerAngles = Vector3.zero;//Rotate(new Vector3(0,0,-Mathf.Sin(sinusTime*speedShakeMultiplicator) * shakeAmount));
 			sinusTime = 0;
 		}
 		float xAnchor = anchor.transform.position.x;
