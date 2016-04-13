@@ -1504,7 +1504,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 801673985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1, y: 7.5, z: 0}
+  m_LocalPosition: {x: 3.86, y: 3.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1558512080}
@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hit2DPoint: {x: 0, y: 0}
-  orientation: {x: 0.2, y: -1}
+  orientation: {x: 0, y: -1}
 --- !u!20 &840270106 stripped
 Camera:
   m_PrefabParentObject: {fileID: 2089654, guid: b05ac6ed40f58e946a7936f1ef3e75fc,
@@ -2095,6 +2095,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1558512080}
   - 61: {fileID: 1558512079}
+  - 50: {fileID: 1558512081}
   m_Layer: 0
   m_Name: Fox
   m_TagString: Untagged
@@ -2130,6 +2131,23 @@ Transform:
   - {fileID: 1431571235}
   m_Father: {fileID: 0}
   m_RootOrder: 9
+--- !u!50 &1558512081
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1558512078}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &1561715220
 GameObject:
   m_ObjectHideFlags: 0
