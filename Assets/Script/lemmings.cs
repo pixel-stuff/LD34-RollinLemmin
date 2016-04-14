@@ -66,6 +66,8 @@ public class lemmings : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(addSnow)
+		castRayForStompSnow ();
 		if (snowValue > lemmingInSnow) {
 			ball.SetActive (true);
 		} else {
@@ -171,6 +173,7 @@ public class lemmings : MonoBehaviour {
 		} else if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
 			ContactPoint2D contactPoint = other.contacts [0];
 			m_snowContactPoint = new Vector3( contactPoint.point.x,contactPoint.point.y,this.gameObject.transform.position.z);
+			castRayForStompSnow ();
 			/*Debug.Log ("NEIGE");
 			other.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
 			//other.gameObject.GetComponent<SetDirty> ().setDirty();
@@ -233,6 +236,7 @@ public class lemmings : MonoBehaviour {
 			if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
 				ContactPoint2D contactPoint = other.contacts [0];
 				m_snowContactPoint = new Vector3( contactPoint.point.x,contactPoint.point.y,this.gameObject.transform.position.z);
+				castRayForStompSnow ();
 				addSnow = true;
 				if (isDown) {
 					m_rigideBody.AddForce (ForceUpInFall);
@@ -256,6 +260,27 @@ public class lemmings : MonoBehaviour {
 		m_rigideBody.AddRelativeForce (new Vector3(0,-10000,0));
 		addSnow=false;
 		isBump = true;
+		m_snowContactPoint = Vector3.zero;
+	}
+
+	void castRayForStompSnow(){
+		int layerMask = 1 << LayerMask.NameToLayer ("Ground");// ~(1 << LayerMask.NameToLayer("Ground"));
+		//int layerMask = LayerMask.NameToLayer("Ground");
+		RaycastHit[] hitTab = Physics.RaycastAll(transform.position,m_snowContactPoint - transform.transform.position);
+		RaycastHit hit = hitTab [0];
+		//RaycastHit2D hit = Physics2D.Raycast(transform.position,  new Vector2(m_snowContactPoint.x - transform.position.x , m_snowContactPoint.y -transform.position.y),Mathf.Infinity,layerMask,-Mathf.Infinity, Mathf.Infinity);
+		if (hit.collider != null) {
+			//hit.collider.gameObject.GetComponent<SpriteRenderer> ().enabled = false; //JMOREL STILL WORKING
+			//hit.collider.gameObject.SetActive(false);
+		}
+	}
+
+	void OnDrawGizmos() {
+
+
+		Gizmos.color = Color.blue;
+		Gizmos.DrawLine (transform.position,new Vector3 (m_snowContactPoint.x,m_snowContactPoint.y,0));
+		//	Gizmos.DrawLine (new Vector3 (secondPoint.x+_t.x,secondPoint.y+_t.y,0),new Vector3 (handlerSecondPoint.x+_t.x,handlerSecondPoint.y+_t.y,0));
 	}
 
 	public void Jump(){

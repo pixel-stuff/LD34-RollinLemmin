@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 482584}
   - 212: {fileID: 21219942}
   - 65: {fileID: 6597820}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: alumette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
