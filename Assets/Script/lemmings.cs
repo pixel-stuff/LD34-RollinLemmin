@@ -65,7 +65,7 @@ public class lemmings : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if(addSnow)
 		castRayForStompSnow ();
 		if (snowValue > lemmingInSnow) {
