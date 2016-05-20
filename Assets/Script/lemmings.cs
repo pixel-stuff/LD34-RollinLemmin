@@ -66,8 +66,8 @@ public class lemmings : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(addSnow)
-		castRayForStompSnow ();
+	//	if(addSnow)
+	//	castRayForStompSnow ();
 		if (snowValue > lemmingInSnow) {
 			ball.SetActive (true);
 		} else {
@@ -173,7 +173,7 @@ public class lemmings : MonoBehaviour {
 		} else if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
 			ContactPoint2D contactPoint = other.contacts [0];
 			m_snowContactPoint = new Vector3( contactPoint.point.x,contactPoint.point.y,this.gameObject.transform.position.z);
-			castRayForStompSnow ();
+			//castRayForStompSnow ();
 			/*Debug.Log ("NEIGE");
 			other.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
 			//other.gameObject.GetComponent<SetDirty> ().setDirty();
@@ -236,7 +236,7 @@ public class lemmings : MonoBehaviour {
 			if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
 				ContactPoint2D contactPoint = other.contacts [0];
 				m_snowContactPoint = new Vector3( contactPoint.point.x,contactPoint.point.y,this.gameObject.transform.position.z);
-				castRayForStompSnow ();
+				//castRayForStompSnow ();
 				addSnow = true;
 				if (isDown) {
 					m_rigideBody.AddForce (ForceUpInFall);

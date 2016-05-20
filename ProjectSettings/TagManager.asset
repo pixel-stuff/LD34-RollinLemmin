@@ -42,8 +42,8 @@ TagManager:
   - End
   - ObstacleDestroy
   - Ground
-  - 
-  - 
+  - SnowTracer
+  - freshSnow
   - 
   - 
   - 
