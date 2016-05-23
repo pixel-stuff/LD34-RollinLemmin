@@ -44,12 +44,12 @@ public class parralaxManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rightBorder = Instantiate (new GameObject ());
-		rightBorder.transform.parent = this.transform.parent;
+		//rightBorder.transform.parent = this.transform.parent;
 		leftBorder = Instantiate (new GameObject ());
-		leftBorder.transform.parent = this.transform.parent;
-		/*leftBorder.transform.position = new Vector3 (leftBorder.transform.position.x,cameraToFollow.gameObject.transform.position.y,leftBorder.transform.position.z);
+		//leftBorder.transform.parent = this.transform.parent;
+		leftBorder.transform.position = new Vector3 (leftBorder.transform.position.x,cameraToFollow.gameObject.transform.position.y,leftBorder.transform.position.z);
 		rightBorder.transform.position = new Vector3 (leftBorder.transform.position.x,cameraToFollow.gameObject.transform.position.y,leftBorder.transform.position.z);
-		*/parralaxPlans = new List<GameObject> ();
+		parralaxPlans = new List<GameObject> ();
 		foreach (ParralaxPlanConfiguration config in configurationParralax) {
 			GameObject tempParralaxPlan = Instantiate(config.prefabParralaxPlan);
 			tempParralaxPlan.transform.parent = this.transform;
@@ -88,6 +88,7 @@ public class parralaxManager : MonoBehaviour {
 				temp.transform.localPosition = new Vector3(temp.transform.localPosition.x,temp.transform.localPosition.y,temp.transform.localPosition.z+ zsupp--);
 			}
 		}
+		FixedUpdate ();
 	}
 	
 	// Update is called once per frame

@@ -11,10 +11,10 @@ Shader "Custom/Tessel2D" {
 		//_Metallic ("Metallic", Range(0,1)) = 0.0
 		_Displacement("Displacement", Range(0, 10.0)) = 0.3
 		_Tess("Tessellation", Range(1,32)) = 4
-		_p0("P0", Vector) = (1, 1, 1, 1)
+		/*_p0("P0", Vector) = (1, 1, 1, 1)
 		_handlerP0("handler P0", Vector) = (1, 1, 1, 1)
 		_p1("P1", Vector) = (1, 1, 1, 1)
-		_handlerP1("handler P1", Vector) = (1, 1, 1, 1)
+		_handlerP1("handler P1", Vector) = (1, 1, 1, 1)*/
 	}
 	// dx 11
 	SubShader {
@@ -46,10 +46,10 @@ Shader "Custom/Tessel2D" {
 		fixed4 _Color;
 		float _Displacement;
 		float _Tess;
-		half3 _p0;
+		/*half3 _p0;
 		half3 _handlerP0;
 		half3 _p1;
-		half3 _handlerP1;
+		half3 _handlerP1;*/
 
 		half3 CalculateBezierPoint(float t, half3 p0, half3 handlerP0, half3 handlerP1, half3 p1) {
 			float u = 1.0f - t;
@@ -75,7 +75,7 @@ Shader "Custom/Tessel2D" {
 			float d = tex2Dlod(_MainTex, float4(v.texcoord.xy, 0, 0)).r * _Displacement;
 			//v.vertex.xyz += v.normal * d;
 			//v.vertex.z += cos(v.vertex.x)*_Displacement;
-			v.vertex.z += CalculateBezierPoint(v.vertex.x, _p0, _handlerP0, _handlerP1, _p1).z;
+			//v.vertex.z += CalculateBezierPoint(v.vertex.x, _p0, _handlerP0, _handlerP1, _p1).z;
 			v.vertex.y += d;
 		}
 
@@ -122,10 +122,10 @@ Shader "Custom/Tessel2D" {
 		fixed4 _Color;
 		float _Displacement;
 		float _Tess;
-		half3 _p0;
+		/*half3 _p0;
 		half3 _handlerP0;
 		half3 _p1;
-		half3 _handlerP1;
+		half3 _handlerP1;*/
 
 		half3 CalculateBezierPoint(float t, half3 p0, half3 handlerP0, half3 handlerP1, half3 p1) {
 			float u = 1.0f - t;
@@ -147,7 +147,7 @@ Shader "Custom/Tessel2D" {
 			//float d = tex2Dlod(_MainTex, float4(v.texcoord.xy, 0, 0)).r * _Displacement;
 			//v.vertex.xyz += v.normal * d;
 			//v.vertex.z += cos(v.vertex.x)*_Displacement;
-			v.vertex.z += CalculateBezierPoint(v.vertex.x, _p0, _handlerP0, _handlerP1, _p1).z;
+			//v.vertex.z += CalculateBezierPoint(v.vertex.x, _p0, _handlerP0, _handlerP1, _p1).z;
 		}
 
 		void surf(Input IN, inout SurfaceOutputStandard o) {

@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 30b959b3ddb0d744688da5d2fa1a4bcc, type: 3}
+          m_Texture: {fileID: 2800000, guid: cb4e72dd46bc4f442b403d7c7319e358, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -102,7 +102,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0
+        second: 0.54
       data:
         first:
           name: _BumpScale
@@ -130,7 +130,7 @@ Material:
       data:
         first:
           name: _Displacement
-        second: 0
+        second: 5.61
       data:
         first:
           name: _Tess
@@ -143,20 +143,20 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: 0.9632353, g: 0.98378026, b: 1, a: 1}
       data:
         first:
           name: _p0
-        second: {r: 1.09, g: 0, b: -0.14, a: 1}
+        second: {r: -1, g: 0, b: 0, a: 1}
       data:
         first:
           name: _handlerP0
-        second: {r: 2.63, g: 1, b: -0.05, a: 1}
+        second: {r: 1.29, g: 1, b: 0.34, a: 1}
       data:
         first:
           name: _p1
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 1, g: 0, b: 0, a: 1}
       data:
         first:
           name: _handlerP1
-        second: {r: 0.93, g: 0, b: 0, a: 1}
+        second: {r: -1.22, g: 0, b: 0.29, a: 1}
