@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class lemmings : MonoBehaviour {
+public class renard : MonoBehaviour {
 
 	public float rollingSnowAdd;
 	public float lostSnow;
@@ -54,7 +54,6 @@ public class lemmings : MonoBehaviour {
 
 	public BallEffect particuleEffect;
 
-	private Vector3 m_snowContactPoint;
 
 	// Use this for initialization
 	void Start () {
@@ -63,11 +62,9 @@ public class lemmings : MonoBehaviour {
 		oldPosition = new Vector3 (0,0,0);
 		m_rigideBody.angularVelocity = 5;
 	}
-	
+
 	// Update is called once per frame
-	void FixedUpdate () {
-	//	if(addSnow)
-	//	castRayForStompSnow ();
+	void Update () {
 		if (snowValue > lemmingInSnow) {
 			ball.SetActive (true);
 		} else {
@@ -87,19 +84,26 @@ public class lemmings : MonoBehaviour {
 			snowValue += rollingSnowAdd;
 		}
 
-
+		if (speedSign < 0) {
+			Debug.Log ("jump");
+			Jump ();
+		}
 		updateSize ();
-		particuleEffect.UpdatePositionAndRadius (this.transform.position, m_collider.radius, addSnow ? m_snowContactPoint : Vector3.zero);
+	//	particuleEffect.UpdatePositionAndRadius (this.transform.position, m_collider.radius);
 
 		particuleEffect.setSpeedEffect (speed);
 		if (addSnow) {
-			particuleEffect.setSpeedSnowEffect (speedSign,Math.Abs(speed));
+			Debug.Log ("ADDSNOWEFFECT");
+		//	particuleEffect.setSpeedSnowEffect (speed, (snowValue / maxSnow),speedSign);
+		} else {
+			Debug.Log ("ADDSNOWEFFECT");
+		//	particuleEffect.setSpeedSnowEffect (0,0,0);
 		}
 		float lostSnowValue = snowValue - oldSnowValue;
 		if (lostSnowValue < 0) {
 			particuleEffect.degradationEffect (-lostSnowValue);
 		}
-		if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)){
+	/*	if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)){
 			Jump ();
 		}
 
@@ -122,14 +126,14 @@ public class lemmings : MonoBehaviour {
 			Debug.Log("Y =  "  + Input.acceleration.y);
 			DropSnow ();
 		}
-
+*/
 	}
 
 	void updateSize(){
-		m_collider.radius = initialeSize + (maxSize * (snowValue / maxSnow));
-		ball.transform.localScale = new Vector3(initialeSize + (maxSize * (snowValue / maxSnow)),initialeSize + (maxSize * (snowValue / maxSnow)),1) ;
+		/*m_collider.radius = initialeSize + (maxSize * (snowValue / maxSnow));
+		ball.transform.localScale = new Vector3(initialeSize + (maxSize * (snowValue / maxSnow)),initialeSize + (maxSize * (snowValue / maxSnow)),1) ;*/
 		m_rigideBody.mass = initialeWeight + (maxWeight * (snowValue / maxSnow));
-		updateZoomOnCamera ();
+	//	updateZoomOnCamera ();
 	}
 
 	void updateZoomOnCamera(){
@@ -154,47 +158,24 @@ public class lemmings : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other){
 		isBump = false;
-
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
 			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
-			if ((snowValue / maxSnow) >= otherObstacleScript.getDestrucFactor ()) {
+
 				//destruc
 				m_rigideBody.AddForce (otherObstacleScript.destructAndAddForce ());
-				Debug.Log ("DESTRUC");
-			} else if ((snowValue / maxSnow) >= otherObstacleScript.getSurviveFactor ()) {
-				//survive
-				DropSnow ();
-				m_rigideBody.AddForce (otherObstacleScript.surviveAndAddForce ());
-				Debug.Log ("Survive");
-			} else {
-				//death
-				Debug.Log ("DEATH");
-			}
+
 		} else if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
-			ContactPoint2D contactPoint = other.contacts [0];
-			m_snowContactPoint = new Vector3( contactPoint.point.x,contactPoint.point.y,this.gameObject.transform.position.z);
-			//castRayForStompSnow ();
-			/*Debug.Log ("NEIGE");
-			other.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
-			//other.gameObject.GetComponent<SetDirty> ().setDirty();
-			dirty dirtyGO = other.gameObject.GetComponent<dirty> ();
-			if(dirtyGO) {
-				Debug.Log ("DIRTY");
-				//dirtyGO.setDirtyAsset ();
-			}*/
 			canJump = true;
 			addSnow = true;
 			if (isDown) {
 				m_rigideBody.AddForce (ForceUpInFall);
 			}
 		}
-		 else if (other.gameObject.layer == LayerMask.NameToLayer ("Death")){
+		//debug
+		else if (other.gameObject.layer == LayerMask.NameToLayer ("Death")){
 			GameStateManager.setGameState (GameState.GameOver);
 			Application.LoadLevelAsync ("GameOverScene");
-		} else if (other.gameObject.layer == LayerMask.NameToLayer ("End")){
-			GameStateManager.setGameState (GameState.GameOver);
-			Application.LoadLevelAsync ("SuccessGameOver");
-		}
+		} 
 
 	}
 
@@ -234,9 +215,6 @@ public class lemmings : MonoBehaviour {
 		} else {
 			canJump = true;
 			if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
-				ContactPoint2D contactPoint = other.contacts [0];
-				m_snowContactPoint = new Vector3( contactPoint.point.x,contactPoint.point.y,this.gameObject.transform.position.z);
-				//castRayForStompSnow ();
 				addSnow = true;
 				if (isDown) {
 					m_rigideBody.AddForce (ForceUpInFall);
@@ -260,27 +238,6 @@ public class lemmings : MonoBehaviour {
 		m_rigideBody.AddRelativeForce (new Vector3(0,-10000,0));
 		addSnow=false;
 		isBump = true;
-		m_snowContactPoint = Vector3.zero;
-	}
-
-	void castRayForStompSnow(){
-		int layerMask = 1 << LayerMask.NameToLayer ("Ground");// ~(1 << LayerMask.NameToLayer("Ground"));
-		//int layerMask = LayerMask.NameToLayer("Ground");
-		RaycastHit[] hitTab = Physics.RaycastAll(transform.position,m_snowContactPoint - transform.transform.position);
-		RaycastHit hit = hitTab [0];
-		//RaycastHit2D hit = Physics2D.Raycast(transform.position,  new Vector2(m_snowContactPoint.x - transform.position.x , m_snowContactPoint.y -transform.position.y),Mathf.Infinity,layerMask,-Mathf.Infinity, Mathf.Infinity);
-		if (hit.collider != null) {
-			//hit.collider.gameObject.GetComponent<SpriteRenderer> ().enabled = false; //JMOREL STILL WORKING
-			//hit.collider.gameObject.SetActive(false);
-		}
-	}
-
-	void OnDrawGizmos() {
-
-
-		Gizmos.color = Color.blue;
-		Gizmos.DrawLine (transform.position,new Vector3 (m_snowContactPoint.x,m_snowContactPoint.y,0));
-		//	Gizmos.DrawLine (new Vector3 (secondPoint.x+_t.x,secondPoint.y+_t.y,0),new Vector3 (handlerSecondPoint.x+_t.x,handlerSecondPoint.y+_t.y,0));
 	}
 
 	public void Jump(){
@@ -292,7 +249,7 @@ public class lemmings : MonoBehaviour {
 	}
 
 	public void DropSnow(){
-		particuleEffect.DropSnow(snowValue/maxSnow);
+		particuleEffect.DropSnow(snowValue / maxSnow);
 		snowValue = 0;
 	}
 }

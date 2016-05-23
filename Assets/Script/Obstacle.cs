@@ -14,6 +14,7 @@ public class Obstacle : MonoBehaviour {
 		this.GetComponent<EdgeCollider2D> ().enabled = false;
 		this.enabled = false;
 		//todo animation de destruction
+		this.GetComponent<SpriteRenderer>().enabled = false;
 		return destructForce;
 	}
 
