@@ -7,15 +7,11 @@ public class Curve2D : MonoBehaviour
     public Transform handlerFirstPoint;
     public Transform handlerSecondPoint;
     public Transform secondPoint;
-
-    public uint _NPoints = 4;
+  
     public uint _NFreq = 4;
 
     // Reference to the mesh we will generate
     private Mesh mesh = null;
-
-    // The terrain points along the top of the mesh
-    private Vector3[] points = null;
 
     // Mutable lists for all the vertices and triangles of the mesh
     private List<Vector3> vertices = new List<Vector3>();
@@ -35,9 +31,7 @@ public class Curve2D : MonoBehaviour
 
         triangles.Clear();
         vertices.Clear();
-
-        // Generate 4 random points for the top 
-        points = new Vector3[_NPoints];
+        
         /*for (int i = 0; i < points.Length; i++)
         {
             points[i] = new Vector3(0.5f * (float)i, Random.Range(1f, 2f), 0f);
@@ -101,20 +95,17 @@ public class Curve2D : MonoBehaviour
     {
         Vector3 _t = transform.position;
 
-        if (points == null)
+        if (vertices == null)
         {
             generateMesh();
         }
-        if (points != null)
+        Gizmos.color = Color.blue;
+        for (int i = 1; i < _NFreq; i++)
         {
-            Gizmos.color = Color.blue;
-            for (int i = 1; i < _NFreq; i++)
-            {
-                // Get the point on our curve using the 4 points generated above
-                Vector3 p = CalculateBezierPoint((float)(i-1) / (float)(_NFreq - 1), firstPoint.position, handlerFirstPoint.position, handlerSecondPoint.position, secondPoint.position);
-                Vector3 p1 = CalculateBezierPoint((float)i / (float)(_NFreq - 1), firstPoint.position, handlerFirstPoint.position, handlerSecondPoint.position, secondPoint.position);
-                Gizmos.DrawLine(new Vector3(p.x + _t.x, p.y + _t.y), new Vector3(p1.x + _t.x, p1.y + _t.y));
-            }
+            // Get the point on our curve using the 4 points generated above
+            Vector3 p = CalculateBezierPoint((float)(i-1) / (float)(_NFreq - 1), firstPoint.position, handlerFirstPoint.position, handlerSecondPoint.position, secondPoint.position);
+            Vector3 p1 = CalculateBezierPoint((float)i / (float)(_NFreq - 1), firstPoint.position, handlerFirstPoint.position, handlerSecondPoint.position, secondPoint.position);
+            Gizmos.DrawLine(new Vector3(p.x + _t.x, p.y + _t.y), new Vector3(p1.x + _t.x, p1.y + _t.y));
         }
         Gizmos.color = Color.green;
         Gizmos.DrawLine(new Vector3(firstPoint.position.x + _t.x, firstPoint.position.y + _t.y, _t.z), new Vector3(handlerFirstPoint.position.x + _t.x, handlerFirstPoint.position.y + _t.y, _t.z));
