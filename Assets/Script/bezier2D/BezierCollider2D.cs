@@ -22,12 +22,15 @@ public class BezierCollider2D : MonoBehaviour
 	public float xSize;
 	public float securityScale =0.08f;
 
+	public uint _NFreq = 4;
 
-	public GameObject firstPointGO;
-	public GameObject HandlerFirstPointGO;
+	// Reference to the mesh we will generate
+	private Mesh mesh = null;
+	// Mutable lists for all the vertices and triangles of the mesh
+	private List<Vector3> vertices = new List<Vector3>();
+	private List<int> triangles = new List<int>();
 
-	public GameObject secondPointGO;
-	public GameObject HandlerSecondPointGO;
+
 
 
 	Vector3 CalculateBezierPoint(float t,Vector3 p0,Vector3 handlerP0,Vector3 handlerP1,Vector3 p1) {
@@ -62,9 +65,10 @@ public class BezierCollider2D : MonoBehaviour
 
 
 	void Start() {
-		pointsQuantity = pointsQuantity * pointsMultiplicator;
-		calculate2DPoints ();
-		for (int i = 0; i < points.Count ; i++) {
+		//pointsQuantity = pointsQuantity * pointsMultiplicator;
+		//calculate2DPoints ();
+		generateMesh ();
+		/*for (int i = 0; i < points.Count ; i++) {
 			Vector3 guiPositionPoint2;
 			Vector3 guiPositionPoint =points[i];
 			if(i+1 <points.Count){
@@ -78,15 +82,12 @@ public class BezierCollider2D : MonoBehaviour
 			toto.transform.position = new Vector3 (_t.x+guiPositionPoint.x, _t.y+guiPositionPoint.y-(5.40f*toto.transform.localScale.y) +(guiPositionPoint.y - guiPositionPoint2.y)/2, 0);
 			toto.transform.parent = this.transform;
 			toto.transform.localScale = new Vector3(securityScale + ((guiPositionPoint2.x - guiPositionPoint.x)/xSize),toto.transform.localScale.y,1);
-		}
+		}*/
 	}
 
 	void OnDrawGizmos() {
 
 		if (points == null) {
-			points = calculate2DPoints ();
-		}
-		if (changeDetected ()) {
 			points = calculate2DPoints ();
 		}
 		if (points != null) {
@@ -102,30 +103,57 @@ public class BezierCollider2D : MonoBehaviour
 	}
 
 
-	bool changeDetected() {
-		bool returnValue = false;
-		if(firstPointGO && firstPointGO.transform.hasChanged){
-			firstPointGO.transform.hasChanged = false;
-			firstPoint = firstPointGO.transform.localPosition;
-			returnValue = true;
-		}
-		if(HandlerFirstPointGO && HandlerFirstPointGO.transform.hasChanged){
-			HandlerFirstPointGO.transform.hasChanged = false;
-			handlerFirstPoint = HandlerFirstPointGO.transform.localPosition;
-			returnValue = true;
-		}
-		if(secondPointGO && secondPointGO.transform.hasChanged){
-			secondPointGO.transform.hasChanged = false;
-			secondPoint = secondPointGO.transform.localPosition;
-			returnValue = true;
-		}
-		if(HandlerSecondPointGO && HandlerSecondPointGO.transform.hasChanged){
-			HandlerSecondPointGO.transform.hasChanged = false;
-			handlerSecondPoint = HandlerSecondPointGO.transform.localPosition;
-			returnValue = true;
+
+
+	private void generateMesh()
+	{
+		// Get a reference to the mesh component and clear it
+		MeshFilter filter = GetComponent<MeshFilter>();
+		mesh = filter.mesh;
+		mesh.Clear();
+
+		triangles.Clear();
+		vertices.Clear();
+
+		/*for (int i = 0; i < points.Length; i++)
+        {
+            points[i] = new Vector3(0.5f * (float)i, Random.Range(1f, 2f), 0f);
+            //AddTerrainPoint(points[i]);
+        }*/
+		/*AddTerrainPoint(firstPoint.position);
+		AddTerrainPoint(handlerFirstPoint.position);
+		AddTerrainPoint(handlerSecondPoint.position);
+		AddTerrainPoint(secondPoint.position);*/
+
+		for (int i = 0; i < _NFreq; i++)
+		{
+			float t = (float)i / (float)(_NFreq - 1);
+			// Get the point on our curve using the 4 points generated above
+			Vector3 p = CalculateBezierPoint(t, firstPoint, handlerFirstPoint, handlerSecondPoint, secondPoint);
+			AddTerrainPoint(p);
 		}
 
-		return returnValue;
+		// Assign the vertices and triangles to the mesh
+		mesh.vertices = vertices.ToArray();
+		mesh.triangles = triangles.ToArray();
 	}
 
+	void AddTerrainPoint(Vector3 point)
+	{
+		// Create a corresponding point along the bottom
+		vertices.Add(new Vector3(point.x, -100f, 0f));
+		// Then add our top point
+		vertices.Add(point);
+		if (vertices.Count >= 4)
+		{
+			// We have completed a new quad, create 2 triangles
+			int start = vertices.Count - 4;
+			triangles.Add(start + 0);
+			triangles.Add(start + 1);
+			triangles.Add(start + 2);
+			triangles.Add(start + 1);
+			triangles.Add(start + 3);
+			triangles.Add(start + 2);
+		}
+	}
 }

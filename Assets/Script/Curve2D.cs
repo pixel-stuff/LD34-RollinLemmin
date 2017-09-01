@@ -75,7 +75,7 @@ public class Curve2D : MonoBehaviour
     void AddTerrainPoint(Vector3 point)
     {
         // Create a corresponding point along the bottom
-        vertices.Add(new Vector3(point.x, 0f, 0f));
+        vertices.Add(new Vector3(point.x, -100f, 0f));
         // Then add our top point
         vertices.Add(point);
         if (vertices.Count >= 4)
