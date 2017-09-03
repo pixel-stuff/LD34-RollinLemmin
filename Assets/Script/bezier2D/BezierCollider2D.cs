@@ -5,6 +5,7 @@ using System.Collections.Generic;
 [RequireComponent (typeof (EdgeCollider2D))]
 public class BezierCollider2D : MonoBehaviour 
 {
+	private float yOffset = 0.5f;
 	public Vector2 firstPoint;
 	public Vector2 secondPoint;
 
@@ -115,16 +116,6 @@ public class BezierCollider2D : MonoBehaviour
 		triangles.Clear();
 		vertices.Clear();
 
-		/*for (int i = 0; i < points.Length; i++)
-        {
-            points[i] = new Vector3(0.5f * (float)i, Random.Range(1f, 2f), 0f);
-            //AddTerrainPoint(points[i]);
-        }*/
-		/*AddTerrainPoint(firstPoint.position);
-		AddTerrainPoint(handlerFirstPoint.position);
-		AddTerrainPoint(handlerSecondPoint.position);
-		AddTerrainPoint(secondPoint.position);*/
-
 		for (int i = 0; i < _NFreq; i++)
 		{
 			float t = (float)i / (float)(_NFreq - 1);
@@ -141,6 +132,7 @@ public class BezierCollider2D : MonoBehaviour
 	void AddTerrainPoint(Vector3 point)
 	{
 		// Create a corresponding point along the bottom
+		point.y += yOffset;
 		vertices.Add(new Vector3(point.x, -100f, 0f));
 		// Then add our top point
 		vertices.Add(point);
