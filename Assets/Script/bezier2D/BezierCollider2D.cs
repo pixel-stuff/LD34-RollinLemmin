@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [RequireComponent (typeof (EdgeCollider2D))]
 public class BezierCollider2D : MonoBehaviour 
 {
-	private float yOffset = 0.5f;
+	private float yOffset = 0.4f;
 	public Vector2 firstPoint;
 	public Vector2 secondPoint;
 
