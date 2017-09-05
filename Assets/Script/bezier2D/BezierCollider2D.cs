@@ -2,10 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+[ExecuteInEditMode]
 [RequireComponent (typeof (EdgeCollider2D))]
 public class BezierCollider2D : MonoBehaviour 
 {
-	private float yOffset = 0.4f;
+	public float yOffset = 0.4f;
+	private float xOffset = 0.0f;// todo Etendre plutot que decaler 
 	public Vector2 firstPoint;
 	public Vector2 secondPoint;
 
@@ -14,14 +17,8 @@ public class BezierCollider2D : MonoBehaviour
 
 	public int pointsQuantity;
 
-	public int pointsMultiplicator =1;
 	private Vector3 _t;
 	List<Vector2> points;
-
-
-	public GameObject prefab;
-	public float xSize;
-	public float securityScale =0.08f;
 
 	public uint _NFreq = 4;
 
@@ -66,24 +63,7 @@ public class BezierCollider2D : MonoBehaviour
 
 
 	void Start() {
-		//pointsQuantity = pointsQuantity * pointsMultiplicator;
-		//calculate2DPoints ();
 		generateMesh ();
-		/*for (int i = 0; i < points.Count ; i++) {
-			Vector3 guiPositionPoint2;
-			Vector3 guiPositionPoint =points[i];
-			if(i+1 <points.Count){
-				guiPositionPoint2=points[i+1];
-			}else{
-				guiPositionPoint2 = secondPoint;
-			}
-
-
-			GameObject toto = Instantiate (prefab);
-			toto.transform.position = new Vector3 (_t.x+guiPositionPoint.x, _t.y+guiPositionPoint.y-(5.40f*toto.transform.localScale.y) +(guiPositionPoint.y - guiPositionPoint2.y)/2, 0);
-			toto.transform.parent = this.transform;
-			toto.transform.localScale = new Vector3(securityScale + ((guiPositionPoint2.x - guiPositionPoint.x)/xSize),toto.transform.localScale.y,1);
-		}*/
 	}
 
 	void OnDrawGizmos() {
@@ -110,7 +90,7 @@ public class BezierCollider2D : MonoBehaviour
 	{
 		// Get a reference to the mesh component and clear it
 		MeshFilter filter = GetComponent<MeshFilter>();
-		mesh = filter.mesh;
+		mesh = filter.sharedMesh;
 		mesh.Clear();
 
 		triangles.Clear();
@@ -133,6 +113,7 @@ public class BezierCollider2D : MonoBehaviour
 	{
 		// Create a corresponding point along the bottom
 		point.y += yOffset;
+		point.x += xOffset;
 		vertices.Add(new Vector3(point.x, -100f, 0f));
 		// Then add our top point
 		vertices.Add(point);

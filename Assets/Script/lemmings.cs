@@ -128,9 +128,13 @@ public class lemmings : MonoBehaviour {
 	void updateSize(){
 		m_collider.radius = initialeSize + (maxSize * (snowValue / maxSnow));
 		ball.transform.localScale = new Vector3(initialeSize + (maxSize * (snowValue / maxSnow)),initialeSize + (maxSize * (snowValue / maxSnow)),1) ;
-		float multi = 2.5f;
-		ball.GetComponent<TrailRenderer> ().startWidth = initialeSize + (maxSize * (snowValue / maxSnow))* multi;
-		ball.GetComponent<TrailRenderer> ().endWidth = initialeSize + (maxSize * (snowValue / maxSnow))* multi;
+		float multi = 2.3f;
+		float particuleBaseSize = 0.6f;
+		//ball.GetComponent<TrailRenderer> ().startWidth = initialeSize + (maxSize * (snowValue / maxSnow))* multi;
+		//ball.GetComponent<TrailRenderer> ().endWidth = initialeSize + (maxSize * (snowValue / maxSnow))* multi;
+		//ball.GetComponent<ParticleSystem>().shape = shapeModule;
+		var toto = this.GetComponentInChildren<ParticleSystem>().main;
+		toto.startSize = new ParticleSystem.MinMaxCurve (particuleBaseSize + ((maxSize * (snowValue / maxSnow)))* multi);
 		m_rigideBody.mass = initialeWeight + (maxWeight * (snowValue / maxSnow));
 		updateZoomOnCamera ();
 	}
