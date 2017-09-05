@@ -84,9 +84,10 @@ public class BezierCollider2D : MonoBehaviour
 	}
 
 
+    // Push this to a game manager
+    static bool IsBezierHighFreq = true;
 
-
-	private void generateMesh()
+    private void generateMesh()
 	{
 		// Get a reference to the mesh component and clear it
 		MeshFilter filter = GetComponent<MeshFilter>();
@@ -95,6 +96,11 @@ public class BezierCollider2D : MonoBehaviour
 
 		triangles.Clear();
 		vertices.Clear();
+        if(!IsBezierHighFreq)
+        {
+            _NFreq /= 2;
+        }
+
 
 		for (int i = 0; i < _NFreq; i++)
 		{
