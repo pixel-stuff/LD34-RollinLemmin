@@ -1517,18 +1517,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f58b5e264ab4a249954088b01222b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraThreshold:
-    popLimitation: {x: 6, y: 23.3, z: -10}
-    depopLimitation: {x: -26, y: 23.3, z: -10}
-  generator: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
   distance: -130
+  popLimitation: {fileID: 0}
+  depopLimitation: {fileID: 0}
   hightSpaceBetweenAsset: 18
   lowSpaceBetweenAsset: 12
   relativeSpeed: 0.2
-  colorTeint: {r: 0, g: 0, b: 0, a: 0}
-  cameraDistancePlan0: 3
-  horizonLineDistance: -4000
-  seed: 123456659
+  generator: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
+  yOffset: 0
+  visibleGameObjectTab: []
+  space: 0
   m_stockAsset:
   - code: 4
     dist: 12
@@ -2070,18 +2068,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f58b5e264ab4a249954088b01222b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraThreshold:
-    popLimitation: {x: 6, y: 23.3, z: -10}
-    depopLimitation: {x: -26, y: 23.3, z: -10}
-  generator: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
   distance: -110
+  popLimitation: {fileID: 0}
+  depopLimitation: {fileID: 0}
   hightSpaceBetweenAsset: 18
   lowSpaceBetweenAsset: 12
   relativeSpeed: 0.2
-  colorTeint: {r: 0, g: 0, b: 0, a: 0}
-  cameraDistancePlan0: 3
-  horizonLineDistance: -4000
-  seed: 123456679
+  generator: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
+  yOffset: 0
+  visibleGameObjectTab: []
+  space: 0
   m_stockAsset:
   - code: 1
     dist: 12
@@ -4970,18 +4966,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75aecf3a23e42c8b514a1326c47ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraThreshold:
-    popLimitation: {x: 6, y: 23.3, z: -10}
-    depopLimitation: {x: -26, y: 23.3, z: -10}
-  generator: {fileID: 11476256, guid: 113c09232b3cf70458144840880a1014, type: 2}
   distance: -1000
+  popLimitation: {fileID: 0}
+  depopLimitation: {fileID: 0}
   hightSpaceBetweenAsset: -0.2
   lowSpaceBetweenAsset: -0.1
   relativeSpeed: 0
-  colorTeint: {r: 0, g: 0, b: 0, a: 0}
-  cameraDistancePlan0: 3
-  horizonLineDistance: -4000
-  seed: 123455789
+  generator: {fileID: 11476256, guid: 113c09232b3cf70458144840880a1014, type: 2}
+  yOffset: 0
+  visibleGameObjectTab: []
+  space: 0
 --- !u!1 &1085193245
 GameObject:
   m_ObjectHideFlags: 0
@@ -5294,7 +5288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1165955989
 Transform:
   m_ObjectHideFlags: 0
@@ -5341,7 +5335,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1223713705
+  randomSeed: 269680333
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7197,18 +7191,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75aecf3a23e42c8b514a1326c47ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraThreshold:
-    popLimitation: {x: 6, y: 23.3, z: -10}
-    depopLimitation: {x: -26, y: 23.3, z: -10}
-  generator: {fileID: 11453642, guid: e2166f8fde53c1f4996ab6b0b5c26e4d, type: 2}
   distance: -200
+  popLimitation: {fileID: 0}
+  depopLimitation: {fileID: 0}
   hightSpaceBetweenAsset: -0.8
   lowSpaceBetweenAsset: -0.8
   relativeSpeed: 0
-  colorTeint: {r: 0, g: 0, b: 0, a: 0}
-  cameraDistancePlan0: 3
-  horizonLineDistance: -4000
-  seed: 123456589
+  generator: {fileID: 11453642, guid: e2166f8fde53c1f4996ab6b0b5c26e4d, type: 2}
+  yOffset: 0
+  visibleGameObjectTab: []
+  space: 0
 --- !u!1 &1175238770
 GameObject:
   m_ObjectHideFlags: 0
@@ -7327,18 +7319,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f58b5e264ab4a249954088b01222b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraThreshold:
-    popLimitation: {x: 6, y: 23.3, z: -10}
-    depopLimitation: {x: -26, y: 23.3, z: -10}
-  generator: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
   distance: -120
+  popLimitation: {fileID: 0}
+  depopLimitation: {fileID: 0}
   hightSpaceBetweenAsset: 18
   lowSpaceBetweenAsset: 12
   relativeSpeed: 0.2
-  colorTeint: {r: 0, g: 0, b: 0, a: 0}
-  cameraDistancePlan0: 3
-  horizonLineDistance: -4000
-  seed: 123456669
+  generator: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
+  yOffset: 0
+  visibleGameObjectTab: []
+  space: 0
   m_stockAsset:
   - code: 4
     dist: 12
@@ -7492,18 +7482,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75aecf3a23e42c8b514a1326c47ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraThreshold:
-    popLimitation: {x: 6, y: 23.3, z: -10}
-    depopLimitation: {x: -26, y: 23.3, z: -10}
-  generator: {fileID: 11419744, guid: 032c6f970f61fc543b069bab34471714, type: 2}
   distance: -100
+  popLimitation: {fileID: 0}
+  depopLimitation: {fileID: 0}
   hightSpaceBetweenAsset: -0.8
   lowSpaceBetweenAsset: -0.8
   relativeSpeed: 0
-  colorTeint: {r: 0, g: 0, b: 0, a: 0}
-  cameraDistancePlan0: 3
-  horizonLineDistance: -4000
-  seed: 123456689
+  generator: {fileID: 11419744, guid: 032c6f970f61fc543b069bab34471714, type: 2}
+  yOffset: 0
+  visibleGameObjectTab: []
+  space: 0
 --- !u!1 &1269476512
 GameObject:
   m_ObjectHideFlags: 0
@@ -9344,6 +9332,10 @@ Prefab:
       propertyPath: CollisionModule.collidesWithDynamic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 194644, guid: d1c4fae30fd40944ca1581cf70c559f1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1c4fae30fd40944ca1581cf70c559f1, type: 2}
   m_IsPrefabParent: 0
@@ -10152,73 +10144,52 @@ MonoBehaviour:
     lowSpaceBetweenAsset: -0.8
     hightSpaceBetweenAsset: -0.8
     relativeSpeed: 0
-    colorTeinte: {r: 0, g: 0, b: 0, a: 0}
-    nameParalaxPlan: 
-    seed: 0
+    yOffset: 0
   - prefabParralaxPlan: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     distance: -150
     generatorScript: {fileID: 11432762, guid: 86f9054b012fd364796005c5311f4af6, type: 2}
     lowSpaceBetweenAsset: -0.8
     hightSpaceBetweenAsset: -0.8
     relativeSpeed: 0
-    colorTeinte: {r: 0, g: 0, b: 0, a: 0}
-    nameParalaxPlan: 
-    seed: 0
+    yOffset: 0
   - prefabParralaxPlan: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     distance: -200
     generatorScript: {fileID: 11453642, guid: e2166f8fde53c1f4996ab6b0b5c26e4d, type: 2}
     lowSpaceBetweenAsset: -0.8
     hightSpaceBetweenAsset: -0.8
     relativeSpeed: 0
-    colorTeinte: {r: 0, g: 0, b: 0, a: 0}
-    nameParalaxPlan: 
-    seed: 0
+    yOffset: 0
   - prefabParralaxPlan: {fileID: 132386, guid: d2dd1d07fce184209812f2e3d104b798, type: 2}
     distance: -1000
     generatorScript: {fileID: 11476256, guid: 113c09232b3cf70458144840880a1014, type: 2}
     lowSpaceBetweenAsset: -0.1
     hightSpaceBetweenAsset: -0.2
     relativeSpeed: 0
-    colorTeinte: {r: 0, g: 0, b: 0, a: 0}
-    nameParalaxPlan: 
-    seed: 0
+    yOffset: 0
   - prefabParralaxPlan: {fileID: 127212, guid: 549e15a83fa65439aa493ab51046c433, type: 2}
     distance: -110
     generatorScript: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
     lowSpaceBetweenAsset: 12
     hightSpaceBetweenAsset: 18
     relativeSpeed: 0.2
-    colorTeinte: {r: 0, g: 0, b: 0, a: 0}
-    nameParalaxPlan: 
-    seed: 0
+    yOffset: 0
   - prefabParralaxPlan: {fileID: 127212, guid: 549e15a83fa65439aa493ab51046c433, type: 2}
     distance: -120
     generatorScript: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
     lowSpaceBetweenAsset: 12
     hightSpaceBetweenAsset: 18
     relativeSpeed: 0.2
-    colorTeinte: {r: 0, g: 0, b: 0, a: 0}
-    nameParalaxPlan: 
-    seed: 0
+    yOffset: 0
   - prefabParralaxPlan: {fileID: 127212, guid: 549e15a83fa65439aa493ab51046c433, type: 2}
     distance: -130
     generatorScript: {fileID: 11496848, guid: 371875f1c03ec344d84e324bb9ce9212, type: 2}
     lowSpaceBetweenAsset: 12
     hightSpaceBetweenAsset: 18
     relativeSpeed: 0.2
-    colorTeinte: {r: 0, g: 0, b: 0, a: 0}
-    nameParalaxPlan: 
-    seed: 0
+    yOffset: 0
   cameraToFollow: {fileID: 840270106}
-  constantSpeed: 0
-  cameraDistance: 3
-  horizonLine: -4000
-  m_globalSeed: 123456789
-  cameraThreshold:
-    popLimitation: {x: 6, y: 23.3, z: -10}
-    depopLimitation: {x: -26, y: 23.3, z: -10}
-  debugMode: 0
-  reset: 0
+  speed: 0
+  yOffset: 0
 --- !u!1 &1818882898
 GameObject:
   m_ObjectHideFlags: 0
@@ -10716,18 +10687,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75aecf3a23e42c8b514a1326c47ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraThreshold:
-    popLimitation: {x: 6, y: 23.3, z: -10}
-    depopLimitation: {x: -26, y: 23.3, z: -10}
-  generator: {fileID: 11432762, guid: 86f9054b012fd364796005c5311f4af6, type: 2}
   distance: -150
+  popLimitation: {fileID: 0}
+  depopLimitation: {fileID: 0}
   hightSpaceBetweenAsset: -0.8
   lowSpaceBetweenAsset: -0.8
   relativeSpeed: 0
-  colorTeint: {r: 0, g: 0, b: 0, a: 0}
-  cameraDistancePlan0: 3
-  horizonLineDistance: -4000
-  seed: 123456639
+  generator: {fileID: 11432762, guid: 86f9054b012fd364796005c5311f4af6, type: 2}
+  yOffset: 0
+  visibleGameObjectTab: []
+  space: 0
 --- !u!1 &1945464012
 GameObject:
   m_ObjectHideFlags: 0
