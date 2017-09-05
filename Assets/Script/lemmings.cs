@@ -206,29 +206,14 @@ public class lemmings : MonoBehaviour {
 	}
 
 
-
-	void OnCollisionStay2D(Collision2D other){
-		isBump = false;
+	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.layer == LayerMask.NameToLayer ("ObstacleDestroy")) {
 
 			Debug.Log ("DESTRUC REACH");
-			destructionCollider otherObstacleDestroyScript = other.gameObject.GetComponent<destructionCollider> ();
 			Obstacle otherObstacleScript = other.gameObject.GetComponentInParent<Obstacle>();
 			if ((snowValue / maxSnow) >= otherObstacleScript.getDestrucFactor ()) {
 				//destruc
 				m_rigideBody.AddForce (otherObstacleScript.destructAndAddForce ());
-				otherObstacleDestroyScript.targetCollider.isTrigger = true;
-				Debug.Log ("DESTRUC");
-			}
-		}
-
-
-		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
-			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
-			if ((snowValue / maxSnow) >= otherObstacleScript.getDestrucFactor ()) {
-				//destruc
-				m_rigideBody.AddForce (otherObstacleScript.destructAndAddForce ());
-				Debug.Log ("DESTRUC");
 			} else if ((snowValue / maxSnow) >= otherObstacleScript.getSurviveFactor ()) {
 				//survive
 				DropSnow ();
@@ -238,18 +223,25 @@ public class lemmings : MonoBehaviour {
 				//death
 				Debug.Log ("DEATH");
 			}
-		} else {
+		}
+	}
+
+
+	void OnCollisionStay2D(Collision2D other){
+		isBump = false;
+
+			
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
 			canJump = true;
-			if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
-				ContactPoint2D contactPoint = other.contacts [0];
-				m_snowContactPoint = new Vector3( contactPoint.point.x,contactPoint.point.y,this.gameObject.transform.position.z);
-				//castRayForStompSnow ();
-				addSnow = true;
-				if (isDown) {
-					m_rigideBody.AddForce (ForceUpInFall);
-				}
+			ContactPoint2D contactPoint = other.contacts [0];
+			m_snowContactPoint = new Vector3( contactPoint.point.x,contactPoint.point.y,this.gameObject.transform.position.z);
+			//castRayForStompSnow ();
+			addSnow = true;
+			if (isDown) {
+				m_rigideBody.AddForce (ForceUpInFall);
 			}
 		}
+		
 
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Death")){
 			GameStateManager.setGameState (GameState.GameOver);
