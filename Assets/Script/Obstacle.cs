@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class Obstacle : MonoBehaviour {
+
+	[SerializeField] UnityEvent destructEvent;
+	[SerializeField] UnityEvent surviveEvent;
 
 	public int destructPercent;
 	public Vector3 destructForce;
@@ -11,17 +15,17 @@ public class Obstacle : MonoBehaviour {
 
 
 	public Vector3 destructAndAddForce(){
-		this.GetComponent<EdgeCollider2D> ().enabled = false;
-		this.enabled = false;
-		//todo animation de destruction
-		this.GetComponent<SpriteRenderer>().enabled = false;
+		destructEvent.Invoke ();
 		return destructForce;
 	}
 
 	public Vector3 surviveAndAddForce(){
-		this.GetComponent<EdgeCollider2D> ().enabled = false;
-		//animation de shake
+		surviveEvent.Invoke ();
 		return surviceForce;
+	}
+
+	public void Bump(){
+		this.GetComponent<EdgeCollider2D> ().enabled = false;
 	}
 
 	public float getDestrucFactor(){
@@ -30,16 +34,5 @@ public class Obstacle : MonoBehaviour {
 
 	public float getSurviveFactor(){
 		return (float)(survivePercent) / 100.0f;
-	}
-
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

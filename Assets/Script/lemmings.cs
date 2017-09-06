@@ -221,6 +221,7 @@ public class lemmings : MonoBehaviour {
 				Debug.Log ("Survive");
 			} else {
 				//death
+				otherObstacleScript.Bump();
 				Debug.Log ("DEATH");
 			}
 		}
