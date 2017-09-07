@@ -6,6 +6,7 @@ public class Obstacle : MonoBehaviour {
 
 	[SerializeField] UnityEvent destructEvent;
 	[SerializeField] UnityEvent surviveEvent;
+	[SerializeField] UnityEvent BumpEvent;
 
 	public int destructPercent;
 	public Vector3 destructForce;
@@ -25,7 +26,7 @@ public class Obstacle : MonoBehaviour {
 	}
 
 	public void Bump(){
-		this.GetComponent<EdgeCollider2D> ().enabled = false;
+		BumpEvent.Invoke ();
 	}
 
 	public float getDestrucFactor(){
