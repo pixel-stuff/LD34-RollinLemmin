@@ -5,8 +5,19 @@ using UnityEngine.Events;
 public class Obstacle : MonoBehaviour {
 
 	[SerializeField] UnityEvent destructEvent;
-	[SerializeField] UnityEvent surviveEvent;
+	[SerializeField] UnityEvent shakeEvent;
+	[SerializeField] UnityEvent lostSnowEvent;
 	[SerializeField] UnityEvent BumpEvent;
+
+	[System.Serializable] enum ObscacleState {
+		NONE,
+		BUMPED,
+		SURVIVED,
+		DESTROYED
+	}
+
+	[SerializeField]
+	private ObscacleState _state = ObscacleState.NONE;
 
 	public int destructPercent;
 	public Vector3 destructForce;
@@ -14,19 +25,30 @@ public class Obstacle : MonoBehaviour {
 	public Vector3 surviceForce;
 
 
-
 	public Vector3 destructAndAddForce(){
-		destructEvent.Invoke ();
-		return destructForce;
+		if (_state != ObscacleState.DESTROYED) {
+			destructEvent.Invoke ();
+			_state = ObscacleState.DESTROYED;
+			return destructForce;
+		}
+		return Vector3.zero;
 	}
 
 	public Vector3 surviveAndAddForce(){
-		surviveEvent.Invoke ();
-		return surviceForce;
+		shakeEvent.Invoke ();
+		if (_state != ObscacleState.SURVIVED && _state != ObscacleState.DESTROYED) {
+			_state = ObscacleState.SURVIVED;
+			lostSnowEvent.Invoke ();
+			return surviceForce;
+		}
+		return  Vector3.zero;
 	}
 
 	public void Bump(){
-		BumpEvent.Invoke ();
+		if (_state == ObscacleState.NONE) {
+			BumpEvent.Invoke ();
+			_state = ObscacleState.BUMPED;
+		}
 	}
 
 	public float getDestrucFactor(){

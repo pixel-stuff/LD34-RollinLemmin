@@ -27,6 +27,7 @@ TagManager:
   - SmashTree
   - GripTree
   - WeaponTree
+  - Rock
   layers:
   - Default
   - TransparentFX

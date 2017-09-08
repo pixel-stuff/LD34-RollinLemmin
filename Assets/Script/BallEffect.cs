@@ -28,8 +28,6 @@ public class BallEffect : MonoBehaviour {
 
 	public float decalageRadius = 0;
 
-	public GameObject snowTracer;
-
 	private float degradationParticuleSom = 0;
 
 	private Vector3 snowContactPoint;
@@ -51,12 +49,10 @@ public class BallEffect : MonoBehaviour {
 			JumpParticule.transform.position = collisionPosition;
 			SpeedSnowLeft.transform.position = collisionPosition;
 			SpeedSnowRight.transform.position = collisionPosition;
-			snowTracer.transform.position = collisionPosition;
 		} else {
 			JumpParticule.transform.position = position + new Vector3 (0, -radius + decalageRadius, 0);
 			SpeedSnowLeft.transform.position = position + new Vector3 (0, -radius + decalageRadius, 0);
 			SpeedSnowRight.transform.position = position + new Vector3 (0, -radius + decalageRadius, 0);
-			snowTracer.transform.position = position + new Vector3 (0, -radius + decalageRadius, 0);
 		}
 
 		//wind

@@ -1,14 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.Events;
 
 public class lemmings : MonoBehaviour {
 
+	[System.Serializable]
+	public class RadiusEvent : UnityEvent<float> { }
+
+	[SerializeField] RadiusEvent radiusEvent;
+	[SerializeField] UnityEvent ballDestroyEvent;
+	[SerializeField] UnityEvent ballBuildEvent;
+	[SerializeField] UnityEvent treeDestroyEvent;
+	[SerializeField] UnityEvent rockDestroyEvent;
 	public float rollingSnowAdd;
 	public float lostSnow;
 	public float snowValue =0.0f;
 	public float maxSnow;
-	private bool addSnow;
+	private bool _addSnow = false;
+
+	public bool addSnow{
+		get {return _addSnow; }
+		set {
+			_addSnow = value;
+			this.GetComponentInChildren<SpeedSizeRotation> ().isOnGround = value;
+		}
+	}
 
 	public float lemmingInSnow;
 
@@ -56,6 +73,8 @@ public class lemmings : MonoBehaviour {
 
 	private Vector3 m_snowContactPoint;
 
+	public GameObject DestroyEffectCointainer;
+
 	// Use this for initialization
 	void Start () {
 		m_collider = this.GetComponent<CircleCollider2D> ();
@@ -70,8 +89,10 @@ public class lemmings : MonoBehaviour {
 	//	castRayForStompSnow ();
 		if (snowValue > lemmingInSnow) {
 			ball.SetActive (true);
+			ballBuildEvent.Invoke ();
 		} else {
 			ball.SetActive (false);
+			ballDestroyEvent.Invoke ();
 		}
 
 		isDown = ((this.transform.position.y - oldPosition.y) < 0) ? false : true;
@@ -136,6 +157,17 @@ public class lemmings : MonoBehaviour {
 		var toto = this.GetComponentInChildren<ParticleSystem>().main;
 		toto.startSize = new ParticleSystem.MinMaxCurve (particuleBaseSize + ((maxSize * (snowValue / maxSnow)))* multi);
 		m_rigideBody.mass = initialeWeight + (maxWeight * (snowValue / maxSnow));
+
+		//this.GetComponentInChildren<SpeedSizeRotation> ().currentRadius= particuleBaseSize + ((maxSize * (snowValue / maxSnow)))* multi;
+
+		radiusEvent.Invoke (particuleBaseSize + ((maxSize * (snowValue / maxSnow))) * multi);
+
+		var destroysParticuleSys = DestroyEffectCointainer.GetComponentsInChildren<ParticleSystem> ();
+		foreach(ParticleSystem part in destroysParticuleSys){
+			var dropSnow = part.shape;
+			dropSnow.radius = m_collider.radius;
+		}
+
 		updateZoomOnCamera ();
 	}
 
@@ -154,7 +186,6 @@ public class lemmings : MonoBehaviour {
 		}
 		float initialCameraZoom = initialeZoom + (maxZoom * (snowValue / maxSnow));
 		float cameraZoom = initialCameraZoom *(1 + (actualBumpZoom/100));
-		//cameraZoom += initialCameraZoom *(1 + (actualSpeedZoom/100));
 		camera.orthographicSize = cameraZoom;
 	}
 
@@ -165,30 +196,16 @@ public class lemmings : MonoBehaviour {
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) {
 			Obstacle otherObstacleScript = other.gameObject.GetComponent<Obstacle> ();
 			if ((snowValue / maxSnow) >= otherObstacleScript.getDestrucFactor ()) {
-				//destruc
-				m_rigideBody.AddForce (otherObstacleScript.destructAndAddForce ());
-				Debug.Log ("DESTRUC");
 			} else if ((snowValue / maxSnow) >= otherObstacleScript.getSurviveFactor ()) {
-				//survive
-				DropSnow ();
-				m_rigideBody.AddForce (otherObstacleScript.surviveAndAddForce ());
-				Debug.Log ("Survive");
 			} else {
 				//death
-				Debug.Log ("DEATH");
+				DropSnow();
+				Debug.Log ("Bump");
+				otherObstacleScript.Bump();
 			}
 		} else if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
 			ContactPoint2D contactPoint = other.contacts [0];
 			m_snowContactPoint = new Vector3( contactPoint.point.x,contactPoint.point.y,this.gameObject.transform.position.z);
-			//castRayForStompSnow ();
-			/*Debug.Log ("NEIGE");
-			other.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
-			//other.gameObject.GetComponent<SetDirty> ().setDirty();
-			dirty dirtyGO = other.gameObject.GetComponent<dirty> ();
-			if(dirtyGO) {
-				Debug.Log ("DIRTY");
-				//dirtyGO.setDirtyAsset ();
-			}*/
 			canJump = true;
 			addSnow = true;
 			if (isDown) {
@@ -209,20 +226,21 @@ public class lemmings : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.layer == LayerMask.NameToLayer ("ObstacleDestroy")) {
 
-			Debug.Log ("DESTRUC REACH");
 			Obstacle otherObstacleScript = other.gameObject.GetComponentInParent<Obstacle>();
 			if ((snowValue / maxSnow) >= otherObstacleScript.getDestrucFactor ()) {
 				//destruc
 				m_rigideBody.AddForce (otherObstacleScript.destructAndAddForce ());
+				Debug.Log ("Destruct");
+				if (otherObstacleScript.tag == "Tree") {
+					treeDestroyEvent.Invoke ();
+				} else {
+					rockDestroyEvent.Invoke ();
+				}
 			} else if ((snowValue / maxSnow) >= otherObstacleScript.getSurviveFactor ()) {
 				//survive
-				DropSnow ();
+				//DropSnow ();
 				m_rigideBody.AddForce (otherObstacleScript.surviveAndAddForce ());
 				Debug.Log ("Survive");
-			} else {
-				//death
-				otherObstacleScript.Bump();
-				Debug.Log ("DEATH");
 			}
 		}
 	}
@@ -262,19 +280,7 @@ public class lemmings : MonoBehaviour {
 		isBump = true;
 		m_snowContactPoint = Vector3.zero;
 	}
-
-	void castRayForStompSnow(){
-		int layerMask = 1 << LayerMask.NameToLayer ("Ground");// ~(1 << LayerMask.NameToLayer("Ground"));
-		//int layerMask = LayerMask.NameToLayer("Ground");
-		RaycastHit[] hitTab = Physics.RaycastAll(transform.position,m_snowContactPoint - transform.transform.position);
-		RaycastHit hit = hitTab [0];
-		//RaycastHit2D hit = Physics2D.Raycast(transform.position,  new Vector2(m_snowContactPoint.x - transform.position.x , m_snowContactPoint.y -transform.position.y),Mathf.Infinity,layerMask,-Mathf.Infinity, Mathf.Infinity);
-		if (hit.collider != null) {
-			//hit.collider.gameObject.GetComponent<SpriteRenderer> ().enabled = false; //JMOREL STILL WORKING
-			//hit.collider.gameObject.SetActive(false);
-		}
-	}
-
+		
 	void OnDrawGizmos() {
 
 
@@ -294,5 +300,6 @@ public class lemmings : MonoBehaviour {
 	public void DropSnow(){
 		particuleEffect.DropSnow(snowValue/maxSnow);
 		snowValue = 0;
+		ballDestroyEvent.Invoke ();
 	}
 }
