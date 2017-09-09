@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using UnityEngine.Events;
+using UnityStandardAssets.ImageEffects;
 
 public class lemmings : MonoBehaviour {
 
@@ -54,7 +55,8 @@ public class lemmings : MonoBehaviour {
 	public Camera camera;
 
 	public Vector3 jumpForce;
-	//todoSpeed
+    //todoSpeed
+    private float oldSpeed = 0.0f;
 	public float speed;
 
 	private Vector3 oldPosition;
@@ -98,9 +100,23 @@ public class lemmings : MonoBehaviour {
 		isDown = ((this.transform.position.y - oldPosition.y) < 0) ? false : true;
 		speed = (this.transform.position - oldPosition).magnitude;
 		float speedSign = this.transform.position.x - oldPosition.x;
-		float oldSnowValue = snowValue;
+
+        // update camera component acceleration fx
+        // not physically accurate, but we don't care for the moment
+        // acceleration should look ahead, not backwards
+        Vector2 acceleration = new Vector2((this.transform.position.x - oldPosition.x), (this.transform.position.y - oldPosition.y));
+        AccelerationBlur blur = camera.GetComponent<AccelerationBlur>();
+        if(blur != null)
+        {
+            blur.m_Acceleration = acceleration.normalized * Mathf.Max(0.0f, speed - oldSpeed);
+            Debug.Log(blur.m_Acceleration);
+        }
+
+
+        float oldSnowValue = snowValue;
 		oldPosition = this.transform.position;
-		snowValue -= lostSnow;
+        oldSpeed = speed;
+        snowValue -= lostSnow;
 		if(snowValue < 0){
 			snowValue = 0;
 		}
@@ -248,8 +264,7 @@ public class lemmings : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D other){
 		isBump = false;
-
-			
+        
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
 			canJump = true;
 			ContactPoint2D contactPoint = other.contacts [0];
@@ -260,7 +275,6 @@ public class lemmings : MonoBehaviour {
 				m_rigideBody.AddForce (ForceUpInFall);
 			}
 		}
-		
 
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Death")){
 			GameStateManager.setGameState (GameState.GameOver);
@@ -282,8 +296,6 @@ public class lemmings : MonoBehaviour {
 	}
 		
 	void OnDrawGizmos() {
-
-
 		Gizmos.color = Color.blue;
 		Gizmos.DrawLine (transform.position,new Vector3 (m_snowContactPoint.x,m_snowContactPoint.y,0));
 		//	Gizmos.DrawLine (new Vector3 (secondPoint.x+_t.x,secondPoint.y+_t.y,0),new Vector3 (handlerSecondPoint.x+_t.x,handlerSecondPoint.y+_t.y,0));
