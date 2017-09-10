@@ -38,15 +38,15 @@ namespace UnityStandardAssets._2D
 
 
         // Update is called once per frame
-        private void Update()
+        private void FixedUpdateTest()
         {
-			if (shakeFullPower) {
+		/*	if (shakeFullPower) {
 					//lemmingFear
-					transform.Rotate(new Vector3(0,0,Mathf.Sin(sinusTime++*speedShakeMultiplicator) * shakeAmount)); //new Vector3(0,0,Random.insideUnitSphere * shakeAmount);
+				//	transform.Rotate(new Vector3(0,0,Mathf.Sin(sinusTime++*speedShakeMultiplicator) * shakeAmount)); //new Vector3(0,0,Random.insideUnitSphere * shakeAmount);
 				} else {
 					//new Vector3(0,0,Mathf.Sin(sinusTime++*speedShakeMultiplicator) * shakeAmount)
 					//lemming.transform.localRotation.z = 0;
-					transform.Rotate(new Vector3(0,0,-Mathf.Sin(sinusTime*speedShakeMultiplicator) * shakeAmount));
+					//transform.Rotate(new Vector3(0,0,-Mathf.Sin(sinusTime*speedShakeMultiplicator) * shakeAmount));
 					sinusTime = 0;
 			}
 			//float bottomThresholdWithCameraSize = bottomThreshold + this.GetComponent<Camera> ().orthographicSize;
@@ -74,8 +74,27 @@ namespace UnityStandardAssets._2D
 			float bottomPosition = cameraSize * (bottomThresholdPercent / 100);
 			transform.position = newPos  + new Vector3(rightPosition,bottomPosition,0);
 
-			m_LastTargetPosition = target.position;
+			m_LastTargetPosition = target.position;*/
+
         }
+
+		public float dampTime = 0.15f;
+		private Vector3 velocity = Vector3.zero;
+
+		// Update is called once per frame
+		void FixedUpdate () 
+		{
+			if (target)
+			{
+				Camera cam = this.GetComponent<Camera>();
+				Vector3 point = cam.WorldToViewportPoint(target.position);
+				Vector3 delta = target.position + new Vector3(5f,0f,0f) - cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
+				Vector3 destination = transform.position + delta;
+				transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
+			}
+
+		}
+
 
 		public void shake(float strenght){
 

@@ -186,7 +186,7 @@ public class lemmings : MonoBehaviour {
 		}
 		float initialCameraZoom = initialeZoom + (maxZoom * (snowValue / maxSnow));
 		float cameraZoom = initialCameraZoom *(1 + (actualBumpZoom/100));
-		camera.orthographicSize = cameraZoom;
+		camera.orthographicSize = Mathf.Lerp(camera.orthographicSize,cameraZoom,0.3f);
 	}
 
 
@@ -282,11 +282,8 @@ public class lemmings : MonoBehaviour {
 	}
 		
 	void OnDrawGizmos() {
-
-
 		Gizmos.color = Color.blue;
 		Gizmos.DrawLine (transform.position,new Vector3 (m_snowContactPoint.x,m_snowContactPoint.y,0));
-		//	Gizmos.DrawLine (new Vector3 (secondPoint.x+_t.x,secondPoint.y+_t.y,0),new Vector3 (handlerSecondPoint.x+_t.x,handlerSecondPoint.y+_t.y,0));
 	}
 
 	public void Jump(){
