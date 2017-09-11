@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -114,6 +116,7 @@ public class parralaxManager : MonoBehaviour {
 
 	private bool m_refreshZoom = false;
 
+	#if UNITY_EDITOR
 
 	private void EditorCallback() {
 		if (!EditorApplication.isPlaying && EditorApplication.isPlayingOrWillChangePlaymode) {
@@ -128,7 +131,7 @@ public class parralaxManager : MonoBehaviour {
 		s_backgroundUpdateCB = new EditorApplication.CallbackFunction(EditorCallback);
 		EditorApplication.update += s_backgroundUpdateCB;
 	}
-
+	#endif	
 	void Awake(){
 		clear ();
 		var children = new List<GameObject>();
