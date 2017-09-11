@@ -170,8 +170,11 @@ public class lemmings : MonoBehaviour {
 		//ball.GetComponent<TrailRenderer> ().startWidth = initialeSize + (maxSize * (snowValue / maxSnow))* multi;
 		//ball.GetComponent<TrailRenderer> ().endWidth = initialeSize + (maxSize * (snowValue / maxSnow))* multi;
 		//ball.GetComponent<ParticleSystem>().shape = shapeModule;
-		var toto = this.GetComponentInChildren<ParticleSystem>().main;
-		toto.startSize = new ParticleSystem.MinMaxCurve (particuleBaseSize + ((maxSize * (snowValue / maxSnow)))* multi);
+		ParticleSystem trailComponent = this.GetComponentInChildren<ParticleSystem>();
+		if (trailComponent != null) {
+			var trailMain = trailComponent.main;
+			trailMain.startSize = new ParticleSystem.MinMaxCurve (particuleBaseSize + ((maxSize * (snowValue / maxSnow))) * multi);
+		}
 		m_rigideBody.mass = initialeWeight + (maxWeight * (snowValue / maxSnow));
 
 		//this.GetComponentInChildren<SpeedSizeRotation> ().currentRadius= particuleBaseSize + ((maxSize * (snowValue / maxSnow)))* multi;
