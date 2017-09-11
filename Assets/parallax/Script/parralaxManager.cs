@@ -112,12 +112,10 @@ public class parralaxManager : MonoBehaviour {
 	private bool isPreviousPositionSet = false;
 	private Vector3 previousCameraPosition = Vector3.zero;
 
-	private EditorApplication.CallbackFunction s_backgroundUpdateCB;
-
 	private bool m_refreshZoom = false;
 
 	#if UNITY_EDITOR
-
+	private EditorApplication.CallbackFunction s_backgroundUpdateCB;
 	private void EditorCallback() {
 		if (!EditorApplication.isPlaying && EditorApplication.isPlayingOrWillChangePlaymode) {
 			clear ();
