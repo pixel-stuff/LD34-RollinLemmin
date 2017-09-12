@@ -7,19 +7,23 @@ public class parallaxPlanBasic : parallaxPlan {
 	
 
 	void Start() {
+		Debug.Log("parralaxPlanBasic Start");
 		InitParralax ();
 	}
 	// Update is called once per frame
 	// Update is called once per frame
 	#if UNITY_EDITOR
 	void Update () {
+		Debug.Log("parralaxPlanBasic Update");
 	#else
 	void FixedUpdate () {
+	Debug.Log("parralaxPlanBasic FixedUpdate");
 	#endif
 		UpdateParralax ();
 	}
 	
 	public override void moveAsset(float speedX,float speedY){
+		Debug.Log("parralaxPlanBasic moveAsset");
 		List<GameObject> temp = new List<GameObject>();
 		foreach(GameObject g in visibleGameObjectTab) {
 			temp.Add(g);
@@ -45,6 +49,7 @@ public class parallaxPlanBasic : parallaxPlan {
 	}
 		
 	public override	void generateAssetIfNeeded(){
+		Debug.Log("parralaxPlanBasic generateAssetIfNeeded");
 		if(((spaceBetweenLastAndPopLimitation() < (-spaceBetweenAsset + actualSpeed * speedMultiplicator)) && (speedSign > 0)) ||
 		   ((spaceBetweenLastAndPopLimitation() > (spaceBetweenAsset + actualSpeed * speedMultiplicator)) && (speedSign < 0))){
 			GenerateAssetStruct assetStruct = generator.generateGameObjectAtPosition();
@@ -66,12 +71,13 @@ public class parallaxPlanBasic : parallaxPlan {
 	
 
 	void generateNewSpaceBetweenAssetValue(){
-		
+		Debug.Log("parralaxPlanBasic generateNewSpaceBetweenAssetValue");
 		spaceBetweenAsset = - randomRange (lowSpaceBetweenAsset,hightSpaceBetweenAsset) * speedSign;
 	}
 	
 	
 	bool isStillVisible (GameObject parallaxObject) {
+		Debug.Log("parralaxPlanBasic isStillVisible");
 		if (speedSign < 0) {
 			return (parallaxObject.transform.position.x - (parallaxObject.GetComponent<SpriteRenderer> ().sprite.bounds.max.x ) < depopLimitation.x);
 		} else {
@@ -81,6 +87,7 @@ public class parallaxPlanBasic : parallaxPlan {
 	
 	
 	float spaceBetweenLastAndPopLimitation() {
+		Debug.Log("parralaxPlanBasic spaceBetweenLastAndPopLimitation");
 		if (visibleGameObjectTab.Count != 0) {
 			if (speedSign > 0){
 				space = getMaxValue();
@@ -95,6 +102,7 @@ public class parallaxPlanBasic : parallaxPlan {
 
 
 	float getMaxValue(){
+		Debug.Log("parralaxPlanBasic getMaxValue");
 		float max = -1000;
 		foreach(GameObject g in visibleGameObjectTab){
 			float result  = (g.transform.position.x +(visibleGameObjectTab[visibleGameObjectTab.Count - 1].GetComponent<SpriteRenderer> ().sprite.bounds.max.x)) - popLimitation.x;
@@ -106,6 +114,7 @@ public class parallaxPlanBasic : parallaxPlan {
 	}
 
 	float getMinValue(){
+		Debug.Log("parralaxPlanBasic getMinValue");
 		float min = 1000;
 		foreach(GameObject g in visibleGameObjectTab){
 			float result  = (g.transform.position.x -(g.GetComponent<SpriteRenderer> ().sprite.bounds.max.x)) - popLimitation.x;

@@ -14,6 +14,7 @@ public class parallaxPlanSave : parallaxPlan {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log("parralaxPlanSave Start");
 		lowId = 0;
 		hightId = -1;
 		m_stockAsset = new List<StockAssetStruct>();
@@ -24,13 +25,16 @@ public class parallaxPlanSave : parallaxPlan {
 	// Update is called once per frame
 	#if UNITY_EDITOR
 	void Update () {
+		Debug.Log("parralaxPlanSave Update");
 	#else
 	void FixedUpdate () {
+	Debug.Log("parralaxManager FixedUpdate");
 	#endif
 		UpdateParralax ();
 	}
 
 	public override void moveAsset(float speedX,float speedY) {
+		Debug.Log("parralaxPlanSave moveAsset");
 		//clone for remove later 
 		List<GameObject> temp = new List<GameObject>();
 		foreach(GameObject g in visibleGameObjectTab) {
@@ -64,6 +68,7 @@ public class parallaxPlanSave : parallaxPlan {
 	}
 
 	float calculateXOffsetForAsset(GameObject asset) {
+		Debug.Log("parralaxPlanSave calculateXOffsetForAsset");
 		if (speedSign > 0) {
 			//TODO refactor for avoid spriteRenderer
 			return (asset.GetComponent<SpriteRenderer> ().sprite.bounds.max.x) - (space - spaceBetweenAsset);
@@ -73,6 +78,7 @@ public class parallaxPlanSave : parallaxPlan {
 	}
 
 	void generateNewHightAsset() {
+		Debug.Log("parralaxPlanSave generateNewHightAsset");
 		GenerateAssetStruct assetStruct = generator.generateGameObjectAtPosition();
 		GameObject asset = assetStruct.generateAsset;
 		Vector3 position = asset.transform.position;
@@ -96,6 +102,7 @@ public class parallaxPlanSave : parallaxPlan {
 
 
 	void generateNewLowAsset() {
+		Debug.Log("parralaxPlanSave generateNewLowAsset");
 		GenerateAssetStruct assetStruct = generator.generateGameObjectAtPosition();
 		GameObject asset = assetStruct.generateAsset;
 		Vector3 position = asset.transform.position;
@@ -117,6 +124,7 @@ public class parallaxPlanSave : parallaxPlan {
 		generateNewSpaceBetweenAssetValue();
 	}
 	void generateOldAsset(int code,float dist){
+		Debug.Log("parralaxPlanSave generateOldAsset");
 		GenerateAssetStruct assetStruct = generator.generateGameObjectWithCode(code);
 		GameObject asset = assetStruct.generateAsset;
 		asset.transform.parent = this.transform;
@@ -142,6 +150,7 @@ public class parallaxPlanSave : parallaxPlan {
 	}
 	
 	public override void generateAssetIfNeeded(){
+		Debug.Log("parralaxPlanSave generateAssetIfNeeded");
 		if(speedSign > 0){
 			//Debug.Log("Hight ID = " + hightId);
 			if(hightId == m_stockAsset.Count-1) {
@@ -176,6 +185,7 @@ public class parallaxPlanSave : parallaxPlan {
 
 
 	void generateNewSpaceBetweenAssetValue(){
+		Debug.Log("parralaxPlanSave generateNewSpaceBetweenAssetValue");
 		spaceBetweenAsset = randomRange (lowSpaceBetweenAsset,hightSpaceBetweenAsset);
 	}
 	
@@ -183,6 +193,7 @@ public class parallaxPlanSave : parallaxPlan {
 
 	
 	bool isStillVisible (GameObject parallaxObject) {
+		Debug.Log("parralaxPlanSave isStillVisible");
 		if (speedSign > 0) {
 			return (RightestXPosition(parallaxObject) > depopLimitation.x);
 		} else {
@@ -192,6 +203,7 @@ public class parallaxPlanSave : parallaxPlan {
 	
 	
 	float spaceBetweenLastAndPopLimitation() {
+		Debug.Log("parralaxPlanSave spaceBetweenLastAndPopLimitation");
 		if (visibleGameObjectTab.Count != 0) {
 			float min = float.MaxValue;
 			foreach(GameObject g in visibleGameObjectTab) {
@@ -210,6 +222,7 @@ public class parallaxPlanSave : parallaxPlan {
 	}
 
 	float RightestXPosition(GameObject g){
+		Debug.Log("parralaxPlanSave RightestXPosition");
 		float rightValue = float.MinValue;
 
 		if (g.GetComponentsInChildren<SpriteRenderer> () != null) {
@@ -225,6 +238,7 @@ public class parallaxPlanSave : parallaxPlan {
 
 
 	float LeftestXPosition(GameObject g){
+		Debug.Log("parralaxPlanSave LeftestXPosition");
 		float leftValue = float.MaxValue;
 
 		if (g.GetComponentsInChildren<SpriteRenderer> () != null) {
@@ -240,6 +254,7 @@ public class parallaxPlanSave : parallaxPlan {
 		
 
 	public void Clear(){
+		Debug.Log("parralaxPlanSave Clear");
 		base.Clear ();
 		m_stockAsset.Clear ();
 	}

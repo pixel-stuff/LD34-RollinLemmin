@@ -117,6 +117,7 @@ public class parralaxManager : MonoBehaviour {
 	#if UNITY_EDITOR
 	private EditorApplication.CallbackFunction s_backgroundUpdateCB;
 	private void EditorCallback() {
+		Debug.Log("parralaxManager EditorCallback");
 		if (!EditorApplication.isPlaying && EditorApplication.isPlayingOrWillChangePlaymode) {
 			clear ();
 		}
@@ -126,11 +127,13 @@ public class parralaxManager : MonoBehaviour {
 	}
 
 	void OnEnable() {
+		Debug.Log("parralaxManager OnEnable");
 		s_backgroundUpdateCB = new EditorApplication.CallbackFunction(EditorCallback);
 		EditorApplication.update += s_backgroundUpdateCB;
 	}
 	#endif	
 	void Awake(){
+		Debug.Log("parralaxManager Awake");
 		clear ();
 		var children = new List<GameObject>();
 		foreach (Transform child in transform) children.Add(child.gameObject);
@@ -140,6 +143,7 @@ public class parralaxManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log("parralaxManager Start");
 		reset = false;
 		speed = constantSpeed;
 		cameraThreshold.popLimitation = new Vector3 (0, cameraToFollow.transform.position.y - cameraToFollow.rect.height * cameraToFollow.orthographicSize, 0);
@@ -214,6 +218,7 @@ public class parralaxManager : MonoBehaviour {
 	}
 
 	void UpdateCameraThreshold() {
+		Debug.Log("parralaxManager UpdateCameraThreshold");
 		//reset the Pop and depop position 
 		m_refreshZoom = false;
 		float cameraOrthographiqueSize = cameraToFollow.orthographicSize*2;
@@ -231,6 +236,7 @@ public class parralaxManager : MonoBehaviour {
 	}
 
 	void UpdateSpeedAndPosition(){
+		Debug.Log("parralaxManager UpdateSpeedAndPosition");
 		float cameraSpeedX=0;
 		float cameraSpeedY = 0;
 		if (cameraToFollow != null){
@@ -257,9 +263,12 @@ public class parralaxManager : MonoBehaviour {
 	// Update is called once per frame
 	#if UNITY_EDITOR
 	void Update () {
+		Debug.Log("parralaxManager Update");
 	#else
 	void FixedUpdate () {
+	Debug.Log("parralaxManager FixedUpdate");
 	#endif
+		
 		UpdateCameraThreshold ();
 
 		UpdateSpeedAndPosition ();
@@ -274,10 +283,12 @@ public class parralaxManager : MonoBehaviour {
 	}
 
 	public float getGroundSpeedf() {
+		Debug.Log("parralaxManager getGroundSpeedf");
 		return speed;
 	}
 
 	public void isPaused(bool pause) {
+		Debug.Log("parralaxManager isPaused");
 		if (pause) {
 			speed = 0;
 		} else {
@@ -286,6 +297,7 @@ public class parralaxManager : MonoBehaviour {
 	}
 
 	private void setPlanConstante() {
+		Debug.Log("parralaxManager setPlanConstante");
 		speed = constantSpeed;
 
 		foreach (ParralaxPlanConfiguration config in configurationParralax) {
@@ -304,12 +316,14 @@ public class parralaxManager : MonoBehaviour {
 		}
 	}
 	private void resetAllPlan(){
+		Debug.Log("parralaxManager resetAllPlan");
 		reset = false;
 		clear ();
 		Start ();
 	}
 
 	private void clear(){
+		Debug.Log("parralaxManager clear");
 		if (parralaxPlans != null) {
 			foreach (GameObject plan in parralaxPlans) {
 				plan.GetComponent<parallaxPlan> ().Clear ();

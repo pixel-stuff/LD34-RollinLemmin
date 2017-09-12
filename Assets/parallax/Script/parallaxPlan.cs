@@ -134,7 +134,7 @@ abstract public class parallaxPlan : MonoBehaviour {
 		setTheDistanceMultiplicator ();
 		generator.Clear ();
 		isInit = false;
-		initSpeed = Mathf.Max( initSpeed * speedMultiplicator,0.01f);
+		initSpeed = Mathf.Max( initSpeed * speedMultiplicator,1f);
 		setSpeedOfPlan (initSpeed,0);
 		generateNewSpaceBetweenAssetValue();
 		while (!isInit) {
