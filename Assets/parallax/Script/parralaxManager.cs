@@ -312,8 +312,13 @@ public class parralaxManager : MonoBehaviour {
 	private void clear(){
 		if (parralaxPlans != null) {
 			foreach (GameObject plan in parralaxPlans) {
-				plan.GetComponent<parallaxPlan> ().Clear ();
-				DestroyImmediate (plan);
+              
+                parallaxPlan current = plan.GetComponent<parallaxPlan>();
+                if(current != null)
+                {
+                    current.Clear();
+                }
+                DestroyImmediate(plan);
 			}
 		
 			parralaxPlans.Clear ();

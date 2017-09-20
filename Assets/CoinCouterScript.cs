@@ -13,7 +13,6 @@ public class CoinCouterScript : MonoBehaviour
     public void addCoin(int number)
     {
         numberOfCoin+= number;
-        Debug.Log("NUMBER OF COIN " + numberOfCoin);
         coinAdded.Invoke(numberOfCoin.ToString());
     }
 }
