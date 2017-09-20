@@ -9,8 +9,9 @@ public class lemmings : MonoBehaviour {
 	[System.Serializable]
 	public class RadiusEvent : UnityEvent<float> { }
 
-	[SerializeField] RadiusEvent radiusEvent;
-	[SerializeField] UnityEvent ballDestroyEvent;
+	[SerializeField] RadiusEvent radiusParticuleEvent;
+    [SerializeField] RadiusEvent radiusEvent;
+    [SerializeField] UnityEvent ballDestroyEvent;
 	[SerializeField] UnityEvent ballBuildEvent;
 	[SerializeField] UnityEvent treeDestroyEvent;
 	[SerializeField] UnityEvent rockDestroyEvent;
@@ -77,6 +78,8 @@ public class lemmings : MonoBehaviour {
 
 	public GameObject DestroyEffectCointainer;
 
+    public ParticleSystem trailParticleSystem;
+
 	// Use this for initialization
 	void Start () {
 		m_collider = this.GetComponent<CircleCollider2D> ();
@@ -90,10 +93,8 @@ public class lemmings : MonoBehaviour {
 	//	if(addSnow)
 	//	castRayForStompSnow ();
 		if (snowValue > lemmingInSnow) {
-			ball.SetActive (true);
 			ballBuildEvent.Invoke ();
 		} else {
-			ball.SetActive (false);
 			ballDestroyEvent.Invoke ();
 		}
 
@@ -163,23 +164,24 @@ public class lemmings : MonoBehaviour {
 	}
 
 	void updateSize(){
-		m_collider.radius = initialeSize + (maxSize * (snowValue / maxSnow));
-		ball.transform.localScale = new Vector3(initialeSize + (maxSize * (snowValue / maxSnow)),initialeSize + (maxSize * (snowValue / maxSnow)),1) ;
+		m_collider.radius = Mathf.Max(initialeSize + (maxSize * (snowValue / maxSnow)),0.32f);
+        radiusEvent.Invoke(m_collider.radius);
+
+        ball.transform.localScale = new Vector3(initialeSize + (maxSize * (snowValue / maxSnow)),initialeSize + (maxSize * (snowValue / maxSnow)),1) ;
 		float multi = 2.3f;
 		float particuleBaseSize = 0.6f;
 		//ball.GetComponent<TrailRenderer> ().startWidth = initialeSize + (maxSize * (snowValue / maxSnow))* multi;
 		//ball.GetComponent<TrailRenderer> ().endWidth = initialeSize + (maxSize * (snowValue / maxSnow))* multi;
 		//ball.GetComponent<ParticleSystem>().shape = shapeModule;
-		ParticleSystem trailComponent = this.GetComponentInChildren<ParticleSystem>();
-		if (trailComponent != null) {
-			var trailMain = trailComponent.main;
+		if (trailParticleSystem != null) {
+			var trailMain = trailParticleSystem.main;
 			trailMain.startSize = new ParticleSystem.MinMaxCurve (particuleBaseSize + ((maxSize * (snowValue / maxSnow))) * multi);
 		}
 		m_rigideBody.mass = initialeWeight + (maxWeight * (snowValue / maxSnow));
 
 		//this.GetComponentInChildren<SpeedSizeRotation> ().currentRadius= particuleBaseSize + ((maxSize * (snowValue / maxSnow)))* multi;
 
-		radiusEvent.Invoke (particuleBaseSize + ((maxSize * (snowValue / maxSnow))) * multi);
+		radiusParticuleEvent.Invoke (particuleBaseSize + ((maxSize * (snowValue / maxSnow))) * multi);
 
 		var destroysParticuleSys = DestroyEffectCointainer.GetComponentsInChildren<ParticleSystem> ();
 		foreach(ParticleSystem part in destroysParticuleSys){

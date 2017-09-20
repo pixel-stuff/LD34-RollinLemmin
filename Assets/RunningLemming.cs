@@ -18,6 +18,7 @@ public class RunningLemming : MonoBehaviour {
     public void changePosition(float radius)
     {
         if (ballIsSpawn) { 
+            gameObject.transform.localPosition = new Vector3(0, radius + this.GetComponent<SpriteRenderer>().size.y/2, 0);
         } else
         {
             gameObject.transform.localPosition = new Vector3(0, 0, 0);
