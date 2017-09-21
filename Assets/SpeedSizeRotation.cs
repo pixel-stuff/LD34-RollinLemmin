@@ -44,7 +44,6 @@ public class SpeedSizeRotation : MonoBehaviour {
 		}
 
 		previousPosition = this.transform.position;
-		//degreePerSeconde = 15;
 		ApplyRotationSpeed(time, degreePerSeconde);
 	}
 

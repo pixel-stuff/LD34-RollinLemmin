@@ -138,7 +138,16 @@ public class lemmings : MonoBehaviour {
 			particuleEffect.degradationEffect (-lostSnowValue);
 		}
 		if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)){
-			Jump ();
+            if (canJump)
+            {
+                Jump();
+            } else if( snowValue > lemmingInSnow) {
+                //HaveBall -> doubleJump
+                DoubleJump();
+            } else
+            {
+                //TODO, fail jump animation.
+            }
 		}
 
 		if(Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.DownArrow)){
@@ -292,13 +301,17 @@ public class lemmings : MonoBehaviour {
 
 	}
 
+    void OnCollisionExit2D(Collision2D other){
+        if (other.gameObject.layer == LayerMask.NameToLayer("Neige"))
+        {
 
-	void OnCollisionExit2D(Collision2D other){
-		m_rigideBody.AddRelativeForce (new Vector3(0,-10000,0));
-		addSnow=false;
-		isBump = true;
-		m_snowContactPoint = Vector3.zero;
-	}
+            m_rigideBody.AddRelativeForce(new Vector3(0, -10000, 0));
+            addSnow = false;
+            isBump = true;
+            m_snowContactPoint = Vector3.zero;
+            canJump = false;
+        }
+    }
 		
 	void OnDrawGizmos() {
 		Gizmos.color = Color.blue;
@@ -306,16 +319,22 @@ public class lemmings : MonoBehaviour {
 	}
 
 	public void Jump(){
-		if (canJump) {
-			canJump = false;
 			m_rigideBody.AddForce (jumpForce);
 			particuleEffect.Jump (snowValue / maxSnow);
-		}
 	}
 
-	public void DropSnow(){
+    public void DoubleJump()
+    {
+        m_rigideBody.AddForce(jumpForce);
+        particuleEffect.Jump(snowValue / maxSnow);
+        DropSnow();
+    }
+
+    public void DropSnow(){
 		particuleEffect.DropSnow(snowValue/maxSnow);
 		snowValue = 0;
+        //move on lemming position
+        this.gameObject.transform.position = this.gameObject.GetComponentInChildren<RunningLemming>().gameObject.transform.position;
 		ballDestroyEvent.Invoke ();
 	}
 }
