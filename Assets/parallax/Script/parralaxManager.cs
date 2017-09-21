@@ -318,10 +318,13 @@ public class parralaxManager : MonoBehaviour {
                 {
                     current.Clear();
                 }
-                DestroyImmediate(plan);
 			}
-		
-			parralaxPlans.Clear ();
+            foreach (GameObject plan in parralaxPlans)
+            {
+                DestroyImmediate(plan);
+            }
+
+            parralaxPlans.Clear ();
 			parralaxPlans = null;
 		}
 	}

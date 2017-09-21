@@ -13,7 +13,8 @@ public class lemmings : MonoBehaviour {
     [SerializeField] RadiusEvent radiusEvent;
     [SerializeField] UnityEvent ballDestroyEvent;
 	[SerializeField] UnityEvent ballBuildEvent;
-	[SerializeField] UnityEvent treeDestroyEvent;
+    [SerializeField] public UnityEvent getDestroyByBallEvent;
+    [SerializeField] UnityEvent treeDestroyEvent;
 	[SerializeField] UnityEvent rockDestroyEvent;
 	public float rollingSnowAdd;
 	public float lostSnow;
@@ -80,6 +81,8 @@ public class lemmings : MonoBehaviour {
 
     public ParticleSystem trailParticleSystem;
 
+    public float otherBallCollisionPercent = 20f;
+
 	// Use this for initialization
 	void Start () {
 		m_collider = this.GetComponent<CircleCollider2D> ();
@@ -90,8 +93,6 @@ public class lemmings : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-	//	if(addSnow)
-	//	castRayForStompSnow ();
 		if (snowValue > lemmingInSnow) {
 			ballBuildEvent.Invoke ();
 		} else {
@@ -102,6 +103,7 @@ public class lemmings : MonoBehaviour {
 		speed = (this.transform.position - oldPosition).magnitude;
 		float speedSign = this.transform.position.x - oldPosition.x;
 
+        //TODO remove this -> on camera script
         // update camera component acceleration fx
         // not physically accurate, but we don't care for the moment
         // acceleration should look ahead, not backwards
@@ -137,39 +139,6 @@ public class lemmings : MonoBehaviour {
 		if (lostSnowValue < 0) {
 			particuleEffect.degradationEffect (-lostSnowValue);
 		}
-		if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)){
-            if (canJump)
-            {
-                Jump();
-            } else if( snowValue > lemmingInSnow) {
-                //HaveBall -> doubleJump
-                DoubleJump();
-            } else
-            {
-                //TODO, fail jump animation.
-            }
-		}
-
-		if(Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.DownArrow)){
-			DropSnow ();
-		}
-		if (Input.GetKeyDown (KeyCode.Escape)) {
-			GameStateManager.setGameState (GameState.Playing);
-			Application.LoadLevel ("MenuScene");
-		}
-		if (Input.touchCount == 1) {    
-			// touch on screen
-			if (Input.GetTouch (0).phase == TouchPhase.Began) {
-				Jump ();
-			}
-		}
-
-		if(Mathf.Abs(Input.acceleration.y) > 1.5f){
-
-			Debug.Log("Y =  "  + Input.acceleration.y);
-			DropSnow ();
-		}
-
 	}
 
 	void updateSize(){
@@ -179,17 +148,11 @@ public class lemmings : MonoBehaviour {
         ball.transform.localScale = new Vector3(initialeSize + (maxSize * (snowValue / maxSnow)),initialeSize + (maxSize * (snowValue / maxSnow)),1) ;
 		float multi = 2.3f;
 		float particuleBaseSize = 0.6f;
-		//ball.GetComponent<TrailRenderer> ().startWidth = initialeSize + (maxSize * (snowValue / maxSnow))* multi;
-		//ball.GetComponent<TrailRenderer> ().endWidth = initialeSize + (maxSize * (snowValue / maxSnow))* multi;
-		//ball.GetComponent<ParticleSystem>().shape = shapeModule;
 		if (trailParticleSystem != null) {
 			var trailMain = trailParticleSystem.main;
 			trailMain.startSize = new ParticleSystem.MinMaxCurve (particuleBaseSize + ((maxSize * (snowValue / maxSnow))) * multi);
 		}
 		m_rigideBody.mass = initialeWeight + (maxWeight * (snowValue / maxSnow));
-
-		//this.GetComponentInChildren<SpeedSizeRotation> ().currentRadius= particuleBaseSize + ((maxSize * (snowValue / maxSnow)))* multi;
-
 		radiusParticuleEvent.Invoke (particuleBaseSize + ((maxSize * (snowValue / maxSnow))) * multi);
 
 		var destroysParticuleSys = DestroyEffectCointainer.GetComponentsInChildren<ParticleSystem> ();
@@ -250,7 +213,33 @@ public class lemmings : MonoBehaviour {
 			Application.LoadLevelAsync ("SuccessGameOver");
 		}
 
-	}
+        if (other.gameObject.tag == "Ball")
+        {
+            lemmings otherBall = other.gameObject.GetComponent<lemmings>();
+            if(otherBall.snowValue > snowValue + otherBallCollisionPercent/100f * maxSnow)
+            {
+                //other ball too large
+                Debug.Log("Other too large ");
+                if (snowValue < 10)
+                {
+                    GameStateManager.setGameState(GameState.GameOver);
+                    Application.LoadLevelAsync("GameOverScene");
+                }
+                DropSnow();
+                getDestroyByBallEvent.Invoke();
+            } else if(otherBall.snowValue < snowValue + otherBallCollisionPercent/100f * maxSnow && otherBall.snowValue > snowValue - otherBallCollisionPercent/100f * maxSnow){
+                Debug.Log("Other same size ");
+                //same size
+                //TODO particule effect on strike
+            } else {
+                Debug.Log("Other too small ");
+                // other ball too small 
+                otherBall.DropSnow();
+                otherBall.getDestroyByBallEvent.Invoke();
+                //TODO accelerate
+            }
+        }
+    }
 
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -276,7 +265,7 @@ public class lemmings : MonoBehaviour {
 	}
 
 
-	void OnCollisionStay2D(Collision2D other){
+    void OnCollisionStay2D(Collision2D other){
 		isBump = false;
         
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Neige")) {
@@ -313,12 +302,8 @@ public class lemmings : MonoBehaviour {
         }
     }
 		
-	void OnDrawGizmos() {
-		Gizmos.color = Color.blue;
-		Gizmos.DrawLine (transform.position,new Vector3 (m_snowContactPoint.x,m_snowContactPoint.y,0));
-	}
-
-	public void Jump(){
+	public void Jump()
+    {
 			m_rigideBody.AddForce (jumpForce);
 			particuleEffect.Jump (snowValue / maxSnow);
 	}
@@ -332,9 +317,30 @@ public class lemmings : MonoBehaviour {
 
     public void DropSnow(){
 		particuleEffect.DropSnow(snowValue/maxSnow);
-		snowValue = 0;
-        //move on lemming position
-        this.gameObject.transform.position = this.gameObject.GetComponentInChildren<RunningLemming>().gameObject.transform.position;
+        snowValue = 0;
 		ballDestroyEvent.Invoke ();
 	}
+
+    public void UserAskForJump()
+    {
+        if (canJump)
+        {
+            Jump();
+        }
+        else if (snowValue > lemmingInSnow)
+        {
+            //HaveBall -> doubleJump
+            DoubleJump();
+        }
+        else
+        {
+            //TODO, fail jump animation.
+        }
+    }
+
+
+    public void UserAskForDropSnow()
+    {
+        DropSnow();
+    }
 }

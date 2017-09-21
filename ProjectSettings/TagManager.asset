@@ -24,10 +24,10 @@ TagManager:
   - TreeBrotherPosition
   - PivotPoint
   - ParallaxManager
-  - SmashTree
-  - GripTree
-  - WeaponTree
   - Rock
+  - Ball
+  - lemming
+  - LemmingBall
   layers:
   - Default
   - TransparentFX
