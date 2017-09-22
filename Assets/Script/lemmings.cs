@@ -282,7 +282,7 @@ public class lemmings : MonoBehaviour {
         if (other.gameObject.layer == LayerMask.NameToLayer("Neige"))
         {
 
-            m_rigideBody.AddRelativeForce(new Vector3(0, -10000, 0));
+            m_rigideBody.AddRelativeForce(new Vector3(0, -20000, 0));
             addSnow = false;
             isBump = true;
             m_snowContactPoint = Vector3.zero;
