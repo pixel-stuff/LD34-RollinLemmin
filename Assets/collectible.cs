@@ -13,6 +13,7 @@ public class collectible : MonoBehaviour {
     public void ShineAndDestroy()
     {
         shineEvent.Invoke();
+        isAlive = false;
     }
     public void CollectibleOnTop()
     {

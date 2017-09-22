@@ -83,6 +83,8 @@ public class lemmings : MonoBehaviour {
 
     public float otherBallCollisionPercent = 20f;
 
+    public GameObject FallingBallPrefab;
+
 	// Use this for initialization
 	void Start () {
 		m_collider = this.GetComponent<CircleCollider2D> ();
@@ -107,13 +109,13 @@ public class lemmings : MonoBehaviour {
         // update camera component acceleration fx
         // not physically accurate, but we don't care for the moment
         // acceleration should look ahead, not backwards
-        Vector2 acceleration = new Vector2((this.transform.position.x - oldPosition.x), (this.transform.position.y - oldPosition.y));
+      /*  Vector2 acceleration = new Vector2((this.transform.position.x - oldPosition.x), (this.transform.position.y - oldPosition.y));
         AccelerationBlur blur = camera.GetComponent<AccelerationBlur>();
         if(blur != null)
         {
             blur.m_Acceleration = acceleration.normalized * Mathf.Max(0.0f, speed - oldSpeed);
             Debug.Log(blur.m_Acceleration);
-        }
+        }*/
 
 
         float oldSnowValue = snowValue;
@@ -179,7 +181,10 @@ public class lemmings : MonoBehaviour {
 		}
 		float initialCameraZoom = initialeZoom + (maxZoom * (snowValue / maxSnow));
 		float cameraZoom = initialCameraZoom *(1 + (actualBumpZoom/100));
-		camera.orthographicSize = Mathf.Lerp(camera.orthographicSize,cameraZoom,0.3f);
+        if (camera !=null)
+        {
+            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, cameraZoom, 0.3f);
+        }
 	}
 
 
@@ -205,13 +210,6 @@ public class lemmings : MonoBehaviour {
 				m_rigideBody.AddForce (ForceUpInFall);
 			}
 		}
-		 else if (other.gameObject.layer == LayerMask.NameToLayer ("Death")){
-			GameStateManager.setGameState (GameState.GameOver);
-			Application.LoadLevelAsync ("GameOverScene");
-		} else if (other.gameObject.layer == LayerMask.NameToLayer ("End")){
-			GameStateManager.setGameState (GameState.GameOver);
-			Application.LoadLevelAsync ("SuccessGameOver");
-		}
 
         if (other.gameObject.tag == "Ball")
         {
@@ -220,7 +218,7 @@ public class lemmings : MonoBehaviour {
             {
                 //other ball too large
                 Debug.Log("Other too large ");
-                if (snowValue < 10)
+                if (snowValue < 10 && this.tag == "LemmingBall")
                 {
                     GameStateManager.setGameState(GameState.GameOver);
                     Application.LoadLevelAsync("GameOverScene");
@@ -278,16 +276,6 @@ public class lemmings : MonoBehaviour {
 				m_rigideBody.AddForce (ForceUpInFall);
 			}
 		}
-
-		if (other.gameObject.layer == LayerMask.NameToLayer ("Death")){
-			GameStateManager.setGameState (GameState.GameOver);
-			Application.LoadLevelAsync ("GameOverScene");
-		} else if (other.gameObject.layer == LayerMask.NameToLayer ("End")){
-			Debug.Log ("END");
-			GameStateManager.setGameState (GameState.GameOver);
-			Application.LoadLevelAsync ("SuccessGameOver");
-		}
-
 	}
 
     void OnCollisionExit2D(Collision2D other){
@@ -311,8 +299,13 @@ public class lemmings : MonoBehaviour {
     public void DoubleJump()
     {
         m_rigideBody.AddForce(jumpForce);
+        ballDestroyEvent.Invoke();
         particuleEffect.Jump(snowValue / maxSnow);
-        DropSnow();
+        //createNewBall
+        GameObject fallingBall =  Instantiate(FallingBallPrefab);
+        fallingBall.transform.position = this.transform.position;
+        fallingBall.GetComponentInChildren<lemmings>().snowValue = snowValue;
+        snowValue = 0;
     }
 
     public void DropSnow(){

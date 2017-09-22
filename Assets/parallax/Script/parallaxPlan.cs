@@ -137,10 +137,17 @@ abstract public class parallaxPlan : MonoBehaviour {
 		initSpeed = Mathf.Max( initSpeed * speedMultiplicator,0.01f);
 		setSpeedOfPlan (initSpeed,0);
 		generateNewSpaceBetweenAssetValue();
-		while (!isInit) {
+        int nbIteration = 0;
+        int iteractionMax = 10000;
+		while (!isInit || nbIteration > iteractionMax) {
+            nbIteration++;
 			moveAsset (initSpeed,0);
 			generateAssetIfNeeded ();
 		}
+        if(nbIteration > iteractionMax)
+        {
+            Debug.LogError("parralax plan " + this.name + "can't init");
+        }
 	}
 
 
@@ -155,7 +162,8 @@ abstract public class parallaxPlan : MonoBehaviour {
 	}
 
 	protected float randomRange (float min, float max){
-		float factor = m_random.Next () / int.MaxValue;
+        int percent = m_random.Next(100);
+		float factor = percent/100f;
 		return factor * (max - min) + min;
 	}
 
