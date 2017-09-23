@@ -51,7 +51,11 @@ public class parallaxPlanBasic : parallaxPlan {
 			GameObject asset = assetStruct.generateAsset;
 			Vector3 position = asset.transform.position;
 			asset.transform.parent = this.transform;
-			asset.GetComponent<SpriteRenderer> ().color = colorTeint;
+            SpriteRenderer renderer = asset.GetComponent<SpriteRenderer>();
+            if (renderer != null)
+            {
+                renderer.color = colorTeint;
+            }
 			float yPosition = 0f;
 			if (visibleGameObjectTab.Count == 0) {
 				yPosition = this.transform.position.y + yOffset;
