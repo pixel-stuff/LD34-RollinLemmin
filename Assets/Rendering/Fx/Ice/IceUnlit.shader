@@ -94,9 +94,9 @@ Shader "Fx/Ice/IceUnlit"
 
 		fixed3 color = lerp(bgcolor, wcolor, Fresnel);
 
-		color = lerp(color, ftcolor, clamp(1.0 - Fresnel, 0.0, 1.0));
-
 		color = lerp(color, _IceColor, diffuse.a);
+
+		color = lerp(color, ftcolor, clamp(1.0 - Fresnel, 0.0, 1.0));
 
 		return fixed4(color, 1.0);
 	}
