@@ -78,7 +78,7 @@ Shader "Custom/Mask"
                 {
                     fixed4 c = tex2D(_MainTex, IN.texcoord) * IN.color;
 					float mask = tex2D(_MaskTex, IN.texcoord).r;
-                    if (c.a < 0.1) discard;
+                    if (mask.r < 0.1) discard;
                     c.rgb *= c.a;
                     return c*mask;
                 }
