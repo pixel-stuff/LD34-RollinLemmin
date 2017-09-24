@@ -43,7 +43,11 @@ public class assetGenerator : parralaxAssetGenerator {
 			} else {
 				asset = Instantiate (prefab);
 			}
-			asset.GetComponent<SpriteRenderer> ().flipX = randomFlip ();
+            SpriteRenderer renderer = asset.GetComponent<SpriteRenderer>();
+            if (renderer != null)
+            {
+                renderer.flipX = randomFlip();
+            }
 			GameObjectTabOfTypePrefab.Add (asset);
 		}
 		GenerateAssetStruct assetStruct = new GenerateAssetStruct();

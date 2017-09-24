@@ -66,9 +66,9 @@ public class parallaxPlanSave : parallaxPlan {
 	float calculateXOffsetForAsset(GameObject asset) {
 		if (speedSign > 0) {
 			//TODO refactor for avoid spriteRenderer
-			return (asset.GetComponent<SpriteRenderer> ().sprite.bounds.max.x) - (space - spaceBetweenAsset);
+			return (RightestXPosition(asset)) - (space - spaceBetweenAsset);
 		} else {
-			return (asset.GetComponent<SpriteRenderer> ().sprite.bounds.min.x) + (space - spaceBetweenAsset);
+			return (LeftestXPosition(asset)) + (space - spaceBetweenAsset);
 		}
 	}
 
@@ -88,7 +88,11 @@ public class parallaxPlanSave : parallaxPlan {
 		StockAssetStruct stockAssetStruct = new StockAssetStruct();
 		stockAssetStruct.code = assetStruct.code;
 		stockAssetStruct.dist = spaceBetweenAsset;
-		asset.GetComponent<SpriteRenderer> ().color = colorTeint;
+        SpriteRenderer renderer = asset.GetComponent<SpriteRenderer>();
+        if (renderer != null)
+        {
+            renderer.color = colorTeint;
+        }
 		m_stockAsset.Add(stockAssetStruct);
 		hightId ++;
 		generateNewSpaceBetweenAssetValue();
@@ -111,8 +115,12 @@ public class parallaxPlanSave : parallaxPlan {
 		StockAssetStruct stockAssetStruct = new StockAssetStruct();
 		stockAssetStruct.code = assetStruct.code;
 		stockAssetStruct.dist = spaceBetweenAsset;
-		asset.GetComponent<SpriteRenderer> ().color = colorTeint;
-		m_stockAsset.Insert(0,stockAssetStruct);
+        SpriteRenderer renderer = asset.GetComponent<SpriteRenderer>();
+        if (renderer != null)
+        {
+            renderer.color = colorTeint;
+        }
+        m_stockAsset.Insert(0,stockAssetStruct);
 		hightId ++;
 		generateNewSpaceBetweenAssetValue();
 	}
@@ -212,13 +220,19 @@ public class parallaxPlanSave : parallaxPlan {
 	float RightestXPosition(GameObject g){
 		float rightValue = float.MinValue;
 
-		if (g.GetComponentsInChildren<SpriteRenderer> () != null) {
+        if(g.GetComponent<ParralaxSize>() != null)
+        {
+            rightValue = g.GetComponent<ParralaxSize>().rightestPosition;
+        }
+        else if (g.GetComponentsInChildren<SpriteRenderer> () != null) {
 			foreach (SpriteRenderer spriteRenderer in g.GetComponentsInChildren<SpriteRenderer> ()) {
 				rightValue = Mathf.Max (rightValue, spriteRenderer.sprite.bounds.max.x);
 			}
 		}
 
 		//TODO same things for particules;
+
+        
 
 		return g.transform.position.x + rightValue;
 	}
@@ -227,7 +241,11 @@ public class parallaxPlanSave : parallaxPlan {
 	float LeftestXPosition(GameObject g){
 		float leftValue = float.MaxValue;
 
-		if (g.GetComponentsInChildren<SpriteRenderer> () != null) {
+        if (g.GetComponent<ParralaxSize>() != null)
+        {
+            leftValue = g.GetComponent<ParralaxSize>().leftestPosition;
+        }
+        else if(g.GetComponentsInChildren<SpriteRenderer> () != null) {
 			foreach (SpriteRenderer spriteRenderer in g.GetComponentsInChildren<SpriteRenderer> ()) {
 				leftValue = Mathf.Min (leftValue, spriteRenderer.sprite.bounds.min.x);
 			}

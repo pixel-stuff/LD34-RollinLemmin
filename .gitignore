@@ -33,3 +33,5 @@ ehthumbs.db
 [Tt]humbs.db
 *.csproj
 *.unityproj
+.vs/LD34-RollinLemmin/v15/sqlite3/storage.ide
+.vs/LD34-RollinLemmin/v15/.suo
