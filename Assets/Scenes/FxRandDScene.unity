@@ -31924,7 +31924,7 @@ GameObject:
   - component: {fileID: 1631143024}
   - component: {fileID: 1631143023}
   m_Layer: 0
-  m_Name: Ice
+  m_Name: IcePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
